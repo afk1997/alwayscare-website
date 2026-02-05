@@ -11,6 +11,7 @@ const Hero: React.FC = () => {
   const [currentDate, setCurrentDate] = useState('');
   const [mapStatus, setMapStatus] = useState<'loading' | 'ready' | 'error'>('loading');
   const [activeTab, setActiveTab] = useState<'ambulance' | 'clinic'>('ambulance');
+  const [liveGpsData, setLiveGpsData] = useState<Map<string, {lat: number, lng: number}>>(new Map());
 
   // Set today's date
   useEffect(() => {
@@ -32,7 +33,25 @@ const Hero: React.FC = () => {
     fetch('https://api-alwayscare.arham.org/api/cases/today/summary')
       .then(res => res.json())
       .then(data => setDailyCases(data.total_cases))
-      .catch(() => setDailyCases(142)); 
+      .catch(() => setDailyCases(142));
+  }, []);
+
+  // Fetch live GPS data for ambulances
+  useEffect(() => {
+    fetch('https://api-alwayscare.arham.org/api/map/devices')
+      .then(res => res.json())
+      .then((devices: any[]) => {
+        const gpsMap = new Map<string, {lat: number, lng: number}>();
+        devices.forEach(device => {
+          if (device.latitude && device.longitude && device.site?.contactNo) {
+            // Match by phone number (normalize by removing spaces)
+            const phone = device.site.contactNo.replace(/\s/g, '');
+            gpsMap.set(phone, { lat: device.latitude, lng: device.longitude });
+          }
+        });
+        setLiveGpsData(gpsMap);
+      })
+      .catch(err => console.error('Failed to fetch live GPS data:', err));
   }, []);
 
   // Initialize Map with loading state and error handling
@@ -130,12 +149,19 @@ const Hero: React.FC = () => {
     };
   }, []);
 
-  const flyToLocation = (lat: number, lng: number, id: string) => {
-    setSelectedAmbulanceId(id);
+  const flyToLocation = (item: { id: string; phone: string; lat: number; lng: number }) => {
+    // Try to get live GPS coordinates, fallback to static
+    const normalizedPhone = item.phone.replace(/\s/g, '');
+    const liveCoords = liveGpsData.get(normalizedPhone);
+
+    const lat = liveCoords?.lat || item.lat;
+    const lng = liveCoords?.lng || item.lng;
+
+    setSelectedAmbulanceId(item.id);
     if (mapInstanceRef.current) {
-      mapInstanceRef.current.flyTo([lat, lng], 13, { animate: true, duration: 1.5 });
+      mapInstanceRef.current.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
       mapInstanceRef.current.closePopup();
-      
+
       // On mobile, scroll to map when an ambulance is selected
       if (window.innerWidth < 1024) {
         document.getElementById('ambulance-map-container')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -166,11 +192,11 @@ const Hero: React.FC = () => {
               <AlertCircle size={14} />
               <span>EMERGENCY RESPONSE</span>
             </div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-3">
-              India's Free Animal <br /> <span className="text-red-600">Ambulance Network</span>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+              India's Fast & Free <br /><span className="text-red-600">Animal Ambulance Network</span>
             </h1>
-            <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed max-w-lg">
-              On call Free first-aid and treatment, for every injured street animal.
+            <p className="text-slate-700 text-base md:text-lg font-normal leading-relaxed max-w-xl" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+              On call, free first-aid and treatment for every injured street animal.
             </p>
           </div>
 
@@ -354,7 +380,7 @@ const Hero: React.FC = () => {
                   filteredData.map(item => (
                     <div
                       key={item.id}
-                      onClick={() => flyToLocation(item.lat, item.lng, item.id)}
+                      onClick={() => flyToLocation(item)}
                       className={`p-3 rounded-lg border cursor-pointer transition-all ${
                         selectedAmbulanceId === item.id
                         ? 'bg-red-50 border-red-200 ring-1 ring-red-200'
@@ -439,7 +465,7 @@ const Hero: React.FC = () => {
 
                            <div className="grid grid-cols-2 gap-3">
                               <button
-                                 onClick={() => flyToLocation(item.lat, item.lng, item.id)}
+                                 onClick={() => flyToLocation(item)}
                                  className="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-slate-300 text-slate-700 font-semibold text-sm hover:bg-slate-50 transition-colors"
                               >
                                  <MapIcon size={16} />

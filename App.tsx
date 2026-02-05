@@ -1,8 +1,6 @@
 import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import LiveStats from './components/LiveStats';
-import DonateSection from './components/DonateSection';
 import Volunteer from './components/Volunteer';
 import Footer from './components/Footer';
 // Chat assistant disabled - requires API key
@@ -14,8 +12,6 @@ const App: React.FC = () => {
       <Header />
       <main>
         <Hero />
-        <LiveStats />
-        <DonateSection />
         <Volunteer />
       </main>
       <Footer />
