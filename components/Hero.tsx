@@ -174,41 +174,41 @@ const Hero: React.FC = () => {
             </p>
           </div>
 
-          {/* 2. Detailed Impact Stats Grid */}
-          <div className="grid grid-cols-2 gap-2 md:gap-4 mb-4 md:mb-6">
-            
+          {/* 2. Impact Stats Row */}
+          <div className="grid grid-cols-4 gap-2 mb-4 md:mb-6">
+
             {/* Card 1 */}
-            <div className="bg-slate-50 p-3 md:p-4 rounded-xl border border-slate-200 flex flex-col justify-between h-28 md:h-32 hover:border-red-200 transition-colors">
-              <div className="text-xs text-slate-500 font-bold uppercase tracking-wider bg-slate-200/50 self-start px-2 py-0.5 rounded">{currentDate}</div>
-              <div className="text-2xl md:text-3xl font-black text-slate-900 my-1">
+            <div className="bg-slate-50 p-2.5 md:p-3 rounded-xl border border-slate-200 hover:border-red-200 transition-colors flex flex-col">
+              <div className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-wider bg-slate-200/50 inline-block px-1.5 py-0.5 rounded mb-1 self-start">{currentDate}</div>
+              <div className="text-xl md:text-2xl font-black text-slate-900">
                 {dailyCases === '...' ? (
-                  <span className="inline-block w-16 h-8 bg-slate-200 rounded animate-pulse"></span>
+                  <span className="inline-block w-12 h-6 bg-slate-200 rounded animate-pulse"></span>
                 ) : (
                   dailyCases
                 )}
               </div>
-              <div className="text-xs text-slate-600 font-medium">Cases Treated Today</div>
+              <div className="text-[10px] md:text-xs text-slate-600 font-medium leading-tight mt-auto">Cases Treated Today</div>
             </div>
 
             {/* Card 2 */}
-            <div className="bg-slate-50 p-3 md:p-4 rounded-xl border border-slate-200 flex flex-col justify-between h-28 md:h-32 hover:border-red-200 transition-colors">
-              <div className="text-xs text-slate-500 font-bold uppercase tracking-wider">In Last 3 Years</div>
-              <div className="text-2xl md:text-3xl font-black text-red-600 my-1">1.5 Lakh+</div>
-              <div className="text-xs text-slate-600 font-medium">Lives Saved</div>
+            <div className="bg-slate-50 p-2.5 md:p-3 rounded-xl border border-slate-200 hover:border-red-200 transition-colors flex flex-col">
+              <div className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">In Last 3 Years</div>
+              <div className="text-xl md:text-2xl font-black text-red-600">1.5 Lakh+</div>
+              <div className="text-[10px] md:text-xs text-slate-600 font-medium leading-tight mt-auto">Lives Saved</div>
             </div>
 
             {/* Card 3 */}
-            <div className="bg-slate-50 p-3 md:p-4 rounded-xl border border-slate-200 flex flex-col justify-between h-28 md:h-32 hover:border-red-200 transition-colors">
-              <div className="text-xs text-slate-500 font-bold uppercase tracking-wider">Across India</div>
-              <div className="text-2xl md:text-3xl font-black text-slate-900 my-1">43+</div>
-              <div className="text-xs text-slate-600 font-medium">Ambulances & Clinics</div>
+            <div className="bg-slate-50 p-2.5 md:p-3 rounded-xl border border-slate-200 hover:border-red-200 transition-colors flex flex-col">
+              <div className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Across India</div>
+              <div className="text-xl md:text-2xl font-black text-slate-900">43+</div>
+              <div className="text-[10px] md:text-xs text-slate-600 font-medium leading-tight mt-auto">Ambulances & Clinics</div>
             </div>
 
             {/* Card 4 */}
-            <div className="bg-slate-50 p-3 md:p-4 rounded-xl border border-slate-200 flex flex-col justify-between h-28 md:h-32 hover:border-red-200 transition-colors">
-              <div className="text-xs text-slate-500 font-bold uppercase tracking-wider">On Ground Daily</div>
-              <div className="text-2xl md:text-3xl font-black text-slate-900 my-1">75+</div>
-              <div className="text-xs text-slate-600 font-medium">Vets & Paravets</div>
+            <div className="bg-slate-50 p-2.5 md:p-3 rounded-xl border border-slate-200 hover:border-red-200 transition-colors flex flex-col">
+              <div className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">On Ground Daily</div>
+              <div className="text-xl md:text-2xl font-black text-slate-900">75+</div>
+              <div className="text-[10px] md:text-xs text-slate-600 font-medium leading-tight mt-auto">Vets & Paravets</div>
             </div>
 
           </div>
