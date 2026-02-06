@@ -54,8 +54,8 @@ export const CLINIC_DATA: AmbulanceLocation[] = [
 ];
 
 export const NAV_LINKS = [
-  { name: 'Home', href: '#home' },
-  { name: 'Live Impact', href: '#impact' },
-  { name: 'Ambulances', href: '#ambulances' },
-  { name: 'Volunteer', href: '#volunteer' },
+  { name: 'Home', href: '/#home', type: 'anchor' as const },
+  { name: 'Live Impact', href: '/live-impact', type: 'route' as const },
+  { name: 'Ambulances', href: '/#home', type: 'anchor' as const },
+  { name: 'Volunteer', href: '/#volunteer', type: 'anchor' as const },
 ];

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Heart, Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 
 const Footer: React.FC = () => {
@@ -62,9 +63,9 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#impact" className="text-slate-400 hover:text-white transition-colors text-sm">
+                <Link to="/live-impact" className="text-slate-400 hover:text-white transition-colors text-sm">
                   Our Impact
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#donate" className="text-slate-400 hover:text-white transition-colors text-sm">

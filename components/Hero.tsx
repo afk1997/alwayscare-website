@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { Phone, MapPin, AlertCircle, Search, Map as MapIcon, ArrowRight, Heart, UserPlus } from 'lucide-react';
 import { AMBULANCE_DATA, CLINIC_DATA } from '../constants';
 import { LiveCase } from '../types';
+import { useLiveCases } from '../hooks/useLiveCases';
 import CaseCard from './CaseCard';
 import CaseModal from './CaseModal';
 
@@ -28,8 +30,7 @@ const Hero: React.FC = () => {
   const [mapStatus, setMapStatus] = useState<'loading' | 'ready' | 'error'>('loading');
   const [activeTab, setActiveTab] = useState<'ambulance' | 'clinic'>('ambulance');
   const [liveGpsData, setLiveGpsData] = useState<Map<string, {lat: number, lng: number}>>(new Map());
-  const [liveCases, setLiveCases] = useState<LiveCase[]>([]);
-  const [liveCasesLoading, setLiveCasesLoading] = useState(true);
+  const { cases: liveCases, totalCount, loading: liveCasesLoading } = useLiveCases(6);
   const [selectedCase, setSelectedCase] = useState<LiveCase | null>(null);
   const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
 
@@ -112,48 +113,6 @@ const Hero: React.FC = () => {
       }
     });
   }, [liveGpsData]);
-
-  // Fetch live cases from serverless function
-  useEffect(() => {
-    fetch('/.netlify/functions/live-cases')
-      .then(res => res.json())
-      .then((data: any[]) => {
-        const allCases: LiveCase[] = [];
-        data.forEach((site: any) => {
-          if (site.cases && Array.isArray(site.cases)) {
-            site.cases.forEach((c: any) => {
-              allCases.push({
-                id: c.id,
-                caseId: c.caseId,
-                caseDate: c.caseDate,
-                animalType: c.animalType || 'Unknown',
-                address: c.address || null,
-                informerName: c.informerName || null,
-                status: c.status || 'PENDING',
-                caseType: c.caseType || null,
-                condition: c.condition || 'NORMAL',
-                doctorObservation: c.doctorObservation || null,
-                affectedBodyPart: c.affectedBodyPart || null,
-                treatmentGiven: c.treatmentGiven || null,
-                medicationDosage: c.medicationDosage || null,
-                recommendation: c.recommendation || null,
-                preTreatmentPhoto: c.preTreatmentPhoto || null,
-                postTreatmentPhotosAndVideosFolderURL: c.postTreatmentPhotosAndVideosFolderURL || null,
-                createdAt: c.createdAt || null,
-                siteName: site.siteName || 'Unknown',
-              });
-            });
-          }
-        });
-        allCases.sort((a, b) => new Date(b.caseDate).getTime() - new Date(a.caseDate).getTime());
-        setLiveCases(allCases.slice(0, 6));
-        setLiveCasesLoading(false);
-      })
-      .catch(err => {
-        console.error('Failed to fetch live cases:', err);
-        setLiveCasesLoading(false);
-      });
-  }, []);
 
   // Initialize Map with loading state and error handling
   useEffect(() => {
@@ -363,9 +322,9 @@ const Hero: React.FC = () => {
                 ))
               )}
             </div>
-            <button className="w-full mt-3 text-xs text-center text-slate-500 hover:text-red-600 font-medium flex items-center justify-center gap-1 transition-colors py-2">
-              View All 150+ Daily Cases <ArrowRight size={12} />
-            </button>
+            <Link to="/live-impact" className="w-full mt-3 text-xs text-center text-slate-500 hover:text-red-600 font-medium flex items-center justify-center gap-1 transition-colors py-2">
+              View All {totalCount > 0 ? `${totalCount}+` : ''} Daily Cases <ArrowRight size={12} />
+            </Link>
           </div>
 
           {/* 4. Action Buttons (Donate + Volunteer) */}
