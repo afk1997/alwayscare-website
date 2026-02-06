@@ -196,7 +196,7 @@ const Hero: React.FC = () => {
           attributionControl: false,
           scrollWheelZoom: false,
           dragging: !L.Browser.mobile
-        }).setView([20.5937, 78.9629], 5);
+        }).setView([21, 71], 5);
 
         if (L.Browser.mobile) {
           map.dragging.enable();
@@ -440,7 +440,7 @@ const Hero: React.FC = () => {
 
         {/* RIGHT COLUMN: Interactive Map + List */}
         <div id="ambulance-map-col" className="w-full lg:w-[55%] relative bg-slate-100 flex flex-col lg:block order-2">
-           
+
            {/* The Map Container */}
            <div
              id="ambulance-map-container"
