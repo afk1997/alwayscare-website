@@ -58,14 +58,19 @@ const CardContent: React.FC<{ liveCase: LiveCase; compact?: boolean }> = ({ live
       </div>
     )}
 
-    {/* Doctor observation (conditional) — hidden in compact/feed mode */}
-    {!compact && liveCase.doctorObservation && (
+    {/* Doctor observation (conditional) */}
+    {liveCase.doctorObservation && (
       <div className="mt-2">
-        <p className="text-xs text-slate-600 line-clamp-2">{liveCase.doctorObservation}</p>
+        <p className="text-xs text-slate-600 line-clamp-2">
+          <span className="font-semibold text-slate-500">Observation:</span> {liveCase.doctorObservation}
+        </p>
         {liveCase.affectedBodyPart && (
-          <span className="inline-block mt-1 text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-500">
-            {liveCase.affectedBodyPart}
-          </span>
+          <div className="mt-1 flex items-center gap-1">
+            <span className="text-[10px] font-semibold text-slate-500">Affected Area:</span>
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-500">
+              {liveCase.affectedBodyPart}
+            </span>
+          </div>
         )}
       </div>
     )}
