@@ -274,9 +274,9 @@ const Hero: React.FC = () => {
 
             {/* Card 2 */}
             <div className="bg-slate-50 p-2.5 md:p-3 rounded-xl border border-slate-200 hover:border-red-200 transition-colors flex flex-col">
-              <div className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">In Last 3 Years</div>
+              <div className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Lives Saved</div>
               <div className="text-xl md:text-2xl font-black text-red-600">1.5 Lakh+</div>
-              <div className="text-[10px] md:text-xs text-slate-600 font-medium leading-tight mt-auto">Lives Saved</div>
+              <div className="text-[10px] md:text-xs text-slate-600 font-medium leading-tight mt-auto">In Last 3 Years</div>
             </div>
 
             {/* Card 3 */}
