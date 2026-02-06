@@ -2,7 +2,6 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { AlertCircle, RefreshCw, SearchX, Loader2 } from 'lucide-react';
 import { useLiveCases } from '../hooks/useLiveCases';
 import { LiveCase } from '../types';
-import { formatStatus } from '../utils';
 import LiveImpactHero from '../components/LiveImpactHero';
 import FilterBar from '../components/FilterBar';
 import CaseCard from '../components/CaseCard';
@@ -16,10 +15,6 @@ const LiveImpactPage: React.FC = () => {
 
   // Filter state
   const [search, setSearch] = useState('');
-  const [animalFilter, setAnimalFilter] = useState('All');
-  const [statusFilter, setStatusFilter] = useState('All');
-  const [conditionFilter, setConditionFilter] = useState('All');
-  const [cityFilter, setCityFilter] = useState('All');
   const [sortOrder, setSortOrder] = useState<'recent' | 'oldest'>('recent');
 
   // Pagination
@@ -34,21 +29,10 @@ const LiveImpactPage: React.FC = () => {
     return () => { document.title = 'Always Care Project'; };
   }, []);
 
-  // Dynamic filter options from data
-  const animalTypes = useMemo(() => {
-    const types = new Set(allCases.map(c => c.animalType));
-    return ['All', ...Array.from(types).sort()];
-  }, [allCases]);
-
-  const siteNames = useMemo(() => {
-    const sites = new Set(allCases.map(c => c.siteName));
-    return ['All', ...Array.from(sites).sort()];
-  }, [allCases]);
-
-  // Reset pagination when any filter changes
+  // Reset pagination when search or sort changes
   useEffect(() => {
     setVisibleCount(ITEMS_PER_PAGE);
-  }, [search, animalFilter, statusFilter, conditionFilter, cityFilter, sortOrder]);
+  }, [search, sortOrder]);
 
   // Filtered + sorted cases
   const filteredCases = useMemo(() => {
@@ -67,26 +51,6 @@ const LiveImpactPage: React.FC = () => {
       );
     }
 
-    // Animal type
-    if (animalFilter !== 'All') {
-      result = result.filter(c => c.animalType === animalFilter);
-    }
-
-    // Status
-    if (statusFilter !== 'All') {
-      result = result.filter(c => formatStatus(c.status) === statusFilter);
-    }
-
-    // Condition
-    if (conditionFilter !== 'All') {
-      result = result.filter(c => c.condition.toUpperCase() === conditionFilter.toUpperCase());
-    }
-
-    // City
-    if (cityFilter !== 'All') {
-      result = result.filter(c => c.siteName === cityFilter);
-    }
-
     // Sort
     result = [...result].sort((a, b) => {
       const dateA = new Date(a.caseDate).getTime();
@@ -95,31 +59,20 @@ const LiveImpactPage: React.FC = () => {
     });
 
     return result;
-  }, [allCases, search, animalFilter, statusFilter, conditionFilter, cityFilter, sortOrder]);
+  }, [allCases, search, sortOrder]);
 
   // Stats
-  const stats = useMemo(() => {
-    const completed = allCases.filter(c => c.status.toUpperCase() === 'CASE_COMPLETED').length;
-    const cities = new Set(allCases.map(c => c.siteName)).size;
-    return {
-      total: allCases.length,
-      completed,
-      active: allCases.length - completed,
-      cities,
-    };
-  }, [allCases]);
+  const stats = useMemo(() => ({
+    total: allCases.length,
+  }), [allCases]);
 
   const visibleCases = filteredCases.slice(0, visibleCount);
   const hasMore = visibleCount < filteredCases.length;
 
-  const hasActiveFilters = search !== '' || animalFilter !== 'All' || statusFilter !== 'All' || conditionFilter !== 'All' || cityFilter !== 'All';
+  const hasActiveFilters = search !== '';
 
   const clearAllFilters = () => {
     setSearch('');
-    setAnimalFilter('All');
-    setStatusFilter('All');
-    setConditionFilter('All');
-    setCityFilter('All');
   };
 
   return (
@@ -129,16 +82,6 @@ const LiveImpactPage: React.FC = () => {
       <FilterBar
         search={search}
         onSearchChange={setSearch}
-        animalFilter={animalFilter}
-        onAnimalChange={setAnimalFilter}
-        animalTypes={animalTypes}
-        statusFilter={statusFilter}
-        onStatusChange={setStatusFilter}
-        conditionFilter={conditionFilter}
-        onConditionChange={setConditionFilter}
-        cityFilter={cityFilter}
-        onCityChange={setCityFilter}
-        siteNames={siteNames}
         sortOrder={sortOrder}
         onSortChange={setSortOrder}
         resultCount={filteredCases.length}

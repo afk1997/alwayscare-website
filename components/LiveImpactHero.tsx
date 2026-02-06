@@ -3,9 +3,6 @@ import { useCountUp } from '../hooks/useCountUp';
 
 interface Stats {
   total: number;
-  completed: number;
-  active: number;
-  cities: number;
 }
 
 interface LiveImpactHeroProps {
@@ -46,11 +43,12 @@ const LiveImpactHero: React.FC<LiveImpactHeroProps> = ({ stats, loading }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 gap-3">
           <StatCard value={stats.total} label="Cases (48hr)" loading={loading} color="text-red-600" />
-          <StatCard value={stats.completed} label="Completed" loading={loading} color="text-green-600" />
-          <StatCard value={stats.active} label="Active / On The Way" loading={loading} color="text-amber-600" />
-          <StatCard value={stats.cities} label="Cities Active" loading={loading} />
+          <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
+            <div className="text-2xl md:text-3xl font-black text-slate-900">43+</div>
+            <div className="text-xs md:text-sm text-slate-500 font-medium mt-1">Ambulances & Clinics</div>
+          </div>
         </div>
       </div>
     </div>
