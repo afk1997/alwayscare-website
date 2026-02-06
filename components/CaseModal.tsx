@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { X, MapPin, Camera, Video, User } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { X, MapPin, Camera, Video, User, ExternalLink } from 'lucide-react';
 import { LiveCase } from '../types';
-import { formatTimeAgo, formatStatus } from '../utils';
+import { formatTimeAgo, formatStatus, getGoogleDriveThumbnailUrl } from '../utils';
 
 interface CaseModalProps {
   liveCase: LiveCase;
@@ -49,6 +49,42 @@ const formatDateTime = (dateString: string): string => {
     day: 'numeric', month: 'short', year: 'numeric',
     hour: '2-digit', minute: '2-digit',
   });
+};
+
+const PreTreatmentImage: React.FC<{ url: string; caseId: string }> = ({ url, caseId }) => {
+  const [imgError, setImgError] = useState(false);
+  const thumbnailUrl = getGoogleDriveThumbnailUrl(url, 600);
+
+  if (imgError || !thumbnailUrl) {
+    return (
+      <a
+        href={url}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-50 text-blue-600 border border-blue-100 text-sm font-medium hover:bg-blue-100 transition-colors"
+      >
+        <Camera size={14} /> View Pre-Treatment Photo
+      </a>
+    );
+  }
+
+  return (
+    <div className="space-y-2">
+      <a href={url} target="_blank" rel="noreferrer" className="block relative group/img">
+        <img
+          src={thumbnailUrl}
+          alt={`Pre-treatment photo for Case #${caseId}`}
+          onError={() => setImgError(true)}
+          className="w-full rounded-lg object-cover max-h-[300px] bg-slate-200"
+        />
+        <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors rounded-lg flex items-center justify-center">
+          <span className="opacity-0 group-hover/img:opacity-100 transition-opacity bg-white/90 text-slate-700 text-xs font-medium px-3 py-1.5 rounded-full flex items-center gap-1.5">
+            <ExternalLink size={12} /> Open full size
+          </span>
+        </div>
+      </a>
+    </div>
+  );
 };
 
 const CaseModal: React.FC<CaseModalProps> = ({ liveCase, onClose }) => {
@@ -195,28 +231,19 @@ const CaseModal: React.FC<CaseModalProps> = ({ liveCase, onClose }) => {
           {hasPhotos && (
             <div className="bg-slate-50 rounded-xl p-4 space-y-3">
               <h3 className="text-sm font-semibold text-slate-700">Photos & Video</h3>
-              <div className="flex flex-wrap gap-2">
-                {liveCase.preTreatmentPhoto && (
-                  <a
-                    href={liveCase.preTreatmentPhoto}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-50 text-blue-600 border border-blue-100 text-sm font-medium hover:bg-blue-100 transition-colors"
-                  >
-                    <Camera size={14} /> View Pre-Treatment Photo
-                  </a>
-                )}
-                {liveCase.postTreatmentPhotosAndVideosFolderURL && (
-                  <a
-                    href={liveCase.postTreatmentPhotosAndVideosFolderURL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-purple-50 text-purple-600 border border-purple-100 text-sm font-medium hover:bg-purple-100 transition-colors"
-                  >
-                    <Video size={14} /> View Post-Treatment Photos & Videos
-                  </a>
-                )}
-              </div>
+              {liveCase.preTreatmentPhoto && (
+                <PreTreatmentImage url={liveCase.preTreatmentPhoto} caseId={liveCase.caseId} />
+              )}
+              {liveCase.postTreatmentPhotosAndVideosFolderURL && (
+                <a
+                  href={liveCase.postTreatmentPhotosAndVideosFolderURL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-purple-50 text-purple-600 border border-purple-100 text-sm font-medium hover:bg-purple-100 transition-colors"
+                >
+                  <Video size={14} /> View Post-Treatment Photos & Videos
+                </a>
+              )}
             </div>
           )}
 
