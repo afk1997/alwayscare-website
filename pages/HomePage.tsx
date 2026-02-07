@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
+import PhotoGallery from '../components/PhotoGallery';
 import FoundationOfCare from '../components/FoundationOfCare';
-import SevaGallery from '../components/SevaGallery';
-import DonateSection from '../components/DonateSection';
 import VisionSection from '../components/VisionSection';
-import PoweredByAYSG from '../components/PoweredByAYSG';
+import ArhamYuvaSeva from '../components/ArhamYuvaSeva';
+import DonateSection from '../components/DonateSection';
 import Volunteer from '../components/Volunteer';
-import StayInTheLoop from '../components/StayInTheLoop';
 
 const HomePage: React.FC = () => {
   const location = useLocation();
@@ -24,13 +23,12 @@ const HomePage: React.FC = () => {
   return (
     <>
       <Hero />
+      <PhotoGallery />
       <FoundationOfCare />
-      <SevaGallery />
-      <DonateSection />
       <VisionSection />
-      <PoweredByAYSG />
+      <ArhamYuvaSeva />
+      <DonateSection />
       <Volunteer />
-      <StayInTheLoop />
     </>
   );
 };

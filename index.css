@@ -69,6 +69,7 @@
   animation: slowPulse 3s ease-in-out infinite;
 }
 
+/* Scroll reveal animations */
 @keyframes revealUp {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
@@ -95,4 +96,23 @@
 
 .scroll-scale.visible {
   animation: scaleIn 0.5s ease-out forwards;
+}
+
+/* Marquee animations */
+@keyframes marqueeLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marqueeLeft 40s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marqueeRight 40s linear infinite;
 }
