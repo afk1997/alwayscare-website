@@ -37,13 +37,9 @@ const Header: React.FC = () => {
         {/* Logo Area */}
         <Link to="/" className="flex items-center">
           <img
-            src="https://alwayscare.org/wp-content/uploads/2021/09/logo-1.png"
+            src="/images/alwayscare-logo.png"
             alt="Always Care"
-            className="h-10 md:h-12 w-auto object-contain"
-            onError={(e) => {
-               e.currentTarget.style.display = 'none';
-               e.currentTarget.parentElement!.innerHTML = `<span class="text-xl font-black text-slate-900 tracking-tight">ALWAYS<span class="text-red-600">CARE</span></span>`;
-            }}
+            className="h-12 md:h-14 w-auto object-contain"
           />
         </Link>
 

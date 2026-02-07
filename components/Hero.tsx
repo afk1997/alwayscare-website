@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, MapPin, AlertCircle, Search, Map as MapIcon, ArrowRight, Heart, UserPlus } from 'lucide-react';
+import { Phone, MapPin, Sparkles, Search, Map as MapIcon, ArrowRight, Heart, UserPlus } from 'lucide-react';
 import { AMBULANCE_DATA, CLINIC_DATA } from '../constants';
 import { LiveCase } from '../types';
 import { useLiveCases } from '../hooks/useLiveCases';
@@ -23,6 +23,7 @@ const Hero: React.FC = () => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
   const markersRef = useRef<Map<string, any>>(new Map());
+  const userMarkerRef = useRef<any>(null);
   const [dailyCases, setDailyCases] = useState<number | string>('...');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedAmbulanceId, setSelectedAmbulanceId] = useState<string | null>(null);
@@ -114,6 +115,32 @@ const Hero: React.FC = () => {
     });
   }, [liveGpsData]);
 
+  // Add blue dot for user's location on the map
+  useEffect(() => {
+    if (!userLocation || mapStatus !== 'ready' || !mapInstanceRef.current) return;
+    const L = (window as any).L;
+    if (!L) return;
+
+    // Remove previous marker if it exists
+    if (userMarkerRef.current) {
+      mapInstanceRef.current.removeLayer(userMarkerRef.current);
+    }
+
+    const userIcon = L.divIcon({
+      className: '',
+      html: `<div style="position:relative;width:20px;height:20px;">
+        <div class="user-location-pulse" style="position:absolute;inset:0;background:#3b82f6;border-radius:50%;"></div>
+        <div style="position:absolute;inset:4px;background:#3b82f6;border:2.5px solid white;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>
+      </div>`,
+      iconSize: [20, 20],
+      iconAnchor: [10, 10],
+    });
+
+    userMarkerRef.current = L.marker([userLocation.lat, userLocation.lng], { icon: userIcon, zIndexOffset: 1000 })
+      .addTo(mapInstanceRef.current)
+      .bindPopup('You are here');
+  }, [userLocation, mapStatus]);
+
   // Initialize Map with loading state and error handling
   useEffect(() => {
     if (!mapContainerRef.current) return;
@@ -143,6 +170,41 @@ const Hero: React.FC = () => {
 
         mapInstanceRef.current = map;
         L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+        // Locate Me button (above zoom controls)
+        const LocateControl = L.Control.extend({
+          options: { position: 'bottomright' },
+          onAdd: function () {
+            const btn = L.DomUtil.create('div', '');
+            btn.innerHTML = `<button style="
+              width: 34px; height: 34px; background: white; border: none; border-radius: 4px;
+              box-shadow: 0 1px 5px rgba(0,0,0,0.25); cursor: pointer; display: flex;
+              align-items: center; justify-content: center; margin-bottom: 8px;
+            " title="My location">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
+              </svg>
+            </button>`;
+            L.DomEvent.disableClickPropagation(btn);
+            btn.querySelector('button')!.addEventListener('click', () => {
+              if (userLocation) {
+                map.flyTo([userLocation.lat, userLocation.lng], 13, { animate: true, duration: 1 });
+              } else if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                  (pos) => {
+                    const loc = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+                    setUserLocation(loc);
+                    map.flyTo([loc.lat, loc.lng], 13, { animate: true, duration: 1 });
+                  },
+                  () => alert('Could not get your location. Please enable location access.'),
+                  { enableHighAccuracy: true, timeout: 10000 }
+                );
+              }
+            });
+            return btn;
+          },
+        });
+        new LocateControl().addTo(map);
 
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
           maxZoom: 20
@@ -248,9 +310,9 @@ const Hero: React.FC = () => {
           
           {/* 1. Header & Title */}
           <div className="mb-4 md:mb-6">
-            <div className="animate-fadeUp animate-slowPulse inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-100 text-red-600 text-xs font-bold uppercase tracking-wider mb-3">
-              <AlertCircle size={14} />
-              <span>EMERGENCY RESPONSE</span>
+            <div className="animate-fadeUp inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold uppercase tracking-wider mb-3">
+              <Sparkles size={14} />
+              <span>Vision of Param Namramuni Gurudev</span>
             </div>
             <h1 className="animate-fadeUp text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", animationDelay: '100ms' }}>
               India's Fast & Free <br /><span className="bg-gradient-to-r from-red-600 via-rose-500 to-red-600 bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">Animal Ambulance Network</span>
