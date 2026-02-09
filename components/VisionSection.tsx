@@ -1,101 +1,210 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ExternalLink } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
+const visionImages = [
+  '/images/vision/1.jpg',
+  '/images/vision/2.jpg',
+  '/images/vision/3.jpg',
+  '/images/vision/4.jpg',
+  '/images/vision/5.jpg',
+];
+
 const VisionSection: React.FC = () => {
-  const { ref, isVisible } = useScrollReveal();
+  const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % visionImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <section
-      className="py-20 md:py-28 bg-gradient-to-br from-amber-50 via-orange-50/40 to-amber-50/20 relative overflow-hidden"
-      ref={ref}
-    >
-      {/* Mandala background decoration */}
-      <img
-        src="https://framerusercontent.com/images/g690a9Fxc6Y5G69sPCSKq4vjw.png"
-        alt=""
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] md:w-[700px] opacity-[0.06] pointer-events-none select-none"
-        aria-hidden="true"
-      />
+    <section ref={ref} className="relative overflow-hidden">
+      {/* ── Desktop: full-viewport split layout ── */}
+      <div className="hidden md:block relative min-h-screen">
+        {/* Background images — rotating slideshow */}
+        {visionImages.map((src, idx) => (
+          <img
+            key={src}
+            src={src}
+            alt="Param Gurudev Shree Namramuni Maharaj Saheb"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              idx === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ objectPosition: 'center right' }}
+          />
+        ))}
 
-      {/* Decorative quotation marks */}
-      <div className="absolute top-16 left-8 text-amber-200/20 text-[160px] md:text-[220px] font-serif leading-none select-none pointer-events-none">
-        &ldquo;
-      </div>
+        {/* Warm gradient overlay on left for card readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section label */}
-        <div className={`text-center mb-12 md:mb-16 scroll-reveal ${isVisible ? 'visible' : ''}`}>
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-amber-600 mb-4">
-            The Vision Behind Always Care
-          </p>
-        </div>
+        {/* Subtle vignette */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.2) 100%)',
+          }}
+        />
 
-        {/* Split layout: portrait + content */}
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
-          {/* Portrait */}
+        {/* Content card — vertically centered, left-aligned */}
+        <div className="absolute inset-0 flex items-center">
           <div
-            className={`scroll-reveal ${isVisible ? 'visible' : ''} shrink-0`}
-            style={{ animationDelay: '150ms' }}
+            className={`scroll-reveal-left ${isVisible ? 'visible' : ''} ml-8 lg:ml-16 xl:ml-24 max-w-[560px] lg:max-w-[600px]`}
           >
-            <div className="relative">
-              {/* Decorative ring */}
-              <div className="absolute -inset-3 rounded-full border-2 border-amber-200/40" />
-              <div className="absolute -inset-6 rounded-full border border-amber-100/30" />
-              <img
-                src="/images/param-gurudev.png"
-                alt="Param Gurudev Shree Namramuni Maharaj Saheb"
-                className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full object-cover shadow-xl ring-4 ring-white"
-              />
-            </div>
-          </div>
-
-          {/* Content */}
-          <div className="text-center md:text-left">
-            {/* Quote */}
             <div
-              className={`scroll-reveal ${isVisible ? 'visible' : ''}`}
-              style={{ animationDelay: '250ms' }}
+              className="relative bg-white/95 rounded-[32px] p-10 lg:p-[60px]"
+              style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.15)' }}
             >
-              <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light text-slate-800 leading-snug mb-6 italic">
-                &ldquo;The birth of any human being is purposeful only with the birth of humanity in our hearts.&rdquo;
-              </blockquote>
-            </div>
-
-            {/* Attribution */}
-            <div
-              className={`scroll-reveal ${isVisible ? 'visible' : ''}`}
-              style={{ animationDelay: '400ms' }}
-            >
-              <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
-                <div className="h-px w-8 bg-amber-300" />
-                <p className="text-sm font-semibold text-amber-700">
-                  Param Gurudev Shree Namramuni Maharaj Saheb
-                </p>
+              {/* Decorative quote mark */}
+              <div
+                className={`absolute -top-4 left-8 text-[180px] lg:text-[200px] leading-none select-none pointer-events-none scroll-reveal ${isVisible ? 'visible' : ''}`}
+                style={{
+                  animationDelay: '400ms',
+                  color: '#d4c5b0',
+                  opacity: 0.1,
+                  fontFamily: "'Playfair Display', serif",
+                }}
+              >
+                &ldquo;
               </div>
-            </div>
 
-            {/* Description */}
-            <div
-              className={`scroll-reveal ${isVisible ? 'visible' : ''}`}
-              style={{ animationDelay: '550ms' }}
-            >
-              <p className="text-slate-600 leading-relaxed mb-8">
-                Inspired by Rashtrasant Param Gurudev Shree Namramuni Maharaj Saheb, Always Care was born
-                from the belief that compassion for all living beings is the highest form of service.
-                His vision continues to guide every rescue, every treatment, and every life we touch.
+              {/* Label */}
+              <p
+                className={`scroll-reveal ${isVisible ? 'visible' : ''} text-xs font-semibold tracking-[2px] uppercase text-[#1a1a1a] mb-6`}
+                style={{ animationDelay: '200ms' }}
+              >
+                Vision of Always Care
               </p>
 
-              <a
-                href="https://parasdham.org/param-gurudev/"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-amber-600 text-white rounded-xl font-medium hover:bg-amber-700 transition-colors shadow-sm hover:shadow-md"
+              {/* Name */}
+              <h2
+                className={`scroll-reveal ${isVisible ? 'visible' : ''} text-3xl lg:text-[48px] font-semibold text-[#1a1a1a] leading-tight mb-10`}
+                style={{
+                  animationDelay: '300ms',
+                  fontFamily: "'Playfair Display', serif",
+                }}
               >
-                Know More <ExternalLink size={16} />
-              </a>
+                Param Namramuni<br />Gurudev
+              </h2>
+
+              {/* Quote */}
+              <blockquote
+                className={`scroll-reveal ${isVisible ? 'visible' : ''} relative z-10 text-lg leading-[1.8] text-[#3a3a3a] italic mb-8`}
+                style={{
+                  animationDelay: '500ms',
+                  fontFamily: "'Playfair Display', serif",
+                }}
+              >
+                &ldquo;The birth of any human being is purposeful only with the birth of humanity in our hearts. Compassion beyond humanity is the highest form of service. Every creature deserves dignity, care, and a chance to heal.&rdquo;
+              </blockquote>
+
+              {/* Attribution */}
+              <div
+                className={`scroll-reveal ${isVisible ? 'visible' : ''}`}
+                style={{ animationDelay: '650ms' }}
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-px w-10 bg-[#d4c5b0]" />
+                  <p className="text-sm font-semibold text-[#1a1a1a]">
+                    Param Gurudev Shree Namramuni Maharaj Saheb
+                  </p>
+                </div>
+
+                <p className="text-sm text-[#3a3a3a] leading-relaxed mb-8">
+                  Inspired by Rashtrasant Param Gurudev Shree Namramuni Maharaj Saheb, Always Care was born
+                  from the belief that compassion for all living beings is the highest form of service.
+                </p>
+
+                <a
+                  href="https://parasdham.org/param-gurudev/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white rounded-full font-medium hover:bg-[#333] transition-colors text-sm"
+                >
+                  Know More <ExternalLink size={14} />
+                </a>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* ── Mobile: stacked layout ── */}
+      <div className="md:hidden">
+        {/* Image with dark overlay */}
+        <div className="relative h-[60vh]">
+          {visionImages.map((src, idx) => (
+            <img
+              key={src}
+              src={src}
+              alt="Param Gurudev Shree Namramuni Maharaj Saheb"
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                idx === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ objectPosition: 'center top' }}
+            />
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white" />
+        </div>
+
+        {/* Content card */}
+        <div
+          className={`scroll-reveal ${isVisible ? 'visible' : ''} relative -mt-16 mx-4 bg-white rounded-3xl p-8`}
+          style={{ boxShadow: '0 12px 40px rgba(0,0,0,0.12)' }}
+        >
+          {/* Decorative quote mark */}
+          <div
+            className="absolute -top-2 left-6 text-[120px] leading-none select-none pointer-events-none"
+            style={{
+              color: '#d4c5b0',
+              opacity: 0.1,
+              fontFamily: "'Playfair Display', serif",
+            }}
+          >
+            &ldquo;
+          </div>
+
+          <p className="text-xs font-semibold tracking-[2px] uppercase text-[#1a1a1a] mb-4">
+            Vision of Always Care
+          </p>
+
+          <h2
+            className="text-2xl font-semibold text-[#1a1a1a] leading-tight mb-6"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            Param Namramuni Gurudev
+          </h2>
+
+          <blockquote
+            className="relative z-10 text-base leading-[1.8] text-[#3a3a3a] italic mb-6"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            &ldquo;The birth of any human being is purposeful only with the birth of humanity in our hearts. Compassion beyond humanity is the highest form of service.&rdquo;
+          </blockquote>
+
+          <div className="flex items-center gap-3 mb-4">
+            <div className="h-px w-8 bg-[#d4c5b0]" />
+            <p className="text-xs font-semibold text-[#1a1a1a]">
+              Param Gurudev Shree Namramuni Maharaj Saheb
+            </p>
+          </div>
+
+          <p className="text-sm text-[#3a3a3a] leading-relaxed mb-6">
+            Inspired by Rashtrasant Param Gurudev, Always Care was born from the belief that compassion for all living beings is the highest form of service.
+          </p>
+
+          <a
+            href="https://parasdham.org/param-gurudev/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1a1a1a] text-white rounded-full font-medium hover:bg-[#333] transition-colors text-sm"
+          >
+            Know More <ExternalLink size={14} />
+          </a>
         </div>
       </div>
     </section>
