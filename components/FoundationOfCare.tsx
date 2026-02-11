@@ -291,7 +291,7 @@ function PillarCard({ pillar, index }: { pillar: (typeof PILLARS)[number]; index
 
           <h3
             style={{
-              fontFamily: "'Georgia', 'Playfair Display', 'Times New Roman', serif",
+              fontFamily: "'Open Runde', sans-serif",
               fontSize: "38px",
               fontWeight: "700",
               color: "#0F172A",
@@ -451,7 +451,7 @@ export default function FoundationOfCare() {
 
           <h2
             style={{
-              fontFamily: "'Georgia', 'Playfair Display', 'Times New Roman', serif",
+              fontFamily: "'Open Runde', sans-serif",
               fontSize: "clamp(36px, 5vw, 60px)",
               fontWeight: "700",
               color: "#0F172A",

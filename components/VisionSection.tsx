@@ -66,7 +66,7 @@ const VisionSection: React.FC = () => {
                   animationDelay: '400ms',
                   color: '#d4c5b0',
                   opacity: 0.1,
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'Open Runde', sans-serif",
                 }}
               >
                 &ldquo;
@@ -85,7 +85,7 @@ const VisionSection: React.FC = () => {
                 className={`scroll-reveal ${isVisible ? 'visible' : ''} text-3xl lg:text-[48px] font-semibold text-[#1a1a1a] leading-tight mb-10`}
                 style={{
                   animationDelay: '300ms',
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'Open Runde', sans-serif",
                 }}
               >
                 Param Namramuni<br />Gurudev
@@ -96,7 +96,7 @@ const VisionSection: React.FC = () => {
                 className={`scroll-reveal ${isVisible ? 'visible' : ''} relative z-10 text-lg leading-[1.8] text-[#3a3a3a] italic mb-8`}
                 style={{
                   animationDelay: '500ms',
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'Open Runde', sans-serif",
                 }}
               >
                 &ldquo;The birth of any human being is purposeful only with the birth of humanity in our hearts. Compassion beyond humanity is the highest form of service. Every creature deserves dignity, care, and a chance to heal.&rdquo;
@@ -162,7 +162,7 @@ const VisionSection: React.FC = () => {
             style={{
               color: '#d4c5b0',
               opacity: 0.1,
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Open Runde', sans-serif",
             }}
           >
             &ldquo;

@@ -342,10 +342,10 @@ const Hero: React.FC = () => {
               <Sparkles size={14} />
               <span>Vision of Param Namramuni Gurudev</span>
             </div>
-            <h1 className="animate-fadeUp text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", animationDelay: '100ms' }}>
+            <h1 className="animate-fadeUp text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight mb-3" style={{ fontFamily: "'Open Runde', sans-serif", animationDelay: '100ms' }}>
               India's Fast & Free <br /><span className="bg-gradient-to-r from-red-600 via-rose-500 to-red-600 bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">Animal Ambulance Network</span>
             </h1>
-            <p className="animate-fadeUp text-slate-700 text-base md:text-lg font-normal leading-relaxed max-w-xl" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", animationDelay: '200ms' }}>
+            <p className="animate-fadeUp text-slate-700 text-base md:text-lg font-normal leading-relaxed max-w-xl" style={{ fontFamily: "'Open Runde', sans-serif", animationDelay: '200ms' }}>
               On call, free first-aid and treatment for every injured street animal.
             </p>
             <div className="animate-fadeUp h-0.5 w-16 bg-gradient-to-r from-red-500 via-rose-400 to-amber-400 rounded-full mt-4" style={{ animationDelay: '250ms' }} />
