@@ -1,0 +1,36 @@
+import React, { useEffect } from 'react';
+
+const RefundCancellationPage: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Refund & Cancellation Policy — Always Care Project';
+    window.scrollTo(0, 0);
+    return () => { document.title = 'Always Care Project'; };
+  }, []);
+
+  return (
+    <div className="bg-slate-50 min-h-screen">
+      <div className="bg-white border-b border-slate-200">
+        <div className="container mx-auto px-4 pt-28 pb-10">
+          <h1 className="text-3xl md:text-4xl font-bold text-slate-900">Refund & Cancellation Policy</h1>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-3xl mx-auto space-y-8 text-slate-700 leading-relaxed">
+          <p>
+            Our policy on refund and cancellation of donations received for Arham activities on secure online
+            payment gateway as under:
+          </p>
+          <p>
+            Any request for cancellations and refund of online donations once duly placed on the website,
+            shall not be entertained under any circumstances. No cash or refund of money will be allowed after
+            completing the online donation as it is an extremely cumbersome process. We therefore request you
+            to be sure before you donate.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default RefundCancellationPage;

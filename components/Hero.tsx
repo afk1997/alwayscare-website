@@ -393,11 +393,11 @@ const Hero: React.FC = () => {
           {/* 3. Live Cases Feed (Light Theme) */}
           <div className="animate-fadeUp flex-1 bg-amber-50/50 border border-amber-100 animate-borderGlow rounded-2xl p-4 md:p-5 mb-4 flex flex-col min-h-[180px] shadow-sm" style={{ animationDelay: '400ms' }}>
             <div className="flex justify-between items-center mb-4">
-              <h3 className="font-bold flex items-center gap-2 text-slate-900 text-sm md:text-base">
+              <h2 className="font-bold flex items-center gap-2 text-slate-900 text-sm md:text-base">
                 <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse ring-4 ring-red-500/10"></span>
                 Live Cases
                 <span className="text-xs text-slate-400 font-normal">&middot; {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
-              </h3>
+              </h2>
               <span className="btn-shine text-xs text-amber-700 bg-amber-100 border border-amber-200 px-2 py-1 rounded font-medium">Real-time Feed</span>
             </div>
             
@@ -426,11 +426,11 @@ const Hero: React.FC = () => {
           {/* 4. Action Buttons (Donate + Volunteer) */}
           {/* Stack on mobile, row on larger screens */}
           <div className="animate-fadeUp flex flex-col sm:flex-row gap-3 mt-auto" style={{ animationDelay: '500ms' }}>
-             <a href="#donate" className="btn-shine flex-1 bg-red-600 hover:bg-red-700 text-white py-3 md:py-3.5 rounded-full font-bold text-center flex items-center justify-center gap-2 shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/30 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-200 text-sm md:text-base">
+             <a href="#donate" className="btn-shine flex-1 bg-red-600 hover:bg-red-700 active:scale-95 text-white py-3 md:py-3.5 rounded-full font-bold text-center flex items-center justify-center gap-2 shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/30 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-200 text-sm md:text-base">
                 <Heart size={18} className="fill-current" />
                 Donate Now
              </a>
-             <a href="#volunteer" className="btn-shine flex-1 bg-slate-900 hover:bg-slate-800 text-white py-3 md:py-3.5 rounded-full font-bold text-center flex items-center justify-center gap-2 shadow-lg shadow-slate-900/10 hover:shadow-xl hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-200 text-sm md:text-base">
+             <a href="#volunteer" className="btn-shine flex-1 bg-slate-900 hover:bg-slate-800 active:scale-95 text-white py-3 md:py-3.5 rounded-full font-bold text-center flex items-center justify-center gap-2 shadow-lg shadow-slate-900/10 hover:shadow-xl hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-200 text-sm md:text-base">
                 <UserPlus size={18} />
                 Join as Volunteer
              </a>
@@ -533,7 +533,7 @@ const Hero: React.FC = () => {
                           <h4 className="font-bold text-sm text-slate-900">{item.city}</h4>
                           <div className="text-xs text-slate-500 mt-0.5">{item.area || item.state}</div>
                         </div>
-                        <a href={`tel:${item.phone.replace(/\s/g, '')}`} className="bg-red-100 p-1.5 rounded-full text-red-600 hover:bg-red-600 hover:text-white transition-colors">
+                        <a href={`tel:${item.phone.replace(/\s/g, '')}`} aria-label={`Call ${item.city} ambulance`} className="bg-red-100 p-2.5 rounded-full text-red-600 hover:bg-red-600 hover:text-white transition-colors">
                           <Phone size={14} />
                         </a>
                       </div>

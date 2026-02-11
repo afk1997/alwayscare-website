@@ -4,15 +4,27 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import LiveImpactPage from './pages/LiveImpactPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsConditionsPage from './pages/TermsConditionsPage';
+import RefundCancellationPage from './pages/RefundCancellationPage';
 
 const App: React.FC = () => {
   return (
     <div className="font-sans antialiased text-slate-900 selection:bg-red-200 selection:text-red-900">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-slate-900 focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:text-sm focus:font-medium"
+      >
+        Skip to main content
+      </a>
       <Header />
-      <main>
+      <main id="main-content">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/live-impact" element={<LiveImpactPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms-conditions" element={<TermsConditionsPage />} />
+          <Route path="/refund-cancellation" element={<RefundCancellationPage />} />
         </Routes>
       </main>
       <Footer />

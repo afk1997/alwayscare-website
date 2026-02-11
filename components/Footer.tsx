@@ -24,28 +24,28 @@ const Footer: React.FC = () => {
             <div className="flex gap-3">
               <a
                 href="#"
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                className="w-11 h-11 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors cursor-pointer"
                 aria-label="Follow us on Facebook"
               >
                 <Facebook size={18} />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                className="w-11 h-11 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors cursor-pointer"
                 aria-label="Follow us on Instagram"
               >
                 <Instagram size={18} />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                className="w-11 h-11 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors cursor-pointer"
                 aria-label="Follow us on Twitter"
               >
                 <Twitter size={18} />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                className="w-11 h-11 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors cursor-pointer"
                 aria-label="Subscribe to our YouTube channel"
               >
                 <Youtube size={18} />
@@ -129,12 +129,15 @@ const Footer: React.FC = () => {
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <span className="text-green-400 font-medium">80G Tax Exemption Available</span>
               <span className="text-slate-600">|</span>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
+              <Link to="/privacy-policy" className="text-slate-400 hover:text-white transition-colors">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
-                Terms of Service
-              </a>
+              </Link>
+              <Link to="/terms-conditions" className="text-slate-400 hover:text-white transition-colors">
+                Terms & Conditions
+              </Link>
+              <Link to="/refund-cancellation" className="text-slate-400 hover:text-white transition-colors">
+                Refund & Cancellation
+              </Link>
             </div>
           </div>
         </div>

@@ -96,22 +96,17 @@ const LiveImpactPage: React.FC = () => {
         onClearAll={clearAllFilters}
       />
 
-      <div className="container mx-auto px-4 py-6">
+      <div className="mx-auto px-4 md:px-6 py-6 max-w-[1300px]">
         {/* Loading skeleton */}
         {loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {Array.from({ length: 12 }).map((_, i) => (
-              <div key={i} className="bg-white border border-slate-100 p-4 rounded-xl shadow-sm animate-pulse">
-                <div className="flex justify-between items-start mb-3">
-                  <div className="h-5 w-24 bg-slate-200 rounded" />
-                  <div className="h-4 w-16 bg-slate-200 rounded" />
-                </div>
-                <div className="h-3 w-32 bg-slate-200 rounded mb-2" />
-                <div className="h-3 w-full bg-slate-200 rounded mb-2" />
-                <div className="h-3 w-3/4 bg-slate-200 rounded mb-3" />
-                <div className="flex gap-2 pt-2 border-t border-slate-50">
-                  <div className="h-5 w-16 bg-slate-200 rounded" />
-                  <div className="h-5 w-20 bg-slate-200 rounded" />
+          <div className="masonry-grid">
+            {Array.from({ length: 9 }).map((_, i) => (
+              <div key={i} className="masonry-card bg-white rounded-[14px] overflow-hidden shadow-sm">
+                <div className="img-shimmer w-full" style={{ aspectRatio: i % 3 === 0 ? '1/1' : i % 3 === 1 ? '4/5' : '3/2' }} />
+                <div className="p-3 space-y-2">
+                  <div className="h-4 w-2/3 bg-slate-200 rounded animate-pulse" />
+                  <div className="h-3 w-full bg-slate-100 rounded animate-pulse" />
+                  <div className="h-3 w-1/2 bg-slate-100 rounded animate-pulse" />
                 </div>
               </div>
             ))}
@@ -155,15 +150,9 @@ const LiveImpactPage: React.FC = () => {
               Showing {visibleCases.length} of {filteredCases.length} cases
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {visibleCases.map((c, index) => (
-                <div
-                  key={c.id}
-                  className="animate-fadeUp"
-                  style={{ animationDelay: `${(index % ITEMS_PER_PAGE) * 50}ms` }}
-                >
-                  <CaseCard liveCase={c} onSelect={setSelectedCase} variant="grid" />
-                </div>
+            <div className="masonry-grid">
+              {visibleCases.map((c) => (
+                <CaseCard key={c.id} liveCase={c} onSelect={setSelectedCase} variant="masonry" />
               ))}
             </div>
 

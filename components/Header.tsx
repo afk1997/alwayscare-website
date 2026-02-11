@@ -89,7 +89,7 @@ const Header: React.FC = () => {
           })}
           <Link
             to="/#home"
-            className="btn-shine ml-3 px-5 py-2 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-red-600/25 transition-all duration-200 flex items-center gap-2 text-sm shadow-md shadow-red-600/15 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+            className="btn-shine ml-3 px-5 py-2 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 active:scale-95 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-red-600/25 transition-all duration-200 flex items-center gap-2 text-sm shadow-md shadow-red-600/15 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
           >
             <Phone size={15} className="fill-current" />
             Call Ambulance
@@ -98,7 +98,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-slate-900 p-2 rounded-full hover:bg-slate-100/80 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+          className="md:hidden text-slate-900 p-2.5 rounded-full hover:bg-slate-100/80 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle navigation menu"
           aria-expanded={mobileMenuOpen}
