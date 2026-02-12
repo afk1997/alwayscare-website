@@ -334,21 +334,21 @@ const Hero: React.FC = () => {
         
         {/* LEFT COLUMN: Mission Control (Title, Stats, Live Feed) */}
         {/* Mobile: Natural scroll. Desktop: Internal scroll */}
-        <div className="w-full lg:w-[45%] flex flex-col p-5 md:p-6 lg:p-8 bg-gradient-to-b from-white via-white to-slate-50/80 z-20 shadow-xl lg:shadow-[8px_0_30px_-5px_rgba(0,0,0,0.08)] lg:overflow-y-auto order-1">
+        <div className="w-full lg:w-[45%] flex flex-col p-5 md:p-6 lg:p-6 bg-gradient-to-b from-white via-white to-slate-50/80 z-20 shadow-xl lg:shadow-[8px_0_30px_-5px_rgba(0,0,0,0.08)] lg:overflow-y-auto order-1">
           
           {/* 1. Header & Title */}
-          <div className="mb-4 md:mb-6">
-            <div className="animate-fadeUp animate-badgeGlow inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold uppercase tracking-wider mb-3">
+          <div className="mb-3 md:mb-4">
+            <div className="animate-fadeUp animate-badgeGlow inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold uppercase tracking-wider mb-2">
               <Sparkles size={14} />
               <span>Vision of Param Namramuni Gurudev</span>
             </div>
-            <h1 className="animate-fadeUp text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight mb-3" style={{ fontFamily: "'Open Runde', sans-serif", animationDelay: '100ms' }}>
+            <h1 className="animate-fadeUp text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight mb-2" style={{ fontFamily: "'Open Runde', sans-serif", animationDelay: '100ms' }}>
               India's Fast & Free <br /><span className="bg-gradient-to-r from-red-600 via-rose-500 to-red-600 bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">Animal Ambulance Network</span>
             </h1>
             <p className="animate-fadeUp text-slate-700 text-base md:text-lg font-normal leading-relaxed max-w-xl" style={{ fontFamily: "'Open Runde', sans-serif", animationDelay: '200ms' }}>
               On call, free first-aid and treatment for every injured street animal.
             </p>
-            <div className="animate-fadeUp flex items-center gap-3 mt-4" style={{ animationDelay: '250ms' }}>
+            <div className="animate-fadeUp flex items-center gap-3 mt-2" style={{ animationDelay: '250ms' }}>
               <div className="h-0.5 w-16 bg-gradient-to-r from-red-500 via-rose-400 to-amber-400 rounded-full" />
               <img src="/images/aysg-logo.png" alt="AYSG" className="w-6 h-6 rounded" />
               <span className="text-sm font-semibold bg-gradient-to-r from-amber-700 via-yellow-400 to-amber-700 bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">Powered by Arham Yuva Seva Group</span>
@@ -356,7 +356,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* 2. Impact Stats Row */}
-          <div className="animate-fadeUp grid grid-cols-4 gap-2 mb-4 md:mb-6" style={{ animationDelay: '300ms' }}>
+          <div className="animate-fadeUp grid grid-cols-4 gap-2 mb-3 md:mb-4" style={{ animationDelay: '300ms' }}>
 
             {/* Card 1 */}
             <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-slate-200/80 border-l-4 border-l-red-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex flex-col shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
@@ -395,8 +395,8 @@ const Hero: React.FC = () => {
           </div>
 
           {/* 3. Live Cases Feed (Light Theme) */}
-          <div className="animate-fadeUp flex-1 bg-amber-50/50 border border-amber-100 animate-borderGlow rounded-2xl p-4 md:p-5 mb-4 flex flex-col min-h-[180px] shadow-sm" style={{ animationDelay: '400ms' }}>
-            <div className="flex justify-between items-center mb-4">
+          <div className="animate-fadeUp flex-1 bg-amber-50/50 border border-amber-100 animate-borderGlow rounded-2xl p-3 md:p-4 mb-3 flex flex-col shadow-sm" style={{ animationDelay: '400ms' }}>
+            <div className="flex justify-between items-center mb-2">
               <h2 className="font-bold flex items-center gap-2 text-slate-900 text-sm md:text-base">
                 <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse ring-4 ring-red-500/10"></span>
                 Live Cases
