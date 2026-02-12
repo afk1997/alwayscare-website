@@ -66,7 +66,7 @@ const VisionSection: React.FC = () => {
                   animationDelay: '400ms',
                   color: '#d4c5b0',
                   opacity: 0.1,
-                  fontFamily: "'Open Runde', sans-serif",
+                  fontFamily: "Georgia, 'Times New Roman', serif",
                 }}
               >
                 &ldquo;
@@ -74,21 +74,21 @@ const VisionSection: React.FC = () => {
 
               {/* Label */}
               <p
-                className={`scroll-reveal ${isVisible ? 'visible' : ''} text-xs font-semibold tracking-[2px] uppercase text-[#1a1a1a] mb-6`}
+                className={`scroll-reveal ${isVisible ? 'visible' : ''} text-sm font-semibold tracking-[2px] uppercase text-[#1a1a1a] mb-6`}
                 style={{ animationDelay: '200ms' }}
               >
-                Vision of Always Care
+                Our Founder
               </p>
 
               {/* Name */}
               <h2
-                className={`scroll-reveal ${isVisible ? 'visible' : ''} text-3xl lg:text-[48px] font-semibold text-[#1a1a1a] leading-tight mb-10`}
+                className={`scroll-reveal ${isVisible ? 'visible' : ''} text-3xl lg:text-[36px] font-semibold text-[#1a1a1a] leading-tight mb-10`}
                 style={{
                   animationDelay: '300ms',
                   fontFamily: "'Open Runde', sans-serif",
                 }}
               >
-                Param Namramuni<br />Gurudev
+                Param Namramuni Gurudev
               </h2>
 
               {/* Quote */}
@@ -107,16 +107,8 @@ const VisionSection: React.FC = () => {
                 className={`scroll-reveal ${isVisible ? 'visible' : ''}`}
                 style={{ animationDelay: '650ms' }}
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="h-px w-10 bg-[#d4c5b0]" />
-                  <p className="text-sm font-semibold text-[#1a1a1a]">
-                    Param Gurudev Shree Namramuni Maharaj Saheb
-                  </p>
-                </div>
-
                 <p className="text-sm text-[#3a3a3a] leading-relaxed mb-8">
-                  Inspired by Rashtrasant Param Gurudev Shree Namramuni Maharaj Saheb, Always Care was born
-                  from the belief that compassion for all living beings is the highest form of service.
+                  Inspired by Param Gurudev Namramuni, Always Care was born from the belief that compassion for all living beings is the highest form of service.
                 </p>
 
                 <a
@@ -162,14 +154,14 @@ const VisionSection: React.FC = () => {
             style={{
               color: '#d4c5b0',
               opacity: 0.1,
-              fontFamily: "'Open Runde', sans-serif",
+              fontFamily: "Georgia, 'Times New Roman', serif",
             }}
           >
             &ldquo;
           </div>
 
-          <p className="text-xs font-semibold tracking-[2px] uppercase text-[#1a1a1a] mb-4">
-            Vision of Always Care
+          <p className="text-sm font-semibold tracking-[2px] uppercase text-[#1a1a1a] mb-4">
+            Our Founder
           </p>
 
           <h2
@@ -186,15 +178,8 @@ const VisionSection: React.FC = () => {
             &ldquo;The birth of any human being is purposeful only with the birth of humanity in our hearts. Compassion beyond humanity is the highest form of service.&rdquo;
           </blockquote>
 
-          <div className="flex items-center gap-3 mb-4">
-            <div className="h-px w-8 bg-[#d4c5b0]" />
-            <p className="text-xs font-semibold text-[#1a1a1a]">
-              Param Gurudev Shree Namramuni Maharaj Saheb
-            </p>
-          </div>
-
           <p className="text-sm text-[#3a3a3a] leading-relaxed mb-6">
-            Inspired by Rashtrasant Param Gurudev, Always Care was born from the belief that compassion for all living beings is the highest form of service.
+            Inspired by Param Gurudev Namramuni, Always Care was born from the belief that compassion for all living beings is the highest form of service.
           </p>
 
           <a
