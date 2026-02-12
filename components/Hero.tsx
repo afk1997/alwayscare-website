@@ -547,8 +547,8 @@ const Hero: React.FC = () => {
               </div>
            </div>
 
-           {/* Desktop Donation Widget (top-right of map) */}
-           <div className="absolute top-4 right-16 w-[320px] bg-white/95 backdrop-blur-sm rounded-xl shadow-[0_8px_40px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)] z-40 border border-white/50 hidden lg:flex flex-col p-4">
+           {/* Donation Widget — normal flow on mobile, floating on desktop */}
+           <div className="relative mx-4 my-3 lg:absolute lg:top-4 lg:right-16 lg:mx-0 lg:my-0 w-auto lg:w-[320px] bg-white/95 backdrop-blur-sm rounded-xl shadow-[0_8px_40px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)] z-40 border border-white/50 flex flex-col p-4">
              {/* Header */}
              <div className="flex items-start gap-2 mb-3">
                <span className="text-xl leading-none mt-0.5">❤️</span>
