@@ -189,7 +189,7 @@ const Hero: React.FC = () => {
           attributionControl: false,
           scrollWheelZoom: false,
           dragging: !L.Browser.mobile
-        }).setView([26, 71], 5);
+        }).setView([28, 71], 5);
 
         if (L.Browser.mobile) {
           map.dragging.enable();
@@ -548,19 +548,19 @@ const Hero: React.FC = () => {
            </div>
 
            {/* Donation Widget — normal flow on mobile, floating on desktop */}
-           <div className="relative mx-4 my-3 lg:absolute lg:top-4 lg:right-16 lg:mx-0 lg:my-0 w-auto lg:w-[320px] bg-white/95 backdrop-blur-sm rounded-xl shadow-[0_8px_40px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)] z-40 border border-white/50 flex flex-col p-4">
+           <div className="relative mx-4 my-3 lg:absolute lg:top-4 lg:right-8 lg:mx-0 lg:my-0 w-auto lg:w-[360px] bg-white/95 backdrop-blur-sm rounded-xl shadow-[0_8px_40px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)] z-40 border border-white/50 flex flex-col p-5 pb-3">
              {/* Header */}
-             <div className="flex items-start gap-2 mb-3">
-               <span className="text-xl leading-none mt-0.5">❤️</span>
+             <div className="flex items-start gap-3 mb-3">
+               <span className="text-2xl leading-none mt-0.5">❤️</span>
                <div>
-                 <h4 className="font-bold text-sm text-slate-900">Save Injured Street Animals</h4>
-                 <p className="text-xs text-slate-700 whitespace-nowrap">₹100 helps one injured animal · <span className="text-red-600 font-semibold">1.5L+ saved</span></p>
+                 <h4 className="font-bold text-base text-slate-900">Save Injured Street Animals</h4>
+                 <p className="text-sm text-slate-700">₹100 helps one injured animal · <span className="text-red-600 font-semibold whitespace-nowrap">1.5L+ saved</span></p>
                </div>
              </div>
 
              {/* Support Monthly */}
-             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Support Monthly (Recommended)</p>
-             <div className="grid grid-cols-2 gap-2 mb-3">
+             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5">Support Monthly (Recommended)</p>
+             <div className="grid grid-cols-2 gap-2.5 mb-3">
                <button
                  onClick={() => setDonationSelection({ type: 'monthly', amount: 50 })}
                  className={`p-2 rounded-lg border text-center transition-all ${
@@ -569,8 +569,8 @@ const Hero: React.FC = () => {
                      : 'border-slate-200 hover:border-slate-300'
                  }`}
                >
-                 <div className="text-sm font-bold text-slate-900">₹50 / day</div>
-                 <div className="text-[10px] text-slate-400">₹1500 / month</div>
+                 <div className="text-base font-bold text-slate-900">₹50 / day</div>
+                 <div className="text-xs text-slate-400">₹1500 / month</div>
                </button>
                <button
                  onClick={() => setDonationSelection({ type: 'monthly', amount: 100 })}
@@ -580,19 +580,19 @@ const Hero: React.FC = () => {
                      : 'border-slate-200 hover:border-slate-300'
                  }`}
                >
-                 <div className="text-sm font-bold text-red-600">₹100 / day</div>
-                 <div className="text-[10px] text-slate-400">₹3000 / month</div>
+                 <div className="text-base font-bold text-red-600">₹100 / day</div>
+                 <div className="text-xs text-slate-400">₹3000 / month</div>
                </button>
              </div>
 
              {/* One-time donation */}
-             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">One-time donation</p>
-             <div className="grid grid-cols-4 gap-1.5 mb-4">
+             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5">One-time donation</p>
+             <div className="grid grid-cols-4 gap-2 mb-3">
                {([100, 500, 1000] as const).map((val) => (
                  <button
                    key={val}
                    onClick={() => setDonationSelection({ type: 'onetime', amount: val })}
-                   className={`py-1.5 rounded-lg border text-xs font-semibold transition-all ${
+                   className={`py-2 rounded-lg border text-sm font-semibold transition-all ${
                      donationSelection.type === 'onetime' && donationSelection.amount === val
                        ? 'border-red-300 bg-red-50 text-red-600'
                        : 'border-slate-200 text-slate-700 hover:border-slate-300'
@@ -603,20 +603,20 @@ const Hero: React.FC = () => {
                ))}
                {donationSelection.type === 'custom' ? (
                  <div className="relative">
-                   <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs text-slate-400">₹</span>
+                   <span className="absolute left-2 top-1/2 -translate-y-1/2 text-sm text-slate-400">₹</span>
                    <input
                      type="number"
                      autoFocus
                      placeholder="Amt"
                      value={donationSelection.amount}
                      onChange={(e) => setDonationSelection({ type: 'custom', amount: e.target.value })}
-                     className="w-full py-1.5 pl-5 pr-1 rounded-lg border border-red-300 bg-red-50 text-xs font-semibold text-red-600 focus:outline-none focus:ring-1 focus:ring-red-400"
+                     className="w-full py-2 pl-6 pr-1 rounded-lg border border-red-300 bg-red-50 text-sm font-semibold text-red-600 focus:outline-none focus:ring-1 focus:ring-red-400"
                    />
                  </div>
                ) : (
                  <button
                    onClick={() => setDonationSelection({ type: 'custom', amount: '' })}
-                   className="py-1.5 rounded-lg border text-xs font-semibold transition-all border-slate-200 text-slate-700 hover:border-slate-300"
+                   className="py-2 rounded-lg border text-sm font-semibold transition-all border-slate-200 text-slate-700 hover:border-slate-300"
                  >
                    Custom
                  </button>
@@ -626,7 +626,7 @@ const Hero: React.FC = () => {
              {/* Donate button */}
              <a
                href="#donate"
-               className="btn-shine w-4/5 mx-auto bg-red-600 hover:bg-red-700 text-white py-2.5 rounded-full font-bold text-sm text-center flex items-center justify-center gap-2 shadow-lg shadow-red-500/20 hover:shadow-xl transition-all duration-200"
+               className="btn-shine w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-full font-bold text-base text-center flex items-center justify-center gap-2 shadow-lg shadow-red-500/20 hover:shadow-xl transition-all duration-200"
              >
                <span>❤️</span>
                Donate
