@@ -1,42 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
-const visionImages = [
-  '/images/vision/1.jpg',
-  '/images/vision/2.jpg',
-  '/images/vision/3.jpg',
-  '/images/vision/4.jpg',
-  '/images/vision/5.jpg',
-];
-
 const VisionSection: React.FC = () => {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % visionImages.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
 
   return (
     <section ref={ref} className="relative overflow-hidden">
       {/* ── Desktop: full-viewport split layout ── */}
       <div className="hidden md:block relative min-h-screen">
-        {/* Background images — rotating slideshow */}
-        {visionImages.map((src, idx) => (
-          <img
-            key={src}
-            src={src}
-            alt="Param Gurudev Shree Namramuni Maharaj Saheb"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-              idx === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ objectPosition: 'center right' }}
-          />
-        ))}
+        {/* Background image */}
+        <img
+          src="/images/gurudev-website.jpg"
+          alt="Param Gurudev Shree Namramuni Maharaj Saheb"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: 'center right' }}
+        />
 
         {/* Warm gradient overlay on left for card readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
@@ -129,17 +108,12 @@ const VisionSection: React.FC = () => {
       <div className="md:hidden">
         {/* Image with dark overlay */}
         <div className="relative h-[60vh]">
-          {visionImages.map((src, idx) => (
-            <img
-              key={src}
-              src={src}
-              alt="Param Gurudev Shree Namramuni Maharaj Saheb"
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                idx === currentSlide ? 'opacity-100' : 'opacity-0'
-              }`}
-              style={{ objectPosition: 'center top' }}
-            />
-          ))}
+          <img
+            src="/images/gurudev-website.jpg"
+            alt="Param Gurudev Shree Namramuni Maharaj Saheb"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: 'center top' }}
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white" />
         </div>
 
