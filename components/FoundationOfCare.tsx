@@ -12,10 +12,10 @@ const PILLARS = [
     statLabel: "Ambulances on road today",
     secondStat: "15+",
     secondStatLabel: "Cities covered",
-    accentColor: "#DC2626",
-    accentLight: "rgba(220, 38, 38, 0.08)",
-    accentMid: "rgba(220, 38, 38, 0.15)",
-    gradient: "linear-gradient(135deg, #DC2626 0%, #B91C1C 100%)",
+    accentColor: "#B7312C",
+    accentLight: "rgba(183, 49, 44, 0.08)",
+    accentMid: "rgba(183, 49, 44, 0.15)",
+    gradient: "linear-gradient(135deg, #B7312C 0%, #9A2823 100%)",
     image: "/images/ambulance/1.jpg",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -37,10 +37,10 @@ const PILLARS = [
     statLabel: "Free clinics operational",
     secondStat: "1.5L+",
     secondStatLabel: "Animals treated to date",
-    accentColor: "#0D9488",
-    accentLight: "rgba(13, 148, 136, 0.08)",
-    accentMid: "rgba(13, 148, 136, 0.15)",
-    gradient: "linear-gradient(135deg, #0D9488 0%, #0F766E 100%)",
+    accentColor: "#5F8A65",
+    accentLight: "rgba(95, 138, 101, 0.08)",
+    accentMid: "rgba(95, 138, 101, 0.15)",
+    gradient: "linear-gradient(135deg, #5F8A65 0%, #4F7355 100%)",
     image: "/images/clinic/1.jpg",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -60,10 +60,10 @@ const PILLARS = [
     statLabel: "Hospital under construction",
     secondStat: "2026",
     secondStatLabel: "Target completion",
-    accentColor: "#7C3AED",
-    accentLight: "rgba(124, 58, 237, 0.08)",
-    accentMid: "rgba(124, 58, 237, 0.15)",
-    gradient: "linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%)",
+    accentColor: "#B8650A",
+    accentLight: "rgba(184, 101, 10, 0.08)",
+    accentMid: "rgba(184, 101, 10, 0.15)",
+    gradient: "linear-gradient(135deg, #B8650A 0%, #9A5508 100%)",
     image: "/images/hospital/1.jpeg",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -150,8 +150,8 @@ function PillarCard({ pillar, index }: { pillar: (typeof PILLARS)[number]; index
           overflow: "hidden",
           background: "#fff",
           boxShadow: isHovered
-            ? `0 25px 60px -12px rgba(0,0,0,0.12), 0 0 0 1px ${pillar.accentMid}`
-            : "0 4px 24px -4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04)",
+            ? `0 25px 60px -12px rgba(28,25,23,0.12), 0 0 0 1px ${pillar.accentMid}`
+            : "0 4px 24px -4px rgba(28,25,23,0.06), 0 0 0 1px rgba(28,25,23,0.04)",
           transition: "all 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
           transform: isHovered ? "translateY(-4px)" : "translateY(0)",
           direction: isReversed ? "rtl" : "ltr",
@@ -248,6 +248,8 @@ function PillarCard({ pillar, index }: { pillar: (typeof PILLARS)[number]; index
               height: "100%",
               objectFit: "cover",
               zIndex: 1,
+              transition: "transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)",
+              transform: isHovered ? "scale(1.05)" : "scale(1)",
             }}
           />
         </div>
@@ -281,7 +283,7 @@ function PillarCard({ pillar, index }: { pillar: (typeof PILLARS)[number]; index
                 fontFamily: "'Open Runde', sans-serif",
                 fontSize: "11px",
                 letterSpacing: "1.5px",
-                color: "#94A3B8",
+                color: "#78716C",
                 fontWeight: "500",
               }}
             >
@@ -294,7 +296,7 @@ function PillarCard({ pillar, index }: { pillar: (typeof PILLARS)[number]; index
               fontFamily: "'Open Runde', sans-serif",
               fontSize: "38px",
               fontWeight: "700",
-              color: "#0F172A",
+              color: "#292524",
               lineHeight: "1.15",
               margin: "0 0 8px 0",
               letterSpacing: "-0.5px",
@@ -320,7 +322,7 @@ function PillarCard({ pillar, index }: { pillar: (typeof PILLARS)[number]; index
             style={{
               fontSize: "15.5px",
               lineHeight: "1.75",
-              color: "#475569",
+              color: "#57534E",
               margin: "0 0 40px 0",
               fontFamily: "'Open Runde', sans-serif",
             }}
@@ -328,7 +330,7 @@ function PillarCard({ pillar, index }: { pillar: (typeof PILLARS)[number]; index
             {pillar.description}
           </p>
 
-          <div style={{ display: "flex", gap: "32px", paddingTop: "32px", borderTop: "1px solid #E2E8F0" }}>
+          <div style={{ display: "flex", gap: "32px", paddingTop: "32px", borderTop: "1px solid #E8E0D8" }}>
             <div>
               <div
                 style={{
@@ -346,21 +348,21 @@ function PillarCard({ pillar, index }: { pillar: (typeof PILLARS)[number]; index
                 style={{
                   fontSize: "12.5px",
                   fontWeight: "500",
-                  color: "#94A3B8",
+                  color: "#78716C",
                   letterSpacing: "0.5px",
                 }}
               >
                 {pillar.statLabel}
               </div>
             </div>
-            <div style={{ width: "1px", background: "#E2E8F0" }} />
+            <div style={{ width: "1px", background: "#E8E0D8" }} />
             <div>
               <div
                 style={{
                   fontFamily: "'Open Runde', sans-serif",
                   fontSize: "48px",
                   fontWeight: "700",
-                  color: "#0F172A",
+                  color: "#292524",
                   lineHeight: "1",
                   marginBottom: "6px",
                 }}
@@ -371,7 +373,7 @@ function PillarCard({ pillar, index }: { pillar: (typeof PILLARS)[number]; index
                 style={{
                   fontSize: "12.5px",
                   fontWeight: "500",
-                  color: "#94A3B8",
+                  color: "#78716C",
                   letterSpacing: "0.5px",
                 }}
               >
@@ -394,7 +396,7 @@ export default function FoundationOfCare() {
       style={{
         position: "relative",
         padding: "120px 0 140px",
-        background: "#F8FAFC",
+        background: "#FFFBF5",
         overflow: "hidden",
       }}
     >
@@ -402,7 +404,7 @@ export default function FoundationOfCare() {
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.025) 1px, transparent 0)",
+          backgroundImage: "radial-gradient(circle at 1px 1px, rgba(28,25,23,0.025) 1px, transparent 0)",
           backgroundSize: "48px 48px",
           pointerEvents: "none",
         }}
@@ -414,7 +416,7 @@ export default function FoundationOfCare() {
           left: "0",
           width: "4px",
           height: "200px",
-          background: "linear-gradient(to bottom, #DC2626, #0D9488, #7C3AED)",
+          background: "linear-gradient(to bottom, #B7312C, #5F8A65, #B8650A)",
           borderRadius: "0 4px 4px 0",
           opacity: 0.3,
         }}
@@ -433,20 +435,20 @@ export default function FoundationOfCare() {
           }}
         >
           <div style={{ display: "inline-flex", alignItems: "center", gap: "12px", marginBottom: "28px" }}>
-            <div style={{ height: "1px", width: "40px", background: "#CBD5E1" }} />
+            <div style={{ height: "1px", width: "40px", background: "#E8E0D8" }} />
             <span
               style={{
                 fontFamily: "'Open Runde', sans-serif",
                 fontSize: "11.5px",
                 fontWeight: "600",
                 letterSpacing: "3px",
-                color: "#94A3B8",
+                color: "#78716C",
                 textTransform: "uppercase",
               }}
             >
               How We Save Lives
             </span>
-            <div style={{ height: "1px", width: "40px", background: "#CBD5E1" }} />
+            <div style={{ height: "1px", width: "40px", background: "#E8E0D8" }} />
           </div>
 
           <h2
@@ -454,7 +456,7 @@ export default function FoundationOfCare() {
               fontFamily: "'Open Runde', sans-serif",
               fontSize: "clamp(36px, 5vw, 60px)",
               fontWeight: "700",
-              color: "#0F172A",
+              color: "#292524",
               lineHeight: "1.15",
               margin: "0 0 24px 0",
               letterSpacing: "-1.5px",
@@ -463,7 +465,7 @@ export default function FoundationOfCare() {
             The Foundation of{" "}
             <span
               style={{
-                background: "linear-gradient(135deg, #DC2626 0%, #0D9488 50%, #7C3AED 100%)",
+                background: "linear-gradient(135deg, #B7312C 0%, #5F8A65 50%, #B8650A 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -477,7 +479,7 @@ export default function FoundationOfCare() {
             style={{
               fontSize: "18px",
               lineHeight: "1.7",
-              color: "#64748B",
+              color: "#57534E",
               maxWidth: "600px",
               margin: "0 auto",
               fontFamily: "'Open Runde', sans-serif",

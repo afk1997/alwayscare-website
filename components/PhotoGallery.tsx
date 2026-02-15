@@ -162,7 +162,7 @@ const PhotoGallery: React.FC = () => {
 
   return (
     <section
-      className="py-16 md:py-24 bg-[#FAFAFA] overflow-hidden"
+      className="py-16 md:py-24 bg-[#FFFBF5] overflow-hidden"
       ref={(el) => {
         sectionRef.current = el;
         if (typeof revealRef === 'function') {
@@ -183,7 +183,7 @@ const PhotoGallery: React.FC = () => {
           {SEVA_LETTERS.map((letter, i) => (
             <span
               key={letter}
-              className={`scroll-reveal ${isVisible ? 'visible' : ''} inline-block text-6xl md:text-8xl lg:text-[10rem] font-black bg-gradient-to-r from-slate-300 via-slate-100 to-slate-300 bg-[length:200%_auto] bg-clip-text text-transparent animate-shimmer cursor-default hover:from-red-400 hover:via-rose-300 hover:to-red-400 hover:scale-110 transition-transform duration-300 seva-letter`}
+              className={`scroll-reveal ${isVisible ? 'visible' : ''} inline-block text-6xl md:text-8xl lg:text-[10rem] font-black bg-gradient-to-r from-[#E8E0D8] via-[#F9E8C9] to-[#E8E0D8] bg-[length:200%_auto] bg-clip-text text-transparent animate-shimmer cursor-default hover:from-[#B7312C] hover:via-[#B8650A] hover:to-[#B7312C] hover:scale-110 transition-transform duration-300 seva-letter`}
               style={{ animationDelay: `${i * 100}ms` }}
             >
               {letter}

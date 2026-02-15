@@ -57,12 +57,12 @@ const Header: React.FC = () => {
           width: scrolled ? 'calc(100% - 24px)' : '100%',
           borderRadius: scrolled ? '9999px' : '0px',
           padding: scrolled ? '8px 24px' : '8px 32px',
-          backgroundColor: scrolled ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,1)',
-          borderBottom: scrolled ? 'none' : '1px solid rgb(226,232,240)',
-          border: scrolled ? '1px solid rgba(226,232,240,0.8)' : undefined,
+          backgroundColor: scrolled ? 'rgba(255,251,245,0.95)' : 'rgba(255,251,245,1)',
+          borderBottom: scrolled ? 'none' : '1px solid rgb(249,232,201)',
+          border: scrolled ? '1px solid rgba(249,232,201,0.8)' : undefined,
           boxShadow: scrolled
-            ? '0 4px 30px rgba(0,0,0,0.08)'
-            : '0 1px 2px rgba(0,0,0,0.04)',
+            ? '0 4px 30px rgba(28,25,23,0.08)'
+            : '0 1px 2px rgba(28,25,23,0.04)',
         }}
       >
         {/* Logo */}
@@ -80,25 +80,26 @@ const Header: React.FC = () => {
             const active = isActiveLink(link);
             return renderNavLink(
               link,
-              `relative text-sm font-medium px-3 py-1.5 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 ${
+              `relative text-sm font-medium px-3 py-1.5 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#B8650A] focus:ring-offset-2 ${
                 active
-                  ? 'text-red-600 bg-red-50/60'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
+                  ? 'text-[#B8650A] bg-[#FEF3E7]/60'
+                  : 'text-[#57534E] hover:text-[#292524] hover:bg-[#FEF7ED]'
               }`
             );
           })}
           <Link
             to="/#home"
-            className="btn-shine ml-3 px-5 py-2 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 active:scale-95 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-red-600/25 transition-all duration-200 flex items-center gap-2 text-sm shadow-md shadow-red-600/15 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+            className="group btn-shine ml-3 px-5 py-2 bg-gradient-to-b from-[#C93B36] to-[#9A2823] text-white rounded-full font-semibold active:scale-[0.97] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(183,49,44,0.3),0_0_16px_rgba(183,49,44,0.15)] transition-all duration-300 flex items-center gap-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#B8650A] focus:ring-offset-2"
+            style={{ boxShadow: '0 4px 12px rgba(183,49,44,0.2), inset 0 1px 0 rgba(255,255,255,0.15)', transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
           >
-            <Phone size={15} className="fill-current" />
+            <Phone size={15} className="fill-current group-hover:rotate-12 transition-transform duration-300" />
             Call Ambulance
           </Link>
         </nav>
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-slate-900 p-2.5 rounded-full hover:bg-slate-100/80 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+          className="md:hidden text-[#292524] p-2.5 rounded-full hover:bg-[#FEF7ED] transition-colors focus:outline-none focus:ring-2 focus:ring-[#B8650A]"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle navigation menu"
           aria-expanded={mobileMenuOpen}
@@ -111,7 +112,7 @@ const Header: React.FC = () => {
       {/* Mobile Menu */}
       <div
         id="mobile-menu"
-        className={`md:hidden mx-3 mt-2 bg-white/95 backdrop-blur-xl rounded-2xl border border-slate-200/60 shadow-[0_8px_40px_rgba(0,0,0,0.1)] overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`md:hidden mx-3 mt-2 bg-[#FFFBF5]/95 backdrop-blur-xl rounded-2xl border border-[#F9E8C9]/60 shadow-[0_8px_40px_rgba(28,25,23,0.1)] overflow-hidden transition-all duration-300 ease-in-out ${
           mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 border-transparent shadow-none'
         }`}
       >
@@ -120,8 +121,8 @@ const Header: React.FC = () => {
             const active = isActiveLink(link);
             return renderNavLink(
               link,
-              `animate-fadeUp text-slate-800 font-medium py-3 px-4 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 ${
-                active ? 'text-red-600 bg-red-50/60' : 'hover:bg-red-50/50'
+              `animate-fadeUp text-[#292524] font-medium py-3 px-4 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#B8650A] ${
+                active ? 'text-[#B8650A] bg-[#FEF3E7]/60' : 'hover:bg-[#FEF7ED]'
               }`,
               () => setMobileMenuOpen(false)
             );
@@ -129,7 +130,7 @@ const Header: React.FC = () => {
           <Link
             to="/#home"
             onClick={() => setMobileMenuOpen(false)}
-            className="btn-shine animate-fadeUp w-full text-center px-4 py-3 bg-red-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-red-700 transition-all duration-200 mt-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 shadow-md shadow-red-600/15"
+            className="btn-shine animate-fadeUp w-full text-center px-4 py-3 bg-[#B7312C] text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#9A2823] transition-all duration-200 mt-2 focus:outline-none focus:ring-2 focus:ring-[#B8650A] focus:ring-offset-2 shadow-md shadow-[rgba(183,49,44,0.15)]"
             style={{ animationDelay: '150ms' }}
           >
             <Phone size={18} className="fill-current" />

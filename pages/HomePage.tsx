@@ -23,11 +23,15 @@ const HomePage: React.FC = () => {
   return (
     <>
       <Hero />
+      <div className="h-px bg-gradient-to-r from-transparent via-[#E8E0D8] to-transparent" />
       <PhotoGallery />
+      <div className="h-px bg-gradient-to-r from-transparent via-[#E8E0D8] to-transparent" />
       <FoundationOfCare />
       <VisionSection />
       <ArhamYuvaSeva />
+      <div className="h-px bg-gradient-to-r from-transparent via-[#E8E0D8]/50 to-transparent" />
       <DonateSection />
+      <div className="h-px bg-gradient-to-r from-transparent via-[#E8E0D8]/50 to-transparent" />
       <Volunteer />
     </>
   );

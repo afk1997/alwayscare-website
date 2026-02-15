@@ -8,17 +8,17 @@ const TermsConditionsPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-slate-50 min-h-screen">
-      <div className="bg-white border-b border-slate-200">
+    <div className="bg-[#FFFBF5] min-h-screen">
+      <div className="bg-white border-b border-[#E8E0D8]">
         <div className="container mx-auto px-4 pt-28 pb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900">Terms & Conditions</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-[#292524]">Terms & Conditions</h1>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto space-y-8 text-slate-700 leading-relaxed">
+        <div className="max-w-3xl mx-auto space-y-8 text-[#44403C] leading-relaxed">
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">Welcome to arham.org!</h2>
+            <h2 className="text-xl font-semibold text-[#292524] mb-3">Welcome to arham.org!</h2>
             <p>
               These terms and conditions outline the rules and regulations for the use of Arham's Website,
               located at https://www.arham.org.
@@ -40,7 +40,7 @@ const TermsConditionsPage: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">Cookies</h2>
+            <h2 className="text-xl font-semibold text-[#292524] mb-3">Cookies</h2>
             <p>
               We employ the use of cookies. By accessing arham.org, you agreed to use cookies in agreement
               with the Arham's Privacy Policy.
@@ -53,7 +53,7 @@ const TermsConditionsPage: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">License</h2>
+            <h2 className="text-xl font-semibold text-[#292524] mb-3">License</h2>
             <p>
               Unless otherwise stated, Arham and/or its licensors own the intellectual property rights for all
               material on arham.org. All intellectual property rights are reserved. You may access this from
@@ -70,7 +70,7 @@ const TermsConditionsPage: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">Comments</h2>
+            <h2 className="text-xl font-semibold text-[#292524] mb-3">Comments</h2>
             <p>
               Parts of this website offer an opportunity for users to post and exchange opinions and
               information in certain areas of the website. Arham does not filter, edit, publish or review
@@ -101,7 +101,7 @@ const TermsConditionsPage: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">Hyperlinking to our Content</h2>
+            <h2 className="text-xl font-semibold text-[#292524] mb-3">Hyperlinking to our Content</h2>
             <p>The following organizations may link to our Website without prior written approval:</p>
             <ul className="list-disc list-inside mt-2 space-y-1">
               <li>Government agencies</li>
@@ -153,7 +153,7 @@ const TermsConditionsPage: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">iFrames</h2>
+            <h2 className="text-xl font-semibold text-[#292524] mb-3">iFrames</h2>
             <p>
               Without prior approval and written permission, you may not create frames around our Webpages
               that alter in any way the visual presentation or appearance of our Website.
@@ -161,7 +161,7 @@ const TermsConditionsPage: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">Content Liability</h2>
+            <h2 className="text-xl font-semibold text-[#292524] mb-3">Content Liability</h2>
             <p>
               We shall not be hold responsible for any content that appears on your Website. You agree to
               protect and defend us against all claims that is rising on your Website. No link(s) should
@@ -172,12 +172,12 @@ const TermsConditionsPage: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">Your Privacy</h2>
+            <h2 className="text-xl font-semibold text-[#292524] mb-3">Your Privacy</h2>
             <p>Please read our Privacy Policy.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">Reservation of Rights</h2>
+            <h2 className="text-xl font-semibold text-[#292524] mb-3">Reservation of Rights</h2>
             <p>
               We reserve the right to request that you remove all links or any particular link to our Website.
               You approve to immediately remove all links to our Website upon request. We also reserve the
@@ -187,7 +187,7 @@ const TermsConditionsPage: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">Removal of links from our website</h2>
+            <h2 className="text-xl font-semibold text-[#292524] mb-3">Removal of links from our website</h2>
             <p>
               If you find any link on our Website that is offensive for any reason, you are free to contact
               and inform us any moment. We will consider requests to remove links but we are not obligated to
@@ -201,7 +201,7 @@ const TermsConditionsPage: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">Disclaimer</h2>
+            <h2 className="text-xl font-semibold text-[#292524] mb-3">Disclaimer</h2>
             <p>
               To the maximum extent permitted by applicable law, we exclude all representations, warranties
               and conditions relating to our website and the use of this website. Nothing in this disclaimer

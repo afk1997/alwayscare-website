@@ -10,10 +10,10 @@ import RefundCancellationPage from './pages/RefundCancellationPage';
 
 const App: React.FC = () => {
   return (
-    <div className="font-sans antialiased text-slate-900 selection:bg-red-200 selection:text-red-900">
+    <div className="font-sans antialiased text-[#292524] selection:bg-[#FDEAEA] selection:text-[#B7312C]">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-slate-900 focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:text-sm focus:font-medium"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-[#292524] focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:text-sm focus:font-medium"
       >
         Skip to main content
       </a>

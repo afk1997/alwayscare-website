@@ -40,7 +40,7 @@ const StatItem: React.FC<{
         {count}
         {suffix}
       </div>
-      <div className="text-sm text-slate-400 font-medium">{label}</div>
+      <div className="text-sm text-[#A8A29E] font-medium">{label}</div>
     </div>
   );
 };
@@ -50,7 +50,7 @@ const ArhamYuvaSeva: React.FC = () => {
 
   return (
     <section
-      className="py-20 md:py-28 bg-[#111827] text-white relative overflow-hidden"
+      className="py-20 md:py-28 bg-[#1C1917] text-white relative overflow-hidden texture-grain warm-vignette"
       ref={ref}
     >
       {/* Light rays background */}
@@ -87,7 +87,7 @@ const ArhamYuvaSeva: React.FC = () => {
             className={`text-center mb-4 scroll-dramatic ${isVisible ? 'visible' : ''}`}
             style={{ animationDelay: '300ms' }}
           >
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-red-400">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#D87E0F]">
               Powered by
             </p>
           </div>
@@ -107,7 +107,7 @@ const ArhamYuvaSeva: React.FC = () => {
             className={`text-center mb-14 scroll-dramatic ${isVisible ? 'visible' : ''}`}
             style={{ animationDelay: '700ms' }}
           >
-            <p className="text-slate-300 max-w-3xl mx-auto leading-relaxed text-base md:text-lg">
+            <p className="text-[#E8E0D8] max-w-3xl mx-auto leading-relaxed text-base md:text-lg">
               Arham Yuva Seva Group is a youth-driven non-profit delivering on-ground seva across India.
               Inspired by Rashtrasant Param Gurudev Shree Namramuni Maharaj Saheb, we provide animal
               welfare (rescues, ambulances), disaster relief, medical aid and dialysis support, cataract

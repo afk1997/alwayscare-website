@@ -324,34 +324,34 @@ const Hero: React.FC = () => {
 
 
   return (
-    <div id="home" className="relative bg-gradient-to-br from-white via-red-50/30 to-amber-50/20 flex flex-col pt-16 lg:h-screen lg:overflow-hidden">
-      {/* Decorative background blobs */}
-      <div className="absolute top-20 -left-20 w-72 h-72 bg-red-200/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-40 right-10 w-56 h-56 bg-amber-200/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-rose-100/15 rounded-full blur-3xl pointer-events-none" />
+    <div id="home" className="relative bg-gradient-to-br from-[#FFFBF5] via-[#FEF7ED] to-[#FDF0DB] flex flex-col pt-16 lg:h-screen lg:overflow-hidden">
+      {/* Decorative background blobs — varied animation speeds for organic movement */}
+      <div className="absolute top-20 -left-20 w-72 h-72 bg-[#B8650A]/10 rounded-full blur-3xl pointer-events-none animate-float-soft" />
+      <div className="absolute bottom-40 right-10 w-56 h-56 bg-[#D87E0F]/8 rounded-full blur-3xl pointer-events-none" style={{ animation: 'floatSoft 9s ease-in-out infinite' }} />
+      <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-[#B7312C]/6 rounded-full blur-3xl pointer-events-none" style={{ animation: 'floatSoft 11s ease-in-out infinite' }} />
 
       <div className="flex flex-col lg:flex-row w-full flex-1 lg:h-full">
         
         {/* LEFT COLUMN: Mission Control (Title, Stats, Live Feed) */}
         {/* Mobile: Natural scroll. Desktop: Internal scroll */}
-        <div className="w-full lg:w-[45%] flex flex-col p-5 md:p-6 lg:p-6 bg-gradient-to-b from-white via-white to-slate-50/80 z-20 shadow-xl lg:shadow-[8px_0_30px_-5px_rgba(0,0,0,0.08)] lg:overflow-y-auto order-1">
+        <div className="w-full lg:w-[45%] flex flex-col p-5 md:p-6 lg:p-6 bg-gradient-to-b from-[#FFFBF5] via-[#FFFBF5] to-[#FEF7ED] z-20 shadow-xl lg:shadow-[8px_0_30px_-5px_rgba(28,25,23,0.08)] lg:overflow-y-auto order-1">
           
           {/* 1. Header & Title */}
           <div className="mb-3 md:mb-4">
-            <div className="animate-fadeUp animate-badgeGlow inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold uppercase tracking-wider mb-2">
+            <div className="animate-fadeUp animate-badgeGlow inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FEF3E7] border border-[#FDDBB8] text-[#B8650A] text-xs font-bold uppercase tracking-wider mb-2">
               <Sparkles size={14} />
               <span>Vision of Param Namramuni Gurudev</span>
             </div>
-            <h1 className="animate-fadeUp text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight mb-2" style={{ fontFamily: "'Open Runde', sans-serif", animationDelay: '100ms' }}>
-              India's Fast & Free <br /><span className="bg-gradient-to-r from-red-600 via-rose-500 to-red-600 bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">Animal Ambulance Network</span>
+            <h1 className="animate-fadeUp text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#292524] leading-tight mb-2 tracking-[-0.03em]" style={{ fontFamily: "'Open Runde', sans-serif", animationDelay: '100ms', textShadow: '0 2px 8px rgba(28,25,23,0.06)' }}>
+              India's Fast & Free <br /><span className="bg-gradient-to-r from-[#B7312C] via-[#B8650A] to-[#B7312C] bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">Animal Ambulance Network</span>
             </h1>
-            <p className="animate-fadeUp text-slate-700 text-base md:text-lg font-normal leading-relaxed max-w-xl" style={{ fontFamily: "'Open Runde', sans-serif", animationDelay: '200ms' }}>
+            <p className="animate-fadeUp text-[#57534E] text-base md:text-lg font-normal leading-relaxed max-w-xl" style={{ fontFamily: "'Open Runde', sans-serif", animationDelay: '200ms' }}>
               On-site, free first-aid and treatment for every injured street animal.
             </p>
             <div className="animate-fadeUp flex items-center gap-3 mt-2" style={{ animationDelay: '250ms' }}>
-              <div className="h-0.5 w-16 bg-gradient-to-r from-red-500 via-rose-400 to-amber-400 rounded-full" />
+              <div className="h-0.5 w-16 bg-gradient-to-r from-[#B7312C] via-[#B8650A] to-[#D87E0F] rounded-full" />
               <img src="/images/aysg-logo.png" alt="AYSG" className="w-6 h-6 rounded" />
-              <span className="text-sm font-semibold bg-gradient-to-r from-amber-700 via-yellow-400 to-amber-700 bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">Powered by Arham Yuva Seva Group</span>
+              <span className="text-sm font-semibold bg-gradient-to-r from-[#9A5508] via-[#D87E0F] to-[#9A5508] bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">Powered by Arham Yuva Seva Group</span>
             </div>
           </div>
 
@@ -359,70 +359,70 @@ const Hero: React.FC = () => {
           <div className="animate-fadeUp grid grid-cols-4 gap-2 mb-3 md:mb-4" style={{ animationDelay: '300ms' }}>
 
             {/* Card 1 */}
-            <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-slate-200/80 border-l-4 border-l-red-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex flex-col shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-              <div className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-wider bg-slate-200/50 inline-block px-1.5 py-0.5 rounded mb-1 self-start">{currentDate}</div>
-              <div className="text-xl md:text-2xl font-black text-slate-900 group-hover:scale-105 transition-transform origin-left">
+            <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-[#F9E8C9] border-l-4 border-l-[#B7312C] hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_8px_24px_rgba(28,25,23,0.1)] transition-all duration-300 flex flex-col shadow-[0_1px_2px_rgba(28,25,23,0.04),0_4px_12px_rgba(28,25,23,0.06)]" style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}>
+              <div className="text-[10px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider bg-[#FEF7ED] inline-block px-1.5 py-0.5 rounded mb-1 self-start">{currentDate}</div>
+              <div className="text-xl md:text-2xl font-black text-[#292524] group-hover:scale-105 transition-transform origin-left">
                 {dailyCases === '...' ? (
-                  <span className="inline-block w-12 h-6 bg-slate-200 rounded animate-pulse"></span>
+                  <span className="inline-block w-12 h-6 bg-[#FDF0DB] rounded animate-pulse"></span>
                 ) : (
                   dailyCases
                 )}
               </div>
-              <div className="text-[10px] md:text-xs text-slate-600 font-medium leading-tight mt-auto">Cases Treated Today</div>
+              <div className="text-[10px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Cases Treated Today</div>
             </div>
 
             {/* Card 2 */}
-            <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-slate-200/80 border-l-4 border-l-rose-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex flex-col shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-              <div className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Lives Saved</div>
-              <div className="text-xl md:text-2xl font-black text-red-600 group-hover:scale-105 transition-transform origin-left">1.5 Lakh+</div>
-              <div className="text-[10px] md:text-xs text-slate-600 font-medium leading-tight mt-auto">In Last 3 Years</div>
+            <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-[#F9E8C9] border-l-4 border-l-[#B7312C] hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_8px_24px_rgba(28,25,23,0.1)] transition-all duration-300 flex flex-col shadow-[0_1px_2px_rgba(28,25,23,0.04),0_4px_12px_rgba(28,25,23,0.06)]" style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}>
+              <div className="text-[10px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">Lives Saved</div>
+              <div className="text-xl md:text-2xl font-black text-[#B7312C] group-hover:scale-105 transition-transform origin-left">1.5 Lakh+</div>
+              <div className="text-[10px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">In Last 3 Years</div>
             </div>
 
             {/* Card 3 */}
-            <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-slate-200/80 border-l-4 border-l-amber-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex flex-col shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-              <div className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Across India</div>
-              <div className="text-xl md:text-2xl font-black text-slate-900 group-hover:scale-105 transition-transform origin-left">{countAmbulances}+</div>
-              <div className="text-[10px] md:text-xs text-slate-600 font-medium leading-tight mt-auto">Ambulance & Clinics</div>
+            <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-[#F9E8C9] border-l-4 border-l-[#B8650A] hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_8px_24px_rgba(28,25,23,0.1)] transition-all duration-300 flex flex-col shadow-[0_1px_2px_rgba(28,25,23,0.04),0_4px_12px_rgba(28,25,23,0.06)]" style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}>
+              <div className="text-[10px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">Across India</div>
+              <div className="text-xl md:text-2xl font-black text-[#292524] group-hover:scale-105 transition-transform origin-left">{countAmbulances}+</div>
+              <div className="text-[10px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Ambulance & Clinics</div>
             </div>
 
             {/* Card 4 */}
-            <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-slate-200/80 border-l-4 border-l-emerald-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex flex-col shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-              <div className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">On Ground</div>
-              <div className="text-xl md:text-2xl font-black text-slate-900 group-hover:scale-105 transition-transform origin-left">{countVets}+</div>
-              <div className="text-[10px] md:text-xs text-slate-600 font-medium leading-tight mt-auto">Vets & Paravets</div>
+            <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-[#F9E8C9] border-l-4 border-l-[#5F8A65] hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_8px_24px_rgba(28,25,23,0.1)] transition-all duration-300 flex flex-col shadow-[0_1px_2px_rgba(28,25,23,0.04),0_4px_12px_rgba(28,25,23,0.06)]" style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}>
+              <div className="text-[10px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">On Ground</div>
+              <div className="text-xl md:text-2xl font-black text-[#292524] group-hover:scale-105 transition-transform origin-left">{countVets}+</div>
+              <div className="text-[10px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Vets & Paravets</div>
             </div>
 
           </div>
 
           {/* 3. Live Cases Feed (Light Theme) */}
-          <div className="animate-fadeUp flex-1 min-h-0 bg-amber-50/50 border border-amber-100 animate-borderGlow rounded-2xl p-3 md:p-4 mb-3 flex flex-col shadow-sm" style={{ animationDelay: '400ms' }}>
+          <div className="animate-fadeUp flex-1 min-h-0 bg-[#FEF3E7]/50 border border-[#FDDBB8] animate-borderGlow rounded-2xl p-3 md:p-4 mb-3 flex flex-col shadow-sm" style={{ animationDelay: '400ms' }}>
             <div className="flex justify-between items-center mb-2">
-              <h2 className="font-bold flex items-center gap-2 text-slate-900 text-sm md:text-base">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse ring-4 ring-red-500/10"></span>
+              <h2 className="font-bold flex items-center gap-2 text-[#292524] text-sm md:text-base">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#B7312C] animate-pulse ring-4 ring-[rgba(183,49,44,0.1)]"></span>
                 Live Cases
-                <span className="text-xs text-slate-400 font-normal">&middot; {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                <span className="text-xs text-[#A8A29E] font-normal">&middot; {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
               </h2>
-              <span className="btn-shine text-xs text-amber-700 bg-amber-100 border border-amber-200 px-2 py-1 rounded font-medium">Real-time Feed</span>
+              <span className="btn-shine text-xs text-[#B8650A] bg-[#FEF3E7] border border-[#FDDBB8] px-2 py-1 rounded font-medium">Real-time Feed</span>
             </div>
             
             <div className="space-y-3 overflow-y-auto scrollbar-hide pr-2 flex-1 min-h-0">
               {liveCasesLoading ? (
                 // Loading skeleton
                 Array.from({ length: 3 }).map((_, i) => (
-                  <div key={i} className="bg-white border border-slate-100 p-3 rounded-xl animate-pulse">
-                    <div className="h-4 bg-slate-200 rounded w-1/3 mb-2"></div>
-                    <div className="h-3 bg-slate-100 rounded w-2/3"></div>
+                  <div key={i} className="bg-white border border-[#F9E8C9] p-3 rounded-xl animate-pulse">
+                    <div className="h-4 bg-[#FDF0DB] rounded w-1/3 mb-2"></div>
+                    <div className="h-3 bg-[#FEF7ED] rounded w-2/3"></div>
                   </div>
                 ))
               ) : liveCases.length === 0 ? (
-                <div className="text-center py-8 text-slate-500">No cases found</div>
+                <div className="text-center py-8 text-[#78716C]">No cases found</div>
               ) : (
                 liveCases.map((item) => (
                   <CaseCard key={item.id} liveCase={item} onSelect={setSelectedCase} variant="feed" />
                 ))
               )}
             </div>
-            <Link to="/live-impact" className="w-full mt-3 text-xs text-center text-slate-500 hover:text-red-600 font-medium flex items-center justify-center gap-1 transition-colors py-2">
+            <Link to="/live-impact" className="w-full mt-3 text-xs text-center text-[#78716C] hover:text-[#B7312C] font-medium flex items-center justify-center gap-1 transition-colors py-2">
               View all cases <ArrowRight size={12} />
             </Link>
           </div>
@@ -430,12 +430,12 @@ const Hero: React.FC = () => {
           {/* 4. Action Buttons (Donate + Volunteer) */}
           {/* Stack on mobile, row on larger screens */}
           <div className="animate-fadeUp flex flex-row gap-3 justify-center" style={{ animationDelay: '500ms' }}>
-             <a href="#donate" className="btn-shine bg-red-600 hover:bg-red-700 active:scale-95 text-white px-6 py-3 rounded-full font-bold flex items-center justify-center gap-2 shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/30 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-200 text-sm">
-                <Heart size={16} className="fill-current" />
+             <a href="#donate" className="group btn-shine bg-gradient-to-b from-[#C93B36] to-[#9A2823] active:scale-[0.97] text-white px-6 py-3 rounded-full font-bold flex items-center justify-center gap-2 hover:shadow-[0_8px_24px_rgba(183,49,44,0.3),0_0_20px_rgba(183,49,44,0.15)] hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 text-sm" style={{ boxShadow: '0 4px 12px rgba(183,49,44,0.25), inset 0 1px 0 rgba(255,255,255,0.15)', transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}>
+                <Heart size={16} className="fill-current group-hover:scale-110 transition-transform duration-300" />
                 Donate Now
              </a>
-             <a href="#volunteer" className="btn-shine bg-slate-900 hover:bg-slate-800 active:scale-95 text-white px-6 py-3 rounded-full font-bold flex items-center justify-center gap-2 shadow-lg shadow-slate-900/10 hover:shadow-xl hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-200 text-sm whitespace-nowrap">
-                <UserPlus size={16} />
+             <a href="#volunteer" className="group btn-shine bg-gradient-to-b from-[#3D3836] to-[#1C1917] active:scale-[0.97] text-white px-6 py-3 rounded-full font-bold flex items-center justify-center gap-2 hover:shadow-[0_8px_24px_rgba(28,25,23,0.2)] hover:from-[#44403C] hover:to-[#292524] hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 text-sm whitespace-nowrap" style={{ boxShadow: '0 4px 12px rgba(28,25,23,0.15), inset 0 1px 0 rgba(255,255,255,0.08)', transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}>
+                <UserPlus size={16} className="group-hover:scale-110 transition-transform duration-300" />
                 Join as Volunteer
              </a>
           </div>
@@ -443,7 +443,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* RIGHT COLUMN: Interactive Map + List */}
-        <div id="ambulance-map-col" className="w-full lg:w-[55%] relative bg-slate-100 flex flex-col lg:block order-2">
+        <div id="ambulance-map-col" className="w-full lg:w-[55%] relative bg-[#FEF7ED] flex flex-col lg:block order-2">
 
            {/* The Map Container */}
            <div
@@ -454,21 +454,21 @@ const Hero: React.FC = () => {
 
              {/* Map Loading State */}
              {mapStatus === 'loading' && (
-               <div className="absolute inset-0 bg-slate-100 flex flex-col items-center justify-center z-10">
-                 <div className="w-12 h-12 border-4 border-red-200 border-t-red-600 rounded-full animate-spin mb-4"></div>
-                 <p className="text-slate-600 font-medium">Loading map...</p>
+               <div className="absolute inset-0 bg-[#FEF7ED] flex flex-col items-center justify-center z-10">
+                 <div className="w-12 h-12 border-4 border-[#FDDBB8] border-t-[#B8650A] rounded-full animate-spin mb-4"></div>
+                 <p className="text-[#57534E] font-medium">Loading map...</p>
                </div>
              )}
 
              {/* Map Error State */}
              {mapStatus === 'error' && (
-               <div className="absolute inset-0 bg-slate-100 flex flex-col items-center justify-center z-10 p-6 text-center">
-                 <MapPin className="w-16 h-16 text-slate-300 mb-4" />
-                 <p className="text-slate-700 font-bold text-lg mb-2">Map Unavailable</p>
-                 <p className="text-slate-500 text-sm mb-4">Please use the list below to find an ambulance near you.</p>
+               <div className="absolute inset-0 bg-[#FEF7ED] flex flex-col items-center justify-center z-10 p-6 text-center">
+                 <MapPin className="w-16 h-16 text-[#E8E0D8] mb-4" />
+                 <p className="text-[#292524] font-bold text-lg mb-2">Map Unavailable</p>
+                 <p className="text-[#78716C] text-sm mb-4">Please use the list below to find an ambulance near you.</p>
                  <button
                    onClick={() => window.location.reload()}
-                   className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium hover:bg-red-700 transition-colors"
+                   className="px-4 py-2 bg-[#B7312C] text-white rounded-lg text-sm font-medium hover:bg-[#9A2823] transition-colors"
                  >
                    Try Again
                  </button>
@@ -477,16 +477,16 @@ const Hero: React.FC = () => {
            </div>
 
            {/* Desktop Floating List (Hidden on Mobile) */}
-           <div className="absolute top-4 left-4 bottom-4 w-[340px] bg-white/95 backdrop-blur-sm rounded-xl shadow-[0_8px_40px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)] z-40 flex flex-col border border-white/50 hidden lg:flex">
+           <div className="absolute top-4 left-4 bottom-4 w-[340px] bg-white/95 backdrop-blur-sm rounded-xl shadow-[0_8px_40px_rgba(28,25,23,0.12),0_2px_8px_rgba(28,25,23,0.08)] z-40 flex flex-col border border-white/50 hidden lg:flex">
               
               {/* List Header */}
-              <div className="p-4 border-b border-slate-100">
+              <div className="p-4 border-b border-[#F9E8C9]">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
-                  <input 
-                    type="text" 
-                    placeholder="Search city or area..." 
-                    className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#A8A29E]" size={16} />
+                  <input
+                    type="text"
+                    placeholder="Search city or area..."
+                    className="w-full pl-9 pr-4 py-2.5 bg-[#FEF7ED] border border-[#F9E8C9] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#B8650A]"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
@@ -496,8 +496,8 @@ const Hero: React.FC = () => {
                     onClick={() => setActiveTab('ambulance')}
                     className={`flex-1 text-xs font-semibold py-1.5 rounded-md shadow-sm transition-colors ${
                       activeTab === 'ambulance'
-                        ? 'bg-slate-900 text-white'
-                        : 'bg-slate-50 text-slate-500 hover:bg-slate-100 border border-slate-200'
+                        ? 'bg-[#292524] text-white'
+                        : 'bg-[#FEF7ED] text-[#78716C] hover:bg-[#FDF0DB] border border-[#F9E8C9]'
                     }`}
                   >
                     Ambulance
@@ -506,8 +506,8 @@ const Hero: React.FC = () => {
                     onClick={() => setActiveTab('clinic')}
                     className={`flex-1 text-xs font-semibold py-1.5 rounded-md transition-colors ${
                       activeTab === 'clinic'
-                        ? 'bg-slate-900 text-white shadow-sm'
-                        : 'bg-slate-50 text-slate-500 hover:bg-slate-100 border border-slate-200'
+                        ? 'bg-[#292524] text-white shadow-sm'
+                        : 'bg-[#FEF7ED] text-[#78716C] hover:bg-[#FDF0DB] border border-[#F9E8C9]'
                     }`}
                   >
                     Clinics
@@ -518,7 +518,7 @@ const Hero: React.FC = () => {
               {/* List Body */}
               <div className="flex-1 overflow-y-auto p-3 space-y-2">
                 {filteredData.length === 0 ? (
-                  <div className="text-center py-8 text-slate-500">
+                  <div className="text-center py-8 text-[#78716C]">
                     <p>No {activeTab === 'ambulance' ? 'ambulances' : 'clinics'} found{searchTerm && ` matching "${searchTerm}"`}</p>
                   </div>
                 ) : (
@@ -528,16 +528,16 @@ const Hero: React.FC = () => {
                       onClick={() => flyToLocation(item)}
                       className={`p-3 rounded-lg border cursor-pointer transition-all ${
                         selectedAmbulanceId === item.id
-                        ? 'bg-red-50 border-red-200 ring-1 ring-red-200'
-                        : 'bg-white border-slate-100 hover:border-red-200 hover:bg-slate-50 hover:shadow-sm'
+                        ? 'bg-[#FEF3E7] border-[#B8650A] ring-1 ring-[#B8650A]/20'
+                        : 'bg-white border-[#F9E8C9] hover:border-[#B8650A]/30 hover:bg-[#FFFBF5] hover:shadow-sm'
                       }`}
                     >
                       <div className="flex justify-between items-start">
                         <div>
-                          <h4 className="font-bold text-sm text-slate-900">{item.city}</h4>
-                          <div className="text-xs text-slate-500 mt-0.5">{item.area || item.state}</div>
+                          <h4 className="font-bold text-sm text-[#292524]">{item.city}</h4>
+                          <div className="text-xs text-[#78716C] mt-0.5">{item.area || item.state}</div>
                         </div>
-                        <a href={`tel:${item.phone.replace(/\s/g, '')}`} aria-label={`Call ${item.city} ambulance`} className="bg-red-100 p-2.5 rounded-full text-red-600 hover:bg-red-600 hover:text-white transition-colors">
+                        <a href={`tel:${item.phone.replace(/\s/g, '')}`} aria-label={`Call ${item.city} ambulance`} className="bg-[#FEF3E7] p-2.5 rounded-full text-[#B7312C] hover:bg-[#B7312C] hover:text-white transition-colors">
                           <Phone size={14} />
                         </a>
                       </div>
@@ -548,45 +548,45 @@ const Hero: React.FC = () => {
            </div>
 
            {/* Donation Widget — normal flow on mobile, floating on desktop */}
-           <div className="relative mx-4 my-3 lg:absolute lg:top-4 lg:right-8 lg:mx-0 lg:my-0 w-auto lg:w-[360px] bg-white/95 backdrop-blur-sm rounded-xl shadow-[0_8px_40px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)] z-40 border border-white/50 flex flex-col p-5 pb-3">
+           <div className="relative mx-4 my-3 lg:absolute lg:top-4 lg:right-8 lg:mx-0 lg:my-0 w-auto lg:w-[360px] bg-white/95 backdrop-blur-sm rounded-xl shadow-[0_8px_40px_rgba(28,25,23,0.12),0_2px_8px_rgba(28,25,23,0.08)] z-40 border border-white/50 flex flex-col p-5 pb-3">
              {/* Header */}
              <div className="flex items-start gap-3 mb-3">
                <span className="text-2xl leading-none mt-0.5">❤️</span>
                <div>
-                 <h4 className="font-bold text-base text-slate-900">Save Injured Street Animals</h4>
-                 <p className="text-sm text-slate-700">₹100 helps one injured animal · <span className="text-red-600 font-semibold whitespace-nowrap">1.5L+ saved</span></p>
+                 <h4 className="font-bold text-base text-[#292524]">Save Injured Street Animals</h4>
+                 <p className="text-sm text-[#57534E]">₹100 helps one injured animal · <span className="text-[#B7312C] font-semibold whitespace-nowrap">1.5L+ saved</span></p>
                </div>
              </div>
 
              {/* Support Monthly */}
-             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5">Support Monthly (Recommended)</p>
+             <p className="text-xs font-bold text-[#78716C] uppercase tracking-wider mb-2.5">Support Monthly (Recommended)</p>
              <div className="grid grid-cols-2 gap-2.5 mb-3">
                <button
                  onClick={() => setDonationSelection({ type: 'monthly', amount: 50 })}
                  className={`p-2 rounded-lg border text-center transition-all ${
                    donationSelection.type === 'monthly' && donationSelection.amount === 50
-                     ? 'border-red-300 bg-red-50/50'
-                     : 'border-slate-200 hover:border-slate-300'
+                     ? 'border-[#B8650A] bg-[#FEF3E7]/50'
+                     : 'border-[#E8E0D8] hover:border-[#B8650A]/30'
                  }`}
                >
-                 <div className="text-base font-bold text-slate-900">₹50 / day</div>
-                 <div className="text-xs text-slate-400">₹1500 / month</div>
+                 <div className="text-base font-bold text-[#292524]">₹50 / day</div>
+                 <div className="text-xs text-[#A8A29E]">₹1500 / month</div>
                </button>
                <button
                  onClick={() => setDonationSelection({ type: 'monthly', amount: 100 })}
                  className={`p-2 rounded-lg border text-center transition-all ${
                    donationSelection.type === 'monthly' && donationSelection.amount === 100
-                     ? 'border-red-400 bg-red-50/60'
-                     : 'border-slate-200 hover:border-slate-300'
+                     ? 'border-[#B8650A] bg-[#FEF3E7]/60'
+                     : 'border-[#E8E0D8] hover:border-[#B8650A]/30'
                  }`}
                >
-                 <div className="text-base font-bold text-red-600">₹100 / day</div>
-                 <div className="text-xs text-slate-400">₹3000 / month</div>
+                 <div className="text-base font-bold text-[#B7312C]">₹100 / day</div>
+                 <div className="text-xs text-[#A8A29E]">₹3000 / month</div>
                </button>
              </div>
 
              {/* One-time donation */}
-             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5">One-time donation</p>
+             <p className="text-xs font-bold text-[#78716C] uppercase tracking-wider mb-2.5">One-time donation</p>
              <div className="grid grid-cols-4 gap-2 mb-3">
                {([100, 500, 1000] as const).map((val) => (
                  <button
@@ -594,8 +594,8 @@ const Hero: React.FC = () => {
                    onClick={() => setDonationSelection({ type: 'onetime', amount: val })}
                    className={`py-2 rounded-lg border text-sm font-semibold transition-all ${
                      donationSelection.type === 'onetime' && donationSelection.amount === val
-                       ? 'border-red-300 bg-red-50 text-red-600'
-                       : 'border-slate-200 text-slate-700 hover:border-slate-300'
+                       ? 'border-[#B8650A] bg-[#FEF3E7] text-[#B8650A]'
+                       : 'border-[#E8E0D8] text-[#57534E] hover:border-[#B8650A]/30'
                    }`}
                  >
                    {`₹${val}`}
@@ -603,20 +603,20 @@ const Hero: React.FC = () => {
                ))}
                {donationSelection.type === 'custom' ? (
                  <div className="relative">
-                   <span className="absolute left-2 top-1/2 -translate-y-1/2 text-sm text-slate-400">₹</span>
+                   <span className="absolute left-2 top-1/2 -translate-y-1/2 text-sm text-[#A8A29E]">₹</span>
                    <input
                      type="number"
                      autoFocus
                      placeholder="Amt"
                      value={donationSelection.amount}
                      onChange={(e) => setDonationSelection({ type: 'custom', amount: e.target.value })}
-                     className="w-full py-2 pl-6 pr-1 rounded-lg border border-red-300 bg-red-50 text-sm font-semibold text-red-600 focus:outline-none focus:ring-1 focus:ring-red-400"
+                     className="w-full py-2 pl-6 pr-1 rounded-lg border border-[#B8650A] bg-[#FEF3E7] text-sm font-semibold text-[#B8650A] focus:outline-none focus:ring-1 focus:ring-[#B8650A]"
                    />
                  </div>
                ) : (
                  <button
                    onClick={() => setDonationSelection({ type: 'custom', amount: '' })}
-                   className="py-2 rounded-lg border text-sm font-semibold transition-all border-slate-200 text-slate-700 hover:border-slate-300"
+                   className="py-2 rounded-lg border text-sm font-semibold transition-all border-[#E8E0D8] text-[#57534E] hover:border-[#B8650A]/30"
                  >
                    Custom
                  </button>
@@ -626,7 +626,7 @@ const Hero: React.FC = () => {
              {/* Donate button */}
              <a
                href="#donate"
-               className="btn-shine w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-full font-bold text-base text-center flex items-center justify-center gap-2 shadow-lg shadow-red-500/20 hover:shadow-xl transition-all duration-200"
+               className="btn-shine w-full bg-[#B7312C] hover:bg-[#9A2823] text-white py-3 rounded-full font-bold text-base text-center flex items-center justify-center gap-2 shadow-lg shadow-[rgba(183,49,44,0.2)] hover:shadow-xl transition-all duration-200"
              >
                <span>❤️</span>
                Donate
@@ -634,17 +634,17 @@ const Hero: React.FC = () => {
            </div>
 
            {/* Mobile List Section (Visible only on Mobile) */}
-           <div className="lg:hidden flex flex-col bg-slate-100 border-t border-slate-200">
+           <div className="lg:hidden flex flex-col bg-[#FEF7ED] border-t border-[#F9E8C9]">
 
               {/* Filter/Search Bar for Mobile - Fixed top relative to this section */}
-              <div className="p-4 pb-2 bg-slate-100 z-10 sticky top-0">
-                <div className="bg-white p-3 rounded-xl shadow-sm border border-slate-200">
+              <div className="p-4 pb-2 bg-[#FEF7ED] z-10 sticky top-0">
+                <div className="bg-white p-3 rounded-xl shadow-sm border border-[#F9E8C9]">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#A8A29E]" size={18} />
                     <input
                       type="text"
                       placeholder="Search city (e.g. Surat)"
-                      className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+                      className="w-full pl-10 pr-4 py-2 bg-[#FEF7ED] border border-[#F9E8C9] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#B8650A]"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -655,8 +655,8 @@ const Hero: React.FC = () => {
                       onClick={() => setActiveTab('ambulance')}
                       className={`flex-1 text-xs font-semibold py-1.5 rounded-md transition-colors ${
                         activeTab === 'ambulance'
-                          ? 'bg-slate-900 text-white shadow-sm'
-                          : 'bg-slate-50 text-slate-500 hover:bg-slate-100 border border-slate-200'
+                          ? 'bg-[#292524] text-white shadow-sm'
+                          : 'bg-[#FAF7F4] text-[#78716C] hover:bg-[#F5F0EB] border border-[#E8E0D8]'
                       }`}
                     >
                       Ambulance
@@ -665,8 +665,8 @@ const Hero: React.FC = () => {
                       onClick={() => setActiveTab('clinic')}
                       className={`flex-1 text-xs font-semibold py-1.5 rounded-md transition-colors ${
                         activeTab === 'clinic'
-                          ? 'bg-slate-900 text-white shadow-sm'
-                          : 'bg-slate-50 text-slate-500 hover:bg-slate-100 border border-slate-200'
+                          ? 'bg-[#292524] text-white shadow-sm'
+                          : 'bg-[#FAF7F4] text-[#78716C] hover:bg-[#F5F0EB] border border-[#E8E0D8]'
                       }`}
                     >
                       Clinics
@@ -681,15 +681,15 @@ const Hero: React.FC = () => {
                      {filteredData.map(item => (
                         <div
                            key={item.id}
-                           className={`bg-white p-4 rounded-xl shadow-sm border ${selectedAmbulanceId === item.id ? 'border-red-500 ring-1 ring-red-100' : 'border-slate-200'}`}
+                           className={`bg-white p-4 rounded-xl shadow-sm border ${selectedAmbulanceId === item.id ? 'border-[#B7312C] ring-1 ring-[rgba(183,49,44,0.1)]' : 'border-[#F9E8C9]'}`}
                         >
                            <div className="flex justify-between items-start mb-3">
                               <div>
-                                 <h3 className="font-bold text-lg text-slate-900">{item.city} {activeTab === 'ambulance' ? 'Ambulance' : 'Clinic'}</h3>
-                                 <p className="text-slate-500 text-sm mt-0.5">+91 {item.phone}</p>
+                                 <h3 className="font-bold text-lg text-[#292524]">{item.city} {activeTab === 'ambulance' ? 'Ambulance' : 'Clinic'}</h3>
+                                 <p className="text-[#78716C] text-sm mt-0.5">+91 {item.phone}</p>
                               </div>
-                              <div className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
-                                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                              <div className="bg-[#E8F0E9] text-[#5F8A65] text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                                 <span className="w-1.5 h-1.5 rounded-full bg-[#5F8A65] animate-pulse"></span>
                                  ACTIVE
                               </div>
                            </div>
@@ -697,14 +697,14 @@ const Hero: React.FC = () => {
                            <div className="grid grid-cols-2 gap-3">
                               <button
                                  onClick={() => flyToLocation(item)}
-                                 className="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-slate-300 text-slate-700 font-semibold text-sm hover:bg-slate-50 transition-colors"
+                                 className="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-[#E8E0D8] text-[#57534E] font-semibold text-sm hover:bg-[#FFFBF5] transition-colors"
                               >
                                  <MapIcon size={16} />
                                  Show on Map
                               </button>
                               <a
                                  href={`tel:${item.phone.replace(/\s/g, '')}`}
-                                 className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-red-600 text-white font-semibold text-sm hover:bg-red-700 transition-colors shadow-sm shadow-red-200"
+                                 className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-[#B7312C] text-white font-semibold text-sm hover:bg-[#9A2823] transition-colors shadow-sm shadow-[rgba(183,49,44,0.2)]"
                               >
                                  <Phone size={16} className="fill-current" />
                                  Call Now
@@ -713,7 +713,7 @@ const Hero: React.FC = () => {
                         </div>
                      ))}
                      {filteredData.length === 0 && (
-                        <div className="text-center py-8 text-slate-500 bg-white rounded-xl border border-slate-200 border-dashed">
+                        <div className="text-center py-8 text-[#78716C] bg-white rounded-xl border border-[#F9E8C9] border-dashed">
                            <p>No {activeTab === 'ambulance' ? 'ambulances' : 'clinics'} found{searchTerm && ` matching "${searchTerm}"`}</p>
                         </div>
                      )}

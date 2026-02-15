@@ -18,7 +18,7 @@ const VisionSection: React.FC = () => {
         />
 
         {/* Warm gradient overlay on left for card readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1C1917]/40 via-[#1C1917]/20 to-transparent" />
 
         {/* Subtle vignette */}
         <div
@@ -35,15 +35,15 @@ const VisionSection: React.FC = () => {
             className={`scroll-reveal-left ${isVisible ? 'visible' : ''} ml-8 lg:ml-16 xl:ml-24 max-w-[560px] lg:max-w-[600px]`}
           >
             <div
-              className="relative bg-white/95 rounded-[32px] p-10 lg:p-[60px]"
-              style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.15)' }}
+              className="relative bg-[#FFFBF5]/95 rounded-[32px] p-10 lg:p-[60px]"
+              style={{ boxShadow: '0 20px 60px rgba(28,25,23,0.15)' }}
             >
               {/* Decorative quote mark */}
               <div
                 className={`absolute -top-4 left-8 text-[180px] lg:text-[200px] leading-none select-none pointer-events-none scroll-reveal ${isVisible ? 'visible' : ''}`}
                 style={{
                   animationDelay: '400ms',
-                  color: '#d4c5b0',
+                  color: '#E8E0D8',
                   opacity: 0.1,
                   fontFamily: "Georgia, 'Times New Roman', serif",
                 }}
@@ -53,7 +53,7 @@ const VisionSection: React.FC = () => {
 
               {/* Label */}
               <p
-                className={`scroll-reveal ${isVisible ? 'visible' : ''} text-sm font-semibold tracking-[2px] uppercase text-[#1a1a1a] mb-6`}
+                className={`scroll-reveal ${isVisible ? 'visible' : ''} text-sm font-semibold tracking-[2px] uppercase text-[#292524] mb-6`}
                 style={{ animationDelay: '200ms' }}
               >
                 Our Founder
@@ -61,7 +61,7 @@ const VisionSection: React.FC = () => {
 
               {/* Name */}
               <h2
-                className={`scroll-reveal ${isVisible ? 'visible' : ''} text-3xl lg:text-[36px] font-semibold text-[#1a1a1a] leading-tight mb-10`}
+                className={`scroll-reveal ${isVisible ? 'visible' : ''} text-3xl lg:text-[36px] font-semibold text-[#292524] leading-tight mb-10`}
                 style={{
                   animationDelay: '300ms',
                   fontFamily: "'Open Runde', sans-serif",
@@ -72,7 +72,7 @@ const VisionSection: React.FC = () => {
 
               {/* Quote */}
               <blockquote
-                className={`scroll-reveal ${isVisible ? 'visible' : ''} relative z-10 text-lg leading-[1.8] text-[#3a3a3a] italic mb-8`}
+                className={`scroll-reveal ${isVisible ? 'visible' : ''} relative z-10 text-lg leading-[1.8] text-[#57534E] italic mb-8`}
                 style={{
                   animationDelay: '500ms',
                   fontFamily: "'Open Runde', sans-serif",
@@ -86,7 +86,7 @@ const VisionSection: React.FC = () => {
                 className={`scroll-reveal ${isVisible ? 'visible' : ''}`}
                 style={{ animationDelay: '650ms' }}
               >
-                <p className="text-sm text-[#3a3a3a] leading-relaxed mb-8">
+                <p className="text-sm text-[#57534E] leading-relaxed mb-8">
                   Inspired by Param Gurudev Namramuni, Always Care was born from the belief that compassion for all living beings is the highest form of service.
                 </p>
 
@@ -94,7 +94,7 @@ const VisionSection: React.FC = () => {
                   href="https://parasdham.org/param-gurudev/"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white rounded-full font-medium hover:bg-[#333] transition-colors text-sm"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#292524] text-white rounded-full font-medium hover:bg-[#44403C] transition-colors text-sm"
                 >
                   Know More <ExternalLink size={14} />
                 </a>
@@ -114,13 +114,13 @@ const VisionSection: React.FC = () => {
             className="absolute inset-0 w-full h-full object-cover"
             style={{ objectPosition: 'center top' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FFFBF5]" />
         </div>
 
         {/* Content card */}
         <div
-          className={`scroll-reveal ${isVisible ? 'visible' : ''} relative -mt-16 mx-4 bg-white rounded-3xl p-8`}
-          style={{ boxShadow: '0 12px 40px rgba(0,0,0,0.12)' }}
+          className={`scroll-reveal ${isVisible ? 'visible' : ''} relative -mt-16 mx-4 bg-[#FFFBF5] rounded-3xl p-8`}
+          style={{ boxShadow: '0 12px 40px rgba(28,25,23,0.12)' }}
         >
           {/* Decorative quote mark */}
           <div
@@ -134,25 +134,25 @@ const VisionSection: React.FC = () => {
             &ldquo;
           </div>
 
-          <p className="text-sm font-semibold tracking-[2px] uppercase text-[#1a1a1a] mb-4">
+          <p className="text-sm font-semibold tracking-[2px] uppercase text-[#292524] mb-4">
             Our Founder
           </p>
 
           <h2
-            className="text-2xl font-semibold text-[#1a1a1a] leading-tight mb-6"
+            className="text-2xl font-semibold text-[#292524] leading-tight mb-6"
             style={{ fontFamily: "'Open Runde', sans-serif" }}
           >
             Param Namramuni Gurudev
           </h2>
 
           <blockquote
-            className="relative z-10 text-base leading-[1.8] text-[#3a3a3a] italic mb-6"
+            className="relative z-10 text-base leading-[1.8] text-[#57534E] italic mb-6"
             style={{ fontFamily: "'Open Runde', sans-serif" }}
           >
             &ldquo;The birth of any human being is purposeful only with the birth of humanity in our hearts. Compassion beyond humanity is the highest form of service.&rdquo;
           </blockquote>
 
-          <p className="text-sm text-[#3a3a3a] leading-relaxed mb-6">
+          <p className="text-sm text-[#57534E] leading-relaxed mb-6">
             Inspired by Param Gurudev Namramuni, Always Care was born from the belief that compassion for all living beings is the highest form of service.
           </p>
 
@@ -160,7 +160,7 @@ const VisionSection: React.FC = () => {
             href="https://parasdham.org/param-gurudev/"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1a1a1a] text-white rounded-full font-medium hover:bg-[#333] transition-colors text-sm"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#292524] text-white rounded-full font-medium hover:bg-[#44403C] transition-colors text-sm"
           >
             Know More <ExternalLink size={14} />
           </a>

@@ -15,7 +15,7 @@ const ScrollToTop: React.FC = () => {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-red-600 text-white rounded-full shadow-lg hover:bg-red-700 transition-all flex items-center justify-center"
+      className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-[#B7312C] text-white rounded-full shadow-lg hover:bg-[#9A2823] transition-all flex items-center justify-center"
       aria-label="Scroll to top"
     >
       <ChevronUp size={24} />

@@ -55,7 +55,7 @@ const DonateSection: React.FC = () => {
             }`}
           />
         ))}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1C1917]/50 via-[#1C1917]/60 to-[#1C1917]/80" />
 
         {/* Heading */}
         <div className={`scroll-reveal ${isVisible ? 'visible' : ''} relative z-10 text-center px-4 pb-16`}>
@@ -73,16 +73,16 @@ const DonateSection: React.FC = () => {
       {/* ── Bottom: Split card overlapping the photo ── */}
       <div className="relative z-20 -mt-44 pb-16 px-4">
         <div
-          className={`scroll-reveal ${isVisible ? 'visible' : ''} max-w-[1080px] mx-auto grid md:grid-cols-2 rounded-[28px] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.15)]`}
+          className={`scroll-reveal ${isVisible ? 'visible' : ''} max-w-[1080px] mx-auto grid md:grid-cols-2 rounded-[28px] overflow-hidden shadow-[0_24px_80px_rgba(28,25,23,0.15)]`}
           style={{ animationDelay: '200ms' }}
         >
           {/* Left — Emotional side */}
-          <div className="relative bg-gradient-to-br from-[#1a0f0a] to-[#2d1810] p-10 md:p-12 flex flex-col justify-center overflow-hidden">
+          <div className="relative bg-gradient-to-br from-[#1C1917] to-[#292524] p-10 md:p-12 flex flex-col justify-center overflow-hidden texture-grain">
             {/* Decorative circle */}
-            <div className="absolute -bottom-10 -left-10 w-48 h-48 border border-amber-500/10 rounded-full pointer-events-none" />
+            <div className="absolute -bottom-10 -left-10 w-48 h-48 border border-[#B8650A]/10 rounded-full pointer-events-none" />
 
-            <div className="inline-flex items-center gap-2 bg-red-500/15 text-red-400 px-4 py-2 rounded-full text-[13px] font-semibold mb-8 w-fit">
-              <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
+            <div className="inline-flex items-center gap-2 bg-[#B7312C]/15 text-[#FAC5C3] px-4 py-2 rounded-full text-[13px] font-semibold mb-8 w-fit">
+              <span className="w-2 h-2 rounded-full bg-[#FAC5C3] animate-pulse" />
               LIVE — Animals need help right now
             </div>
 
@@ -91,7 +91,7 @@ const DonateSection: React.FC = () => {
               style={{ fontFamily: "'Open Runde', sans-serif" }}
             >
               While you read this,{' '}
-              <span className="text-amber-400 underline decoration-amber-400/30 underline-offset-4">
+              <span className="text-[#D87E0F] underline decoration-[rgba(216,126,15,0.3)] underline-offset-4">
                 an animal is suffering
               </span>{' '}
               on the streets.
@@ -109,7 +109,7 @@ const DonateSection: React.FC = () => {
                 { num: '100%', label: 'Free Care' },
               ].map((s) => (
                 <div key={s.label}>
-                  <div className="text-amber-400 text-[28px] font-extrabold">{s.num}</div>
+                  <div className="text-[#D87E0F] text-[28px] font-extrabold">{s.num}</div>
                   <div className="text-white/30 text-xs font-medium mt-0.5">{s.label}</div>
                 </div>
               ))}
@@ -118,15 +118,15 @@ const DonateSection: React.FC = () => {
 
           {/* Right — Donation form */}
           <div className="bg-white p-10 md:p-12 flex flex-col justify-center">
-            <h3 className="text-[22px] font-bold text-[#1a0f0a] mb-1">Choose your impact</h3>
-            <p className="text-sm text-slate-400 mb-7">Every rupee goes directly to rescue operations</p>
+            <h3 className="text-[22px] font-bold text-[#292524] mb-1">Choose your impact</h3>
+            <p className="text-sm text-[#78716C] mb-7">Every rupee goes directly to rescue operations</p>
 
             {/* One-time / Monthly toggle */}
-            <div className="flex bg-[#f5f0eb] rounded-xl p-1 mb-6">
+            <div className="flex bg-[#FEF7ED] rounded-xl p-1 mb-6">
               <button
                 onClick={() => setIsMonthly(false)}
                 className={`flex-1 py-2.5 rounded-[10px] text-sm font-semibold transition-all ${
-                  !isMonthly ? 'bg-white text-[#1a0f0a] shadow-sm' : 'text-slate-400'
+                  !isMonthly ? 'bg-white text-[#292524] shadow-sm' : 'text-[#78716C]'
                 }`}
               >
                 One-time
@@ -134,11 +134,11 @@ const DonateSection: React.FC = () => {
               <button
                 onClick={() => setIsMonthly(true)}
                 className={`flex-1 py-2.5 rounded-[10px] text-sm font-semibold transition-all flex items-center justify-center gap-1.5 ${
-                  isMonthly ? 'bg-white text-[#1a0f0a] shadow-sm' : 'text-slate-400'
+                  isMonthly ? 'bg-white text-[#292524] shadow-sm' : 'text-[#78716C]'
                 }`}
               >
                 Monthly
-                <span className="bg-green-100 text-green-700 text-[10px] font-bold px-1.5 py-0.5 rounded">
+                <span className="bg-[#E8F0E9] text-[#5F8A65] text-[10px] font-bold px-1.5 py-0.5 rounded">
                   2X IMPACT
                 </span>
               </button>
@@ -150,11 +150,12 @@ const DonateSection: React.FC = () => {
                 <button
                   key={p}
                   onClick={() => setAmount(p)}
-                  className={`py-3.5 rounded-xl text-[15px] font-bold transition-all border-2 ${
+                  className={`py-3.5 rounded-xl text-[15px] font-bold transition-all duration-300 border-2 ${
                     amount === p
-                      ? 'border-amber-400 bg-amber-50/50 text-amber-500'
-                      : 'border-slate-100 text-slate-700 hover:border-slate-200'
+                      ? 'border-[#B8650A] bg-[#FEF3E7]/50 text-[#B8650A] shadow-[0_0_12px_rgba(184,101,10,0.15)]'
+                      : 'border-[#F9E8C9] text-[#57534E] hover:border-[#B8650A]/30 hover:bg-[#FEF3E7]/30 hover:scale-[1.04] hover:-translate-y-0.5'
                   }`}
+                  style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
                 >
                   ₹{p}
                 </button>
@@ -162,35 +163,35 @@ const DonateSection: React.FC = () => {
             </div>
 
             {/* Custom amount input */}
-            <div className="flex items-center border-2 border-slate-100 rounded-xl px-4 mb-3 focus-within:border-amber-400 transition-colors">
-              <span className="text-slate-400 text-lg font-bold mr-1">₹</span>
+            <div className="flex items-center border-2 border-[#F9E8C9] rounded-xl px-4 mb-3 focus-within:border-[#B8650A] transition-colors">
+              <span className="text-[#78716C] text-lg font-bold mr-1">₹</span>
               <input
                 type="text"
                 inputMode="numeric"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value.replace(/[^0-9]/g, ''))}
-                className="flex-1 border-none outline-none text-lg font-bold py-3 px-2 text-[#1a0f0a] bg-transparent"
+                className="flex-1 border-none outline-none text-lg font-bold py-3 px-2 text-[#292524] bg-transparent"
                 style={{ fontFamily: "'Open Runde', sans-serif" }}
                 placeholder="Other amount"
               />
             </div>
 
             {/* Impact message */}
-            <div className="bg-amber-50 border-l-[3px] border-amber-400 rounded-r-[10px] px-4 py-3 mb-7">
-              <p className="text-[13px] text-amber-800 leading-relaxed">
+            <div className="bg-[#FEF3E7] border-l-[3px] border-[#B8650A] rounded-r-[10px] px-4 py-3 mb-7">
+              <p className="text-[13px] text-[#7A4306] leading-relaxed">
                 {getImpactMessage(numericAmount)}
               </p>
             </div>
 
             {/* CTA button */}
             <button
-              className="w-full py-4 rounded-2xl text-white font-bold text-base shadow-[0_8px_24px_rgba(255,140,50,0.3)] hover:shadow-[0_12px_32px_rgba(255,140,50,0.4)] hover:-translate-y-0.5 transition-all duration-200"
-              style={{ background: 'linear-gradient(135deg, #ff9f43 0%, #ff6b35 100%)' }}
+              className="w-full py-4 rounded-2xl text-white font-bold text-base hover:shadow-[0_12px_32px_rgba(184,101,10,0.4),0_0_20px_rgba(184,101,10,0.2)] hover:-translate-y-0.5 hover:scale-[1.01] active:scale-[0.98] transition-all duration-300"
+              style={{ background: 'linear-gradient(180deg, #D87E0F 0%, #B8650A 100%)', boxShadow: '0 8px 24px rgba(184,101,10,0.3), inset 0 1px 0 rgba(255,255,255,0.15)', transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
             >
               {isMonthly ? 'Donate Monthly' : 'Donate Now'} — ₹{amount || '0'}
             </button>
 
-            <p className="text-center text-[11px] text-slate-300 mt-3.5">
+            <p className="text-center text-[11px] text-[#A8A29E] mt-3.5">
               🔒 Razorpay Secured · 80G Tax Certificate Included
             </p>
           </div>

@@ -8,15 +8,15 @@ const RefundCancellationPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-slate-50 min-h-screen">
-      <div className="bg-white border-b border-slate-200">
+    <div className="bg-[#FFFBF5] min-h-screen">
+      <div className="bg-white border-b border-[#E8E0D8]">
         <div className="container mx-auto px-4 pt-28 pb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900">Refund & Cancellation Policy</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-[#292524]">Refund & Cancellation Policy</h1>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto space-y-8 text-slate-700 leading-relaxed">
+        <div className="max-w-3xl mx-auto space-y-8 text-[#44403C] leading-relaxed">
           <p>
             Our policy on refund and cancellation of donations received for Arham activities on secure online
             payment gateway as under:
