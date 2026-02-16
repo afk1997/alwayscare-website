@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { ExternalLink } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import {
+  fadeUp,
+  slideLeft,
+  ease,
+  transition,
+  motionProps,
+  staggerProps,
+} from '../utils/motion';
 
 const VisionSection: React.FC = () => {
-  const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
+  const prefersReducedMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const photoScale = useTransform(scrollYProgress, [0, 1], [1.18, 1.0]);
 
   return (
-    <section ref={ref} className="relative overflow-hidden">
+    <section ref={sectionRef} className="relative overflow-hidden">
       {/* ── Desktop: full-viewport split layout ── */}
       <div className="hidden lg:block relative min-h-screen">
-        {/* Background image */}
-        <img
+        {/* Background image with scroll-driven scale */}
+        <motion.img
           src="/images/gurudev-website.jpg"
           alt="Param Gurudev Shree Namramuni Maharaj Saheb"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: 'center right' }}
+          style={{ objectPosition: 'center right', scale: prefersReducedMotion ? 1 : photoScale }}
         />
 
         {/* Warm gradient overlay on left for card readability */}
@@ -29,20 +43,23 @@ const VisionSection: React.FC = () => {
           }}
         />
 
-        {/* Content card — vertically centered, left-aligned */}
-        <div className="absolute inset-0 flex items-center">
-          <div
-            className={`scroll-reveal-left ${isVisible ? 'visible' : ''} ml-8 lg:ml-16 xl:ml-24 max-w-[560px] lg:max-w-[600px]`}
+        {/* Content card — bottom-aligned, slides in from left */}
+        <div className="absolute inset-0 flex items-end pb-12 lg:pb-16">
+          <motion.div
+            {...motionProps(slideLeft, prefersReducedMotion, {
+              transition: { duration: 0.8, ease },
+            })}
+            className="ml-8 lg:ml-16 xl:ml-24 max-w-[560px] lg:max-w-[600px]"
           >
-            <div
+            <motion.div
               className="relative bg-[#FFFBF5]/95 rounded-[32px] p-10 lg:p-[60px]"
               style={{ boxShadow: '0 20px 60px rgba(28,25,23,0.15)' }}
+              {...staggerProps(prefersReducedMotion, 0.08)}
             >
               {/* Decorative quote mark */}
               <div
-                className={`absolute -top-4 left-8 text-[180px] lg:text-[200px] leading-none select-none pointer-events-none scroll-reveal ${isVisible ? 'visible' : ''}`}
+                className="absolute -top-4 left-8 text-[180px] lg:text-[200px] leading-none select-none pointer-events-none"
                 style={{
-                  animationDelay: '400ms',
                   color: '#E8E0D8',
                   opacity: 0.1,
                   fontFamily: "Georgia, 'Times New Roman', serif",
@@ -52,39 +69,38 @@ const VisionSection: React.FC = () => {
               </div>
 
               {/* Label */}
-              <p
-                className={`scroll-reveal ${isVisible ? 'visible' : ''} text-sm font-semibold tracking-[2px] uppercase text-[#292524] mb-6`}
-                style={{ animationDelay: '200ms' }}
+              <motion.p
+                variants={prefersReducedMotion ? undefined : fadeUp}
+                transition={transition}
+                className="text-sm font-semibold tracking-[2px] uppercase text-[#292524] mb-6"
               >
                 Our Founder
-              </p>
+              </motion.p>
 
               {/* Name */}
-              <h2
-                className={`scroll-reveal ${isVisible ? 'visible' : ''} text-3xl lg:text-[36px] font-semibold text-[#292524] leading-tight mb-10`}
-                style={{
-                  animationDelay: '300ms',
-                  fontFamily: "'Open Runde', sans-serif",
-                }}
+              <motion.h2
+                variants={prefersReducedMotion ? undefined : fadeUp}
+                transition={transition}
+                className="text-3xl lg:text-[36px] font-semibold text-[#292524] leading-tight mb-10"
+                style={{ fontFamily: "'Open Runde', sans-serif" }}
               >
                 Param Namramuni Gurudev
-              </h2>
+              </motion.h2>
 
               {/* Quote */}
-              <blockquote
-                className={`scroll-reveal ${isVisible ? 'visible' : ''} relative z-10 text-lg leading-[1.8] text-[#57534E] italic mb-8`}
-                style={{
-                  animationDelay: '500ms',
-                  fontFamily: "'Open Runde', sans-serif",
-                }}
+              <motion.blockquote
+                variants={prefersReducedMotion ? undefined : fadeUp}
+                transition={transition}
+                className="relative z-10 text-lg leading-[1.8] text-[#57534E] italic mb-8"
+                style={{ fontFamily: "'Open Runde', sans-serif" }}
               >
                 &ldquo;The birth of any human being is purposeful only with the birth of humanity in our hearts. Compassion beyond humanity is the highest form of service. Every creature deserves dignity, care, and a chance to heal.&rdquo;
-              </blockquote>
+              </motion.blockquote>
 
               {/* Attribution */}
-              <div
-                className={`scroll-reveal ${isVisible ? 'visible' : ''}`}
-                style={{ animationDelay: '650ms' }}
+              <motion.div
+                variants={prefersReducedMotion ? undefined : fadeUp}
+                transition={transition}
               >
                 <p className="text-sm text-[#57534E] leading-relaxed mb-8">
                   Inspired by Param Gurudev Namramuni, Always Care was born from the belief that compassion for all living beings is the highest form of service.
@@ -98,9 +114,9 @@ const VisionSection: React.FC = () => {
                 >
                   Know More <ExternalLink size={14} />
                 </a>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
 
@@ -117,9 +133,12 @@ const VisionSection: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FFFBF5]" />
         </div>
 
-        {/* Content card */}
-        <div
-          className={`scroll-reveal ${isVisible ? 'visible' : ''} relative -mt-16 mx-4 bg-[#FFFBF5] rounded-3xl p-8`}
+        {/* Content card — fades up when it enters viewport */}
+        <motion.div
+          {...motionProps(fadeUp, prefersReducedMotion, {
+            transition: { duration: 0.8, ease },
+          })}
+          className="relative -mt-16 mx-4 bg-[#FFFBF5] rounded-3xl p-8"
           style={{ boxShadow: '0 12px 40px rgba(28,25,23,0.12)' }}
         >
           {/* Decorative quote mark */}
@@ -164,7 +183,7 @@ const VisionSection: React.FC = () => {
           >
             Know More <ExternalLink size={14} />
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

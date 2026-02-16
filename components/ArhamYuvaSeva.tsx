@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { ExternalLink } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { motion, useReducedMotion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useCountUp } from '../hooks/useCountUp';
+import {
+  fadeUp,
+  dramatic,
+  scaleIn,
+  ease,
+  viewport,
+  transition,
+  motionProps,
+  staggerProps,
+} from '../utils/motion';
 import LightRays from '@/components/ui/light-rays';
 
 const statsData = [
@@ -27,34 +37,43 @@ const StatItem: React.FC<{
   suffix: string;
   label: string;
   active: boolean;
-  delay: number;
-}> = ({ target, suffix, label, active, delay }) => {
+}> = ({ target, suffix, label, active }) => {
   const count = useCountUp(active ? target : 0, 1500);
 
   return (
-    <div
-      className={`scroll-reveal ${active ? 'visible' : ''} text-center`}
-      style={{ animationDelay: `${delay}ms` }}
+    <motion.div
+      variants={fadeUp}
+      transition={transition}
+      className="text-center"
     >
       <div className="text-4xl md:text-5xl font-bold text-white mb-1">
         {count}
         {suffix}
       </div>
       <div className="text-sm text-[#A8A29E] font-medium">{label}</div>
-    </div>
+    </motion.div>
   );
 };
 
 const ArhamYuvaSeva: React.FC = () => {
-  const { ref, isVisible } = useScrollReveal();
+  const prefersReducedMotion = useReducedMotion();
+  const statsRef = useRef<HTMLDivElement>(null);
+  const statsInView = useInView(statsRef, { once: true, margin: '-10%' });
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const contentY = useTransform(scrollYProgress, [0, 0.4], [80, 0]);
 
   return (
     <section
+      ref={sectionRef}
       className="py-20 md:py-28 bg-[#1C1917] text-white relative overflow-hidden texture-grain warm-vignette"
-      ref={ref}
     >
       {/* Light rays background */}
-      <div className="absolute inset-0 z-0">
+      <motion.div className="absolute inset-0 z-0" style={prefersReducedMotion ? undefined : { y: bgY }}>
         <LightRays
           raysOrigin="top-center"
           raysColor="#ffffff"
@@ -69,43 +88,48 @@ const ArhamYuvaSeva: React.FC = () => {
           fadeDistance={1}
           saturation={1}
         />
-      </div>
+      </motion.div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <motion.div className="container mx-auto px-4 relative z-10" style={prefersReducedMotion ? undefined : { y: contentY }}>
         <div className="max-w-4xl mx-auto">
-          {/* Logo — blooms in first */}
-          <div className={`text-center mb-5 scroll-logo ${isVisible ? 'visible' : ''}`}>
+          {/* Logo — blooms in */}
+          <motion.div
+            {...motionProps(scaleIn, prefersReducedMotion, {
+              transition: { duration: 0.9, ease },
+            })}
+            className="text-center mb-5"
+          >
             <img
               src="/images/aysg-logo.png"
               alt="Arham Yuva Seva Group"
               className="w-32 md:w-36 mx-auto"
             />
-          </div>
+          </motion.div>
 
-          {/* "Powered by" label — fades in at 300ms */}
-          <div
-            className={`text-center mb-4 scroll-dramatic ${isVisible ? 'visible' : ''}`}
-            style={{ animationDelay: '300ms' }}
+          {/* "Powered by" label */}
+          <motion.div
+            {...motionProps(fadeUp, prefersReducedMotion)}
+            className="text-center mb-4"
           >
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#D87E0F]">
               Powered by
             </p>
-          </div>
+          </motion.div>
 
-          {/* Heading — slides up at 500ms */}
-          <div
-            className={`text-center mb-10 scroll-dramatic ${isVisible ? 'visible' : ''}`}
-            style={{ animationDelay: '500ms' }}
+          {/* Heading */}
+          <motion.div
+            {...motionProps(dramatic, prefersReducedMotion)}
+            className="text-center mb-10"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
               Arham Yuva Seva Group
             </h2>
-          </div>
+          </motion.div>
 
           {/* Description */}
-          <div
-            className={`text-center mb-14 scroll-dramatic ${isVisible ? 'visible' : ''}`}
-            style={{ animationDelay: '700ms' }}
+          <motion.div
+            {...motionProps(fadeUp, prefersReducedMotion)}
+            className="text-center mb-14"
           >
             <p className="text-[#E8E0D8] max-w-3xl mx-auto leading-relaxed text-base md:text-lg">
               Arham Yuva Seva Group is a youth-driven non-profit delivering on-ground seva across India.
@@ -114,26 +138,29 @@ const ArhamYuvaSeva: React.FC = () => {
               camps, education aid and book distribution, large-scale daily meals, and community support
               like autorickshaw ownership, blanket distribution and water station construction, and much more.
             </p>
-          </div>
+          </motion.div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12">
-            {statsData.map((stat, i) => (
+          {/* Stats — stagger in + counter triggers on viewport entry */}
+          <motion.div
+            ref={statsRef}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12"
+            {...staggerProps(prefersReducedMotion, 0.1)}
+          >
+            {statsData.map((stat) => (
               <StatItem
                 key={stat.label}
                 target={stat.target}
                 suffix={stat.suffix}
                 label={stat.label}
-                active={isVisible}
-                delay={900 + i * 150}
+                active={statsInView}
               />
             ))}
-          </div>
+          </motion.div>
 
           {/* CTA */}
-          <div
-            className={`text-center mb-16 scroll-reveal ${isVisible ? 'visible' : ''}`}
-            style={{ animationDelay: '1500ms' }}
+          <motion.div
+            {...motionProps(fadeUp, prefersReducedMotion)}
+            className="text-center mb-16"
           >
             <a
               href="./"
@@ -141,15 +168,12 @@ const ArhamYuvaSeva: React.FC = () => {
             >
               Know more <ExternalLink size={16} />
             </a>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Photo gallery marquee */}
-      <div
-        className={`scroll-reveal ${isVisible ? 'visible' : ''}`}
-        style={{ animationDelay: '1200ms' }}
-      >
+      <motion.div {...motionProps(fadeUp, prefersReducedMotion)}>
         <div className="overflow-hidden group">
           <div className="flex w-max animate-marquee-left group-hover:[animation-play-state:paused]">
             {/* Set 1 */}
@@ -186,7 +210,7 @@ const ArhamYuvaSeva: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

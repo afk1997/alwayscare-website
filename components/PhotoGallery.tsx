@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { motion, useReducedMotion } from 'framer-motion';
+import { fadeUp, motionProps } from '../utils/motion';
 
 interface MediaItem {
   src: string;
@@ -72,7 +73,7 @@ const GalleryRow = React.forwardRef<HTMLDivElement, { items: MediaItem[] }>(
 GalleryRow.displayName = 'GalleryRow';
 
 const PhotoGallery: React.FC = () => {
-  const { ref: revealRef, isVisible } = useScrollReveal({ threshold: 0.05 });
+  const prefersReducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
@@ -153,20 +154,16 @@ const PhotoGallery: React.FC = () => {
   return (
     <section
       className="relative py-12 md:py-16 bg-[#FFFBF5] overflow-hidden"
-      ref={(el) => {
-        sectionRef.current = el;
-        if (typeof revealRef === 'function') {
-          revealRef(el);
-        } else if (revealRef) {
-          (revealRef as React.MutableRefObject<HTMLElement | null>).current = el;
-        }
-      }}
+      ref={sectionRef}
       style={{ filter: 'sepia(0.08) saturate(1.1)' }}
     >
       <GalleryRow ref={row1Ref} items={row1Items} />
 
-      {/* Overlay heading between rows */}
-      <div className={`scroll-reveal ${isVisible ? 'visible' : ''} relative z-10 py-8 md:py-10 text-center`}>
+      {/* Overlay heading between rows — animates when IT enters viewport */}
+      <motion.div
+        {...motionProps(fadeUp, prefersReducedMotion)}
+        className="relative z-10 py-8 md:py-10 text-center"
+      >
         <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#B8650A] mb-3">
           On the Ground
         </p>
@@ -177,7 +174,7 @@ const PhotoGallery: React.FC = () => {
           The <span className="bg-gradient-to-r from-[#B7312C] via-[#B8650A] to-[#B7312C] bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">Seva</span> We Do,<br />
           <span className="text-[#78716C] font-bold">Every Single Day</span>
         </h2>
-      </div>
+      </motion.div>
 
       <GalleryRow ref={row2Ref} items={row2Items} />
     </section>

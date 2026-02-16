@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 
 const PILLARS = [
   {
@@ -390,9 +391,18 @@ function PillarCard({ pillar, index }: { pillar: (typeof PILLARS)[number]; index
 export default function FoundationOfCare() {
   const headerRef = useRef<HTMLDivElement>(null);
   const headerVisible = useInView(headerRef, 0.3);
+  const sectionRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const contentY = useTransform(scrollYProgress, [0, 0.4], [80, 0]);
 
   return (
     <section
+      ref={sectionRef}
       style={{
         position: "relative",
         padding: "120px 0 140px",
@@ -400,16 +410,17 @@ export default function FoundationOfCare() {
         overflow: "hidden",
       }}
     >
-      <div
+      <motion.div
         style={{
           position: "absolute",
           inset: 0,
           backgroundImage: "radial-gradient(circle at 1px 1px, rgba(28,25,23,0.025) 1px, transparent 0)",
           backgroundSize: "48px 48px",
           pointerEvents: "none",
+          y: prefersReducedMotion ? 0 : bgY,
         }}
       />
-      <div
+      <motion.div
         style={{
           position: "absolute",
           top: "80px",
@@ -419,10 +430,11 @@ export default function FoundationOfCare() {
           background: "linear-gradient(to bottom, #B7312C, #5F8A65, #B8650A)",
           borderRadius: "0 4px 4px 0",
           opacity: 0.3,
+          y: prefersReducedMotion ? 0 : bgY,
         }}
       />
 
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", position: "relative" }}>
+      <motion.div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", position: "relative", y: prefersReducedMotion ? 0 : contentY }}>
         {/* Header */}
         <div
           ref={headerRef}
@@ -496,7 +508,7 @@ export default function FoundationOfCare() {
             <PillarCard key={pillar.number} pillar={pillar} index={i} />
           ))}
         </div>
-      </div>
+      </motion.div>
 
       <style>{`
         @media (max-width: 868px) {

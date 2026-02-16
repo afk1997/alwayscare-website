@@ -21,6 +21,7 @@ const stats = [
   { num: '100%', label: 'Free Care' },
 ];
 
+
 const Volunteer: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -100,6 +101,7 @@ const Volunteer: React.FC = () => {
               </div>
             ))}
           </div>
+
         </div>
 
         {/* ── RIGHT: Form ── */}

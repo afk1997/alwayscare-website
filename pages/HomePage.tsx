@@ -7,6 +7,7 @@ import FoundationOfCare from '../components/FoundationOfCare';
 import VisionSection from '../components/VisionSection';
 import ArhamYuvaSeva from '../components/ArhamYuvaSeva';
 import DonateSection from '../components/DonateSection';
+import Community from '../components/Community';
 import Volunteer from '../components/Volunteer';
 
 const HomePage: React.FC = () => {
@@ -38,6 +39,7 @@ const HomePage: React.FC = () => {
       <ArhamYuvaSeva />
       <div className="h-px bg-gradient-to-r from-transparent via-[#E8E0D8]/50 to-transparent" />
       <DonateSection />
+      <Community />
       <div className="h-px bg-gradient-to-r from-transparent via-[#E8E0D8]/50 to-transparent" />
       <Volunteer />
     </>

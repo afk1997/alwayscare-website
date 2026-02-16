@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { dramatic, motionProps } from '../utils/motion';
 
 const donateImages = [
   '/images/photo/up-1.jpg',
@@ -22,7 +23,14 @@ function getImpactMessage(val: number): string {
 }
 
 const DonateSection: React.FC = () => {
-  const { ref, isVisible } = useScrollReveal();
+  const prefersReducedMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const contentY = useTransform(scrollYProgress, [0, 0.4], [80, 0]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [amount, setAmount] = useState('2000');
   const [isMonthly, setIsMonthly] = useState(false);
@@ -38,27 +46,35 @@ const DonateSection: React.FC = () => {
 
   return (
     <section
+      ref={sectionRef}
       id="donate"
-      className="relative overflow-hidden"
-      ref={ref}
+      className="relative overflow-hidden bg-[#FFFBF5]"
     >
       {/* ── Top: Photo hero with heading ── */}
       <div className="relative min-h-[60vh] flex items-center justify-center">
-        {/* Background slideshow */}
-        {donateImages.map((src, idx) => (
-          <img
-            key={src}
-            src={src}
-            alt="Rescued animal"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-              idx === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-        ))}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1C1917]/50 via-[#1C1917]/60 to-[#1C1917]/80" />
+        {/* Background slideshow with parallax */}
+        <motion.div
+          className="absolute inset-0"
+          style={prefersReducedMotion ? undefined : { y: bgY }}
+        >
+          {donateImages.map((src, idx) => (
+            <img
+              key={src}
+              src={src}
+              alt="Rescued animal"
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                idx === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1C1917]/50 via-[#1C1917]/60 to-[#1C1917]/80" />
+        </motion.div>
 
-        {/* Heading */}
-        <div className={`scroll-reveal ${isVisible ? 'visible' : ''} relative z-10 text-center px-4 pb-16`}>
+        {/* Heading — animates when IT enters viewport */}
+        <motion.div
+          {...motionProps(dramatic, prefersReducedMotion)}
+          className="relative z-10 text-center px-4 pb-16"
+        >
           <p className="text-xs tracking-[0.18em] uppercase text-white/50 font-semibold mb-3">
             Donate
           </p>
@@ -67,14 +83,16 @@ const DonateSection: React.FC = () => {
             <br />
             an Animal Needs You
           </h2>
-        </div>
+        </motion.div>
       </div>
 
       {/* ── Bottom: Split card overlapping the photo ── */}
-      <div className="relative z-20 -mt-44 pb-16 px-4">
-        <div
-          className={`scroll-reveal ${isVisible ? 'visible' : ''} max-w-[1080px] mx-auto grid md:grid-cols-2 rounded-[28px] overflow-hidden shadow-[0_24px_80px_rgba(28,25,23,0.15)]`}
-          style={{ animationDelay: '200ms' }}
+      <motion.div className="relative z-20 -mt-44 pb-16 px-4" style={prefersReducedMotion ? undefined : { y: contentY }}>
+        <motion.div
+          {...motionProps(dramatic, prefersReducedMotion, {
+            transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+          })}
+          className="max-w-[1080px] mx-auto grid md:grid-cols-2 rounded-[28px] overflow-hidden shadow-[0_24px_80px_rgba(28,25,23,0.15)]"
         >
           {/* Left — Emotional side */}
           <div className="relative bg-gradient-to-br from-[#1C1917] to-[#292524] p-10 md:p-12 flex flex-col justify-center overflow-hidden texture-grain">
@@ -195,8 +213,9 @@ const DonateSection: React.FC = () => {
               🔒 Razorpay Secured · 80G Tax Certificate Included
             </p>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
+
     </section>
   );
 };
