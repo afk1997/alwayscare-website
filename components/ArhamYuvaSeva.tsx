@@ -22,14 +22,14 @@ const statsData = [
 ];
 
 const galleryImages = [
-  '/images/photo/up-1.jpg',
-  '/images/photo/down-1.jpg',
-  '/images/photo/up-2.jpg',
-  '/images/photo/down-2.jpg',
-  '/images/photo/up-4.jpg',
-  '/images/photo/down-4.jpg',
-  '/images/photo/up-5.jpg',
-  '/images/photo/down-5.jpg',
+  '/images/photo/up-1.webp',
+  '/images/photo/down-1.webp',
+  '/images/photo/up-2.webp',
+  '/images/photo/down-2.webp',
+  '/images/photo/up-4.webp',
+  '/images/photo/down-4.webp',
+  '/images/photo/up-5.webp',
+  '/images/photo/down-5.webp',
 ];
 
 const StatItem: React.FC<{
@@ -100,7 +100,7 @@ const ArhamYuvaSeva: React.FC = () => {
             className="text-center mb-5"
           >
             <img
-              src="/images/aysg-logo.png"
+              src="/images/aysg-logo.webp"
               alt="Arham Yuva Seva Group"
               className="w-32 md:w-36 mx-auto"
             />

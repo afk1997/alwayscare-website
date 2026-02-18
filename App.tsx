@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
-import LiveImpactPage from './pages/LiveImpactPage';
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import TermsConditionsPage from './pages/TermsConditionsPage';
-import RefundCancellationPage from './pages/RefundCancellationPage';
+
+const LiveImpactPage = React.lazy(() => import('./pages/LiveImpactPage'));
+const PrivacyPolicyPage = React.lazy(() => import('./pages/PrivacyPolicyPage'));
+const TermsConditionsPage = React.lazy(() => import('./pages/TermsConditionsPage'));
+const RefundCancellationPage = React.lazy(() => import('./pages/RefundCancellationPage'));
+
+const PageFallback = () => (
+  <div className="min-h-[60vh] flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-[#B8650A] border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 const App: React.FC = () => {
   return (
@@ -19,13 +26,15 @@ const App: React.FC = () => {
       </a>
       <Header />
       <main id="main-content">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/live-impact" element={<LiveImpactPage />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-          <Route path="/terms-conditions" element={<TermsConditionsPage />} />
-          <Route path="/refund-cancellation" element={<RefundCancellationPage />} />
-        </Routes>
+        <Suspense fallback={<PageFallback />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/live-impact" element={<LiveImpactPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms-conditions" element={<TermsConditionsPage />} />
+            <Route path="/refund-cancellation" element={<RefundCancellationPage />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
     </div>

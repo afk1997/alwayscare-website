@@ -25,7 +25,7 @@ const VisionSection: React.FC = () => {
       <div className="hidden lg:block relative min-h-screen">
         {/* Background image with scroll-driven scale */}
         <motion.img
-          src="/images/gurudev-website.jpg"
+          src="/images/gurudev-website.webp"
           alt="Param Gurudev Shree Namramuni Maharaj Saheb"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: 'center right', scale: prefersReducedMotion ? 1 : photoScale }}
@@ -125,7 +125,7 @@ const VisionSection: React.FC = () => {
         {/* Image with dark overlay */}
         <div className="relative h-[60vh]">
           <img
-            src="/images/gurudev-website.jpg"
+            src="/images/gurudev-website.webp"
             alt="Param Gurudev Shree Namramuni Maharaj Saheb"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ objectPosition: 'center top' }}

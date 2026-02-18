@@ -57,7 +57,6 @@ export function useLiveCases(limit?: number): UseLiveCasesResult {
         setLoading(false);
       })
       .catch(err => {
-        console.error('Failed to fetch live cases:', err);
         setError(err.message);
         setLoading(false);
       });

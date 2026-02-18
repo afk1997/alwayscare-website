@@ -10,6 +10,20 @@ export default defineConfig(() => {
         host: '0.0.0.0',
       },
       plugins: [react()],
+      build: {
+        target: 'es2020',
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+              'vendor-framer': ['framer-motion'],
+              'vendor-ogl': ['ogl'],
+              'vendor-lucide': ['lucide-react'],
+              'vendor-leaflet': ['leaflet'],
+            },
+          },
+        },
+      },
       resolve: {
         alias: {
           '@': path.resolve(__dirname, '.'),

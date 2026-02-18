@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { X, MapPin, Camera, Video, User, ExternalLink } from 'lucide-react';
 import { LiveCase } from '../types';
 import { formatTimeAgo, formatStatus, getGoogleDriveThumbnailUrl } from '../utils';
@@ -88,18 +88,36 @@ const PreTreatmentImage: React.FC<{ url: string; caseId: string }> = ({ url, cas
 };
 
 const CaseModal: React.FC<CaseModalProps> = ({ liveCase, onClose }) => {
-  // Escape key listener
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  // Escape key listener + focus trap
   useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { onClose(); return; }
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
-    document.addEventListener('keydown', handleEsc);
-    return () => document.removeEventListener('keydown', handleEsc);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  // Lock body scroll
+  // Lock body scroll + auto-focus modal
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    modalRef.current?.focus();
     return () => { document.body.style.overflow = ''; };
   }, []);
 
@@ -107,12 +125,14 @@ const CaseModal: React.FC<CaseModalProps> = ({ liveCase, onClose }) => {
   const hasPhotos = liveCase.preTreatmentPhoto || liveCase.postTreatmentPhotosAndVideosFolderURL;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="case-modal-title" onClick={onClose}>
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" aria-hidden="true" />
 
       {/* Modal panel */}
       <div
+        ref={modalRef}
+        tabIndex={-1}
         className="relative bg-white rounded-2xl shadow-2xl max-w-[600px] w-[95vw] max-h-[90vh] overflow-y-auto"
         style={{ animation: 'modalIn 200ms ease-out' }}
         onClick={(e) => e.stopPropagation()}
@@ -122,7 +142,7 @@ const CaseModal: React.FC<CaseModalProps> = ({ liveCase, onClose }) => {
           <div className="flex justify-between items-start">
             <div>
               <div className="flex items-center gap-2 flex-wrap">
-                <h2 className="text-lg font-bold text-slate-900">Case #{liveCase.caseId}</h2>
+                <h2 id="case-modal-title" className="text-lg font-bold text-slate-900">Case #{liveCase.caseId}</h2>
                 <span className={`text-xs px-2 py-0.5 rounded border font-medium ${conditionClasses(liveCase.condition)}`}>
                   {liveCase.condition}
                 </span>

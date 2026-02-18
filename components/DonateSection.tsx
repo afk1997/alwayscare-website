@@ -3,14 +3,14 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import { dramatic, motionProps } from '../utils/motion';
 
 const donateImages = [
-  '/images/photo/up-1.jpg',
-  '/images/photo/up-2.jpg',
-  '/images/photo/down-1.jpg',
-  '/images/photo/down-2.jpg',
-  '/images/photo/up-4.jpg',
-  '/images/photo/down-4.jpg',
-  '/images/photo/up-5.jpg',
-  '/images/photo/down-5.jpg',
+  '/images/photo/up-1.webp',
+  '/images/photo/up-2.webp',
+  '/images/photo/down-1.webp',
+  '/images/photo/down-2.webp',
+  '/images/photo/up-4.webp',
+  '/images/photo/down-4.webp',
+  '/images/photo/up-5.webp',
+  '/images/photo/down-5.webp',
 ];
 
 const presets = ['500', '1000', '2000', '5001'];
@@ -62,6 +62,7 @@ const DonateSection: React.FC = () => {
               key={src}
               src={src}
               alt="Rescued animal"
+              loading="lazy"
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
                 idx === currentSlide ? 'opacity-100' : 'opacity-0'
               }`}

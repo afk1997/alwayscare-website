@@ -68,7 +68,7 @@ const Header: React.FC = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
           <img
-            src="/images/arham-alwayscare-logo.png"
+            src="/images/arham-alwayscare-logo.webp"
             alt="Always Care"
             className="h-10 md:h-12 w-auto object-contain"
           />

@@ -188,13 +188,13 @@ const Footer: React.FC = () => {
           >
             <div className="flex items-center gap-4 mb-5">
               <img
-                src="/images/arham-alwayscare-logo.png"
+                src="/images/arham-alwayscare-logo.webp"
                 alt="Always Care"
                 className="h-10 w-auto"
               />
               <div className="w-px h-8 bg-white/10" />
               <img
-                src="/images/aysg-logo.png"
+                src="/images/aysg-logo.webp"
                 alt="Arham Yuva Seva Group"
                 className="h-12 w-auto"
               />

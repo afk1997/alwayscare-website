@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, MapPin, Sparkles, Search, Map as MapIcon, ArrowRight, Heart, UserPlus } from 'lucide-react';
-import { AMBULANCE_DATA, CLINIC_DATA } from '../constants';
+import { AMBULANCE_DATA, CLINIC_DATA, API_BASE_URL } from '../constants';
+import type { Map as LeafletMap, Marker } from 'leaflet';
 import { LiveCase } from '../types';
 import { useLiveCases } from '../hooks/useLiveCases';
 import CaseCard from './CaseCard';
@@ -40,9 +41,10 @@ const calculateDistance = (lat1: number, lng1: number, lat2: number, lng2: numbe
 
 const Hero: React.FC = () => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<any>(null);
-  const markersRef = useRef<Map<string, any>>(new Map());
-  const userMarkerRef = useRef<any>(null);
+  const mapInstanceRef = useRef<LeafletMap | null>(null);
+  const markersRef = useRef<Map<string, Marker>>(new Map());
+  const userMarkerRef = useRef<Marker | null>(null);
+  const leafletRef = useRef<typeof import('leaflet') | null>(null);
   const [dailyCases, setDailyCases] = useState<number | string>('...');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedAmbulanceId, setSelectedAmbulanceId] = useState<string | null>(null);
@@ -79,7 +81,7 @@ const Hero: React.FC = () => {
             lng: position.coords.longitude
           });
         },
-        (error) => console.log('Geolocation denied or unavailable:', error.message),
+        () => {},
         { enableHighAccuracy: true, timeout: 10000 }
       );
     }
@@ -107,7 +109,7 @@ const Hero: React.FC = () => {
 
   // Fetch daily cases
   useEffect(() => {
-    fetch('https://api-alwayscare.arham.org/api/cases/today/summary')
+    fetch(`${API_BASE_URL}/cases/today/summary`)
       .then(res => res.json())
       .then(data => setDailyCases(data.totalCases))
       .catch(() => setDailyCases(142));
@@ -115,7 +117,7 @@ const Hero: React.FC = () => {
 
   // Fetch live GPS data for ambulances
   useEffect(() => {
-    fetch('https://api-alwayscare.arham.org/api/map/devices')
+    fetch(`${API_BASE_URL}/map/devices`)
       .then(res => res.json())
       .then((devices: any[]) => {
         const gpsMap = new Map<string, {lat: number, lng: number}>();
@@ -128,7 +130,7 @@ const Hero: React.FC = () => {
         });
         setLiveGpsData(gpsMap);
       })
-      .catch(err => console.error('Failed to fetch live GPS data:', err));
+      .catch(() => {});
   }, []);
 
   // Update marker positions when live GPS data arrives
@@ -145,9 +147,8 @@ const Hero: React.FC = () => {
 
   // Add blue dot for user's location on the map
   useEffect(() => {
-    if (!userLocation || mapStatus !== 'ready' || !mapInstanceRef.current) return;
-    const L = (window as any).L;
-    if (!L) return;
+    if (!userLocation || mapStatus !== 'ready' || !mapInstanceRef.current || !leafletRef.current) return;
+    const L = leafletRef.current;
 
     // Remove previous marker if it exists
     if (userMarkerRef.current) {
@@ -160,8 +161,8 @@ const Hero: React.FC = () => {
         <div class="user-location-pulse" style="position:absolute;inset:0;background:#3b82f6;border-radius:50%;"></div>
         <div style="position:absolute;inset:4px;background:#3b82f6;border:2.5px solid white;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>
       </div>`,
-      iconSize: [20, 20],
-      iconAnchor: [10, 10],
+      iconSize: [20, 20] as [number, number],
+      iconAnchor: [10, 10] as [number, number],
     });
 
     userMarkerRef.current = L.marker([userLocation.lat, userLocation.lng], { icon: userIcon, zIndexOffset: 1000 })
@@ -169,21 +170,20 @@ const Hero: React.FC = () => {
       .bindPopup('You are here');
   }, [userLocation, mapStatus]);
 
-  // Initialize Map with loading state and error handling
+  // Initialize Map with dynamic Leaflet import
   useEffect(() => {
     if (!mapContainerRef.current) return;
+    let cancelled = false;
 
-    // Check for Leaflet with retry logic
-    const initializeMap = () => {
-      if (typeof (window as any).L === 'undefined') {
-        return false;
-      }
-
-      const L = (window as any).L;
-
-      if (mapInstanceRef.current) return true;
-
+    (async () => {
       try {
+        const L = await import('leaflet');
+        await import('leaflet/dist/leaflet.css');
+        if (cancelled || !mapContainerRef.current) return;
+        leafletRef.current = L;
+
+        if (mapInstanceRef.current) return;
+
         const map = L.map(mapContainerRef.current, {
           zoomControl: false,
           attributionControl: false,
@@ -201,7 +201,7 @@ const Hero: React.FC = () => {
 
         // Locate Me button (above zoom controls)
         const LocateControl = L.Control.extend({
-          options: { position: 'bottomright' },
+          options: { position: 'bottomright' as const },
           onAdd: function () {
             const btn = L.DomUtil.create('div', '');
             btn.innerHTML = `<button style="
@@ -255,46 +255,26 @@ const Hero: React.FC = () => {
           ">
             <svg xmlns="http://www.w3.org/2000/svg" width="${isSelected ? '18' : '14'}" height="${isSelected ? '18' : '14'}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           </div>`,
-          iconSize: isSelected ? [36, 36] : [28, 28],
-          iconAnchor: isSelected ? [18, 18] : [14, 14],
+          iconSize: isSelected ? [36, 36] as [number, number] : [28, 28] as [number, number],
+          iconAnchor: isSelected ? [18, 18] as [number, number] : [14, 14] as [number, number],
         });
 
         AMBULANCE_DATA.forEach(ambulance => {
           const marker = L.marker([ambulance.lat, ambulance.lng], { icon: createIcon(false) })
             .addTo(map)
             .bindPopup(`<b>${ambulance.city}</b><br>${ambulance.phone}`);
-          // Store marker with phone as key for later updates
           const normalizedPhone = ambulance.phone.replace(/\s/g, '');
           markersRef.current.set(normalizedPhone, marker);
         });
 
         setMapStatus('ready');
-        return true;
-      } catch (error) {
-        console.error('Failed to initialize map:', error);
-        setMapStatus('error');
-        return false;
+      } catch {
+        if (!cancelled) setMapStatus('error');
       }
-    };
-
-    // Try to initialize immediately
-    if (initializeMap()) return;
-
-    // If Leaflet not loaded yet, retry with timeout
-    let retryCount = 0;
-    const maxRetries = 10;
-    const retryInterval = setInterval(() => {
-      retryCount++;
-      if (initializeMap()) {
-        clearInterval(retryInterval);
-      } else if (retryCount >= maxRetries) {
-        clearInterval(retryInterval);
-        setMapStatus('error');
-      }
-    }, 500);
+    })();
 
     return () => {
-      clearInterval(retryInterval);
+      cancelled = true;
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove();
         mapInstanceRef.current = null;
@@ -350,7 +330,7 @@ const Hero: React.FC = () => {
             </p>
             <div className="animate-fadeUp flex items-center gap-3 mt-2" style={{ animationDelay: '250ms' }}>
               <div className="h-0.5 w-16 bg-gradient-to-r from-[#B7312C] via-[#B8650A] to-[#D87E0F] rounded-full" />
-              <img src="/images/aysg-logo.png" alt="AYSG" className="w-6 h-6 rounded" />
+              <img src="/images/aysg-logo.webp" alt="AYSG" className="w-6 h-6 rounded" />
               <span className="text-sm font-semibold bg-gradient-to-r from-[#9A5508] via-[#D87E0F] to-[#9A5508] bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">Powered by Arham Yuva Seva Group</span>
             </div>
           </div>
@@ -523,10 +503,11 @@ const Hero: React.FC = () => {
                   </div>
                 ) : (
                   filteredData.map(item => (
-                    <div
+                    <button
                       key={item.id}
+                      type="button"
                       onClick={() => flyToLocation(item)}
-                      className={`p-3 rounded-lg border cursor-pointer transition-all ${
+                      className={`w-full text-left p-3 rounded-lg border cursor-pointer transition-all ${
                         selectedAmbulanceId === item.id
                         ? 'bg-[#FEF3E7] border-[#B8650A] ring-1 ring-[#B8650A]/20'
                         : 'bg-white border-[#F9E8C9] hover:border-[#B8650A]/30 hover:bg-[#FFFBF5] hover:shadow-sm'
@@ -537,11 +518,11 @@ const Hero: React.FC = () => {
                           <h4 className="font-bold text-sm text-[#292524]">{item.city}</h4>
                           <div className="text-xs text-[#78716C] mt-0.5">{item.area || item.state}</div>
                         </div>
-                        <a href={`tel:${item.phone.replace(/\s/g, '')}`} aria-label={`Call ${item.city} ambulance`} className="bg-[#FEF3E7] p-2.5 rounded-full text-[#B7312C] hover:bg-[#B7312C] hover:text-white transition-colors">
+                        <a href={`tel:${item.phone.replace(/\s/g, '')}`} aria-label={`Call ${item.city} ambulance`} className="bg-[#FEF3E7] p-2.5 rounded-full text-[#B7312C] hover:bg-[#B7312C] hover:text-white transition-colors" onClick={(e) => e.stopPropagation()}>
                           <Phone size={14} />
                         </a>
                       </div>
-                    </div>
+                    </button>
                   ))
                 )}
               </div>

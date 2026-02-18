@@ -8,19 +8,19 @@ interface MediaItem {
 }
 
 const row1Items: MediaItem[] = [
-  { src: '/images/photo/up-1.jpg', type: 'image' },
-  { src: '/images/photo/up-2.jpg', type: 'image' },
+  { src: '/images/photo/up-1.webp', type: 'image' },
+  { src: '/images/photo/up-2.webp', type: 'image' },
   { src: '/images/photo/up-3.mp4', type: 'video' },
-  { src: '/images/photo/up-4.jpg', type: 'image' },
-  { src: '/images/photo/up-5.jpg', type: 'image' },
+  { src: '/images/photo/up-4.webp', type: 'image' },
+  { src: '/images/photo/up-5.webp', type: 'image' },
 ];
 
 const row2Items: MediaItem[] = [
-  { src: '/images/photo/down-1.jpg', type: 'image' },
-  { src: '/images/photo/down-2.jpg', type: 'image' },
+  { src: '/images/photo/down-1.webp', type: 'image' },
+  { src: '/images/photo/down-2.webp', type: 'image' },
   { src: '/images/photo/down-3.mp4', type: 'video' },
-  { src: '/images/photo/down-4.jpg', type: 'image' },
-  { src: '/images/photo/down-5.jpg', type: 'image' },
+  { src: '/images/photo/down-4.webp', type: 'image' },
+  { src: '/images/photo/down-5.webp', type: 'image' },
 ];
 
 const MediaElement: React.FC<{ item: MediaItem; alt: string }> = ({ item, alt }) => {
@@ -32,6 +32,8 @@ const MediaElement: React.FC<{ item: MediaItem; alt: string }> = ({ item, alt })
         muted
         loop
         playsInline
+        preload="none"
+        aria-hidden="true"
         className="w-full h-[180px] md:h-[220px] lg:h-[240px] object-cover"
       />
     );

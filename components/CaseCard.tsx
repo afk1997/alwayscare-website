@@ -153,6 +153,10 @@ const MasonryCard: React.FC<{ liveCase: LiveCase; onSelect: (c: LiveCase) => voi
     <div
       ref={ref}
       onClick={() => onSelect(liveCase)}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(liveCase); } }}
+      role="button"
+      tabIndex={0}
+      aria-label={`Case #${liveCase.caseId} — ${liveCase.animalType}, ${liveCase.condition}`}
       className={`masonry-card ${isVisible ? 'masonry-card-visible' : 'masonry-card-hidden'} bg-white rounded-[14px] overflow-hidden shadow-sm cursor-pointer group ${
         isOnTheWay ? 'rescue-active' : ''
       }`}
@@ -281,6 +285,10 @@ const CaseCard: React.FC<CaseCardProps> = ({ liveCase, onSelect, variant = 'grid
     return (
       <div
         onClick={() => onSelect(liveCase)}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(liveCase); } }}
+        role="button"
+        tabIndex={0}
+        aria-label={`Case #${liveCase.caseId} — ${liveCase.animalType}, ${liveCase.condition}`}
         className="bg-white border border-slate-100 p-3 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 cursor-pointer group"
       >
         <div className="flex gap-3">
@@ -305,6 +313,10 @@ const CaseCard: React.FC<CaseCardProps> = ({ liveCase, onSelect, variant = 'grid
   return (
     <div
       onClick={() => onSelect(liveCase)}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(liveCase); } }}
+      role="button"
+      tabIndex={0}
+      aria-label={`Case #${liveCase.caseId} — ${liveCase.animalType}, ${liveCase.condition}`}
       className="bg-white border border-slate-100 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 cursor-pointer group overflow-hidden"
     >
       {showImage && (
