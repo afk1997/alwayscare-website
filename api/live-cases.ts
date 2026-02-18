@@ -1,5 +1,5 @@
 // Vercel Serverless Function — Web Standard pattern (ESM compatible)
-import { handleLiveCases } from './_handler';
+import { handleLiveCases } from './_handler.js';
 
 export async function GET() {
   const result = await handleLiveCases();
