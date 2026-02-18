@@ -22,14 +22,16 @@ const statsData = [
 ];
 
 const galleryImages = [
-  '/images/photo/up-1.webp',
-  '/images/photo/down-1.webp',
-  '/images/photo/up-2.webp',
-  '/images/photo/down-2.webp',
-  '/images/photo/up-4.webp',
-  '/images/photo/down-4.webp',
-  '/images/photo/up-5.webp',
-  '/images/photo/down-5.webp',
+  { src: '/images/aysg/aysg-1.webp', alt: 'AYSG volunteer distributing blankets to a child' },
+  { src: '/images/aysg/aysg-2.webp', alt: 'Arham Paathshala school bag distribution in Jharia' },
+  { src: '/images/aysg/aysg-3.webp', alt: 'Children with AYSG-branded school bags' },
+  { src: '/images/aysg/aysg-4.webp', alt: 'Abhaydaan Abhiyaan animal rescue in Ahmedabad' },
+  { src: '/images/aysg/aysg-5.webp', alt: 'Auto rickshaw distribution ceremony in Rajkot' },
+  { src: '/images/aysg/aysg-6.webp', alt: 'Anant Arham Aahar food distribution in Surat' },
+  { src: '/images/aysg/aysg-7.webp', alt: 'Free cataract eye checkup camp' },
+  { src: '/images/aysg/aysg-8.webp', alt: 'Arham Jal Mandir water station in Mumbai' },
+  { src: '/images/aysg/aysg-9.webp', alt: 'Annadaan food distribution in Bhavnagar' },
+  { src: '/images/aysg/aysg-10.webp', alt: 'Jeevlaya cow feeding in Matunga' },
 ];
 
 const StatItem: React.FC<{
@@ -178,14 +180,14 @@ const ArhamYuvaSeva: React.FC = () => {
           <div className="flex w-max animate-marquee-left group-hover:[animation-play-state:paused]">
             {/* Set 1 */}
             <div className="flex gap-4 shrink-0 pr-4">
-              {galleryImages.map((src, i) => (
+              {galleryImages.map((img, i) => (
                 <div
                   key={`a-${i}`}
                   className="shrink-0 w-[240px] md:w-[300px] rounded-xl overflow-hidden"
                 >
                   <img
-                    src={src}
-                    alt="Arham Yuva Seva Group work"
+                    src={img.src}
+                    alt={img.alt}
                     loading="lazy"
                     className="w-full h-[160px] md:h-[200px] object-cover hover:scale-105 transition-transform duration-500"
                   />
@@ -194,13 +196,13 @@ const ArhamYuvaSeva: React.FC = () => {
             </div>
             {/* Set 2 (duplicate) */}
             <div className="flex gap-4 shrink-0 pr-4" aria-hidden="true">
-              {galleryImages.map((src, i) => (
+              {galleryImages.map((img, i) => (
                 <div
                   key={`b-${i}`}
                   className="shrink-0 w-[240px] md:w-[300px] rounded-xl overflow-hidden"
                 >
                   <img
-                    src={src}
+                    src={img.src}
                     alt=""
                     loading="lazy"
                     className="w-full h-[160px] md:h-[200px] object-cover hover:scale-105 transition-transform duration-500"
