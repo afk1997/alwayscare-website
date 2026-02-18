@@ -1,5 +1,5 @@
 // Azure Static Web Apps Functions adapter
-import { handleLiveCases } from '../_handler';
+import { handleLiveCases } from '../../../api/_handler';
 
 export default async function (context: any, req: any): Promise<void> {
   const result = await handleLiveCases();
