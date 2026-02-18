@@ -4,6 +4,11 @@
   functions = "netlify/functions"
 
 [[redirects]]
+  from = "/api/live-cases"
+  to = "/.netlify/functions/live-cases"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
