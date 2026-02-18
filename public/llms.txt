@@ -1,0 +1,33 @@
+# Arham Animal Ambulance
+
+> India's largest free animal ambulance network providing 24/7 emergency rescue, treatment, and rehabilitation for injured street animals across 40+ cities. Operated by Arham Yuva Seva Group (AYSG), inspired by Param Gurudev Shree Namramuni Maharaj Saheb.
+
+Arham Animal Ambulance, branded as "Always Care," operates 43+ fully-equipped ambulances with trained veterinarians and paravets dispatched free of charge around the clock. The organization also runs 4 free animal clinics and has 1 animal hospital under construction.
+
+- 1.5 lakh+ (150,000+) animals rescued and treated in the last 3 years
+- 75+ veterinarians and paravets on ground
+- 100% free care — no animal turned away, no bill presented
+- Headquartered in Ahmedabad, Gujarat, India
+- Services: emergency rescue, on-site first aid, wound treatment, surgery, post-operative rehabilitation
+- Animals served: injured, stray, and abandoned street animals (dogs, cats, cows, birds, and more)
+- Tax benefits: donations eligible for 80G tax exemption under Indian law
+
+## Pages
+
+- [Home — Find Nearest Ambulance](https://arhamanimalambulance.com/): Interactive map with live GPS tracking of ambulances across India, live rescue case feed, donation widget, ambulance finder by city
+- [Live Impact — Rescue Case Tracker](https://arhamanimalambulance.com/live-impact): Real-time database of 700+ rescue cases with search, filter, and detailed case information including treatment details
+- [Privacy Policy](https://arhamanimalambulance.com/privacy-policy)
+- [Terms & Conditions](https://arhamanimalambulance.com/terms-conditions)
+- [Refund & Cancellation](https://arhamanimalambulance.com/refund-cancellation)
+
+## Contact
+
+- Website: https://arhamanimalambulance.com
+- Instagram: https://www.instagram.com/arhamanimalambulance/
+- Parent Organization: Arham Yuva Seva Group (AYSG)
+- Location: Ahmedabad, Gujarat, India
+- Languages: English, Hindi, Gujarati
+
+## Optional
+
+- [Extended information](https://arhamanimalambulance.com/llms-full.txt): Detailed service information, city coverage with phone numbers, and organizational context

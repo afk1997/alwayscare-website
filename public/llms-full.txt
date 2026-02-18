@@ -1,0 +1,139 @@
+# Arham Animal Ambulance — Complete Reference
+
+> India's largest free animal ambulance network providing 24/7 emergency rescue, treatment, and rehabilitation for injured street animals across 40+ cities. Operated by Arham Yuva Seva Group (AYSG), a youth-driven non-profit inspired by Param Gurudev Shree Namramuni Maharaj Saheb. Brand name: "Always Care."
+
+## About the Organization
+
+Arham Animal Ambulance (branded "Always Care") is a free, 24/7 emergency animal rescue service operating across India. Founded under the vision of Rashtrasant Param Gurudev Shree Namramuni Maharaj Saheb, the organization is rooted in the Jain principle of Ahimsa (non-violence) and the belief that compassion for all living beings is the highest form of service.
+
+The ambulance network is operated by Arham Yuva Seva Group (AYSG), a youth-driven non-profit that delivers on-ground seva (selfless service) across India, encompassing animal welfare, disaster relief, medical aid, education, and community support.
+
+Key facts:
+- 43+ fully-equipped ambulances with trained veterinarians and paravets
+- 4 free animal clinics (Mumbai Ghatkopar, Mumbai Kandivali, Rajkot, Junagadh)
+- 1 state-of-the-art animal hospital under construction
+- 75+ veterinarians and paravets on ground
+- 1.5 lakh+ (150,000+) animals rescued and treated in the last 3 years
+- 100+ daily rescue cases treated
+- 100% free care — no animal is turned away, no bill is ever presented
+- 80G tax-exempt donations under Indian law
+- Payments processed via Razorpay
+
+## How the Ambulance Network Works
+
+1. **Emergency Call**: Anyone can call the local ambulance helpline number (available 24/7) to report an injured or distressed animal
+2. **Dispatch**: The nearest available ambulance with a trained vet or paravet is dispatched immediately
+3. **On-Site First Aid**: The team provides free on-site emergency first aid and treatment
+4. **Transport**: If needed, the animal is transported to the nearest Arham Animal Clinic for further care
+5. **Treatment & Recovery**: The animal receives complete treatment — wound care, surgery, medication, post-operative rehabilitation — entirely free of charge
+6. **Release or Shelter**: Once recovered, animals are released back to their area or placed in continued care if needed
+
+## Three Pillars: Rescue, Treat, Rebuild
+
+### Pillar 1: Rescue — Arham Animal Ambulance
+43+ fully-equipped ambulances dispatched free of charge, 24/7, reaching injured street animals across 15+ cities within minutes of a single call. Each ambulance carries trained vets and paravets with medical supplies for on-site treatment.
+
+### Pillar 2: Treat — Arham Animal Clinic
+4 dedicated animal clinics providing ongoing veterinary care — from wound treatment to post-operative recovery — completely free. Clinics located in Mumbai (Ghatkopar, Kandivali), Rajkot, and Junagadh.
+
+### Pillar 3: Rebuild — Arham Animal Hospital
+A state-of-the-art animal hospital currently under construction, designed to deliver advanced surgical care, long-term rehabilitation, and set a new national standard for how India treats its most vulnerable lives.
+
+## City Coverage — Ambulance Helplines
+
+### Gujarat
+- Ahmedabad: +91 6262 0909 15
+- Bhavnagar: +91 8989 8080 46
+- Gondal: +91 6262 0909 89
+- Junagadh: +91 9913910108
+- Madiya Hatina: +91 6262 0606 74
+- Mandvi (Kutch): +91 8585 0202 63
+- Palitana: +91 6262 8080 03
+- Surat (Vesu): +91 86 8989 0505
+- Surat (Varachha): +91 8989 0505 81
+- Vadodara: +91 8989 0303 73
+- Veraval: +91 6262 0505 90
+- Jamnagar (K9 Vision): +91 8238113555
+
+### Maharashtra
+- Mumbai (Andheri): +91 7662 00 5401
+- Mumbai (Malad): +91 7662 00 5402
+- Mumbai (Mira Road): +91 7662 00 5403
+- Mumbai (Ghatkopar): +91 7662 00 5404
+- Mumbai (Mulund): +91 7662 00 5406
+- Mumbai (Kandivali): +91 9619619721
+- Mumbai (Dadar): +91 7662 00 5409
+- Mumbai (Nasik Highway): +91 8989 0909 67
+- Nagpur: +91 9090 6767 08
+- Pune (PMC): +91 8989 0303 90
+- Pune (PCMC): +91 8989 0303 17
+
+### Other States
+- Delhi: +91 8989 0808 78
+- Chennai: +91 95665 08046
+- Hyderabad: +91 6262 0909 70
+- Indore: +91 8989 0808 48
+
+### NGO Partners
+- Bengaluru (Friend for Animal Trust): +91 814762003
+- Bengaluru (ALAI): +91 9739288282
+- Wadala (Hope for Indies Trust): +91 9167119135
+- Kolkata (Chaya): +91 9830211138
+- Rajkot (Jeev Daya Ghar): +91 9664554155
+- Rajkot (Sadbhavna Vrudhashram): +91 9664554155
+- Vapi (Tinku Memorial): +91 8980838888
+
+## Clinic Phone Numbers
+- Mumbai Ghatkopar: +91 7463036303
+- Mumbai Kandivali: +91 7304983822
+- Rajkot: +91 7567075680
+- Junagadh: Contact via ambulance helpline
+
+## Arham Yuva Seva Group (AYSG)
+
+The parent organization, Arham Yuva Seva Group, is a youth-driven non-profit with 55+ centers and 1500+ volunteers impacting over 1 million lives. AYSG initiatives include:
+- Animal welfare (rescues, ambulances, clinics)
+- Disaster relief
+- Medical aid and dialysis support
+- Cataract camps
+- Education aid and book distribution
+- 500,000 daily meals
+- Autorickshaw ownership programs
+- Blanket distribution and water station construction
+
+## Website Features
+
+### Homepage (arhamanimalambulance.com)
+- Interactive Leaflet map showing live GPS positions of ambulances across India
+- Ambulance and clinic finder searchable by city with click-to-call
+- Real-time live rescue case feed (live data from API)
+- Daily case count (treated today) updated in real-time
+- Donation widget with monthly and one-time options
+- Photo gallery showcasing rescue operations
+- "Foundation of Care" section explaining the three pillars
+- Vision section about Param Gurudev Shree Namramuni Maharaj Saheb
+- Volunteer application form
+- Community links (Instagram, WhatsApp)
+
+### Live Impact Page (arhamanimalambulance.com/live-impact)
+- Real-time database of 700+ rescue cases
+- Search across 13+ fields (case ID, address, animal type, condition, treatment, etc.)
+- Sort by most recent or oldest
+- Detailed case modals with medical information, treatment details
+- Masonry grid layout with progressive loading (30 cases per page)
+
+## Pages
+
+- [Home — Find Nearest Ambulance](https://arhamanimalambulance.com/): Interactive map with live GPS tracking, ambulance finder, live rescue feed, donation widget
+- [Live Impact — Rescue Case Tracker](https://arhamanimalambulance.com/live-impact): Real-time database of 700+ rescue cases with search and filter
+- [Privacy Policy](https://arhamanimalambulance.com/privacy-policy)
+- [Terms & Conditions](https://arhamanimalambulance.com/terms-conditions)
+- [Refund & Cancellation](https://arhamanimalambulance.com/refund-cancellation)
+
+## Contact
+
+- Website: https://arhamanimalambulance.com
+- Instagram: https://www.instagram.com/arhamanimalambulance/
+- Parent Organization: Arham Yuva Seva Group (AYSG)
+- Headquarters: Ahmedabad, Gujarat, India
+- Languages: English, Hindi, Gujarati
