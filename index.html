@@ -45,15 +45,17 @@
       "@context": "https://schema.org",
       "@type": ["Organization", "NGO"],
       "name": "Arham Animal Ambulance",
-      "alternateName": "Always Care",
+      "alternateName": ["Always Care", "AYSG Always Care"],
       "url": "https://arhamanimalambulance.com",
       "logo": "https://arhamanimalambulance.com/images/alwayscare-logo-original.png",
       "image": "https://arhamanimalambulance.com/images/alwayscare-logo-original.png",
       "description": "India's largest free animal ambulance network providing 24/7 emergency rescue, treatment, and care for injured street animals across 40+ cities.",
+      "email": "support@alwayscare.org",
       "slogan": "Always Care for every life",
       "parentOrganization": {
         "@type": "Organization",
-        "name": "Arham Yuva Seva Group"
+        "name": "Arham Yuva Seva Group",
+        "url": "https://arham.org"
       },
       "address": {
         "@type": "PostalAddress",
@@ -70,10 +72,26 @@
         "contactType": "emergency",
         "availableLanguage": ["English", "Hindi", "Gujarati"]
       },
-      "areaServed": {
-        "@type": "Country",
-        "name": "India"
-      },
+      "areaServed": [
+        {"@type": "Country", "name": "India"},
+        {"@type": "State", "name": "Gujarat"},
+        {"@type": "State", "name": "Maharashtra"},
+        {"@type": "City", "name": "Mumbai"},
+        {"@type": "City", "name": "Ahmedabad"},
+        {"@type": "City", "name": "Delhi"},
+        {"@type": "City", "name": "Pune"},
+        {"@type": "City", "name": "Surat"},
+        {"@type": "City", "name": "Chennai"},
+        {"@type": "City", "name": "Hyderabad"},
+        {"@type": "City", "name": "Indore"},
+        {"@type": "City", "name": "Nagpur"},
+        {"@type": "City", "name": "Vadodara"},
+        {"@type": "City", "name": "Jamnagar"},
+        {"@type": "City", "name": "Rajkot"},
+        {"@type": "City", "name": "Junagadh"},
+        {"@type": "City", "name": "Bengaluru"},
+        {"@type": "City", "name": "Kolkata"}
+      ],
       "sameAs": [
         "https://www.instagram.com/arhamanimalambulance/"
       ],
@@ -105,6 +123,49 @@
       "alternateName": "Always Care",
       "url": "https://arhamanimalambulance.com"
     }
+    </script>
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "VeterinaryClinic",
+        "name": "Always Care Animal Clinic — Ghatkopar",
+        "parentOrganization": {"@type": "NGO", "name": "Arham Animal Ambulance"},
+        "address": {"@type": "PostalAddress", "addressLocality": "Ghatkopar", "addressRegion": "Mumbai, Maharashtra", "addressCountry": "IN"},
+        "telephone": "+917463036303",
+        "priceRange": "Free",
+        "openingHours": "Mo-Su 00:00-23:59"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "VeterinaryClinic",
+        "name": "Always Care Animal Clinic — Kandivali",
+        "parentOrganization": {"@type": "NGO", "name": "Arham Animal Ambulance"},
+        "address": {"@type": "PostalAddress", "addressLocality": "Kandivali", "addressRegion": "Mumbai, Maharashtra", "addressCountry": "IN"},
+        "telephone": "+917304983822",
+        "priceRange": "Free",
+        "openingHours": "Mo-Su 00:00-23:59"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "VeterinaryClinic",
+        "name": "Always Care Animal Clinic — Rajkot",
+        "parentOrganization": {"@type": "NGO", "name": "Arham Animal Ambulance"},
+        "address": {"@type": "PostalAddress", "addressLocality": "Rajkot", "addressRegion": "Gujarat", "addressCountry": "IN"},
+        "telephone": "+917567075680",
+        "priceRange": "Free",
+        "openingHours": "Mo-Su 00:00-23:59"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "VeterinaryClinic",
+        "name": "Always Care Animal Clinic — Junagadh",
+        "parentOrganization": {"@type": "NGO", "name": "Arham Animal Ambulance"},
+        "address": {"@type": "PostalAddress", "addressLocality": "Junagadh", "addressRegion": "Gujarat", "addressCountry": "IN"},
+        "priceRange": "Free",
+        "openingHours": "Mo-Su 00:00-23:59"
+      }
+    ]
     </script>
 
     <style>
