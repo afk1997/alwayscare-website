@@ -1,9 +1,10 @@
-// Vercel Serverless Function adapter (Node.js runtime)
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+// Vercel Serverless Function — Web Standard pattern (ESM compatible)
 import { handleLiveCases } from './_handler';
 
-export default async function handler(_req: VercelRequest, res: VercelResponse) {
+export async function GET() {
   const result = await handleLiveCases();
-  Object.entries(result.headers).forEach(([key, value]) => res.setHeader(key, value));
-  res.status(result.status).send(result.body);
+  return new Response(result.body, {
+    status: result.status,
+    headers: result.headers,
+  });
 }
