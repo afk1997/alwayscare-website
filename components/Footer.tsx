@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, ArrowUpRight } from 'lucide-react';
+import { Heart, Mail, MapPin, ArrowUpRight } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { fadeUp, transition, motionProps, staggerProps } from '../utils/motion';
 
@@ -20,21 +20,20 @@ const navLinks = [
 
 const contactItems = [
   {
-    icon: Phone,
-    label: '24/7 Helpline',
-    value: '+91 98765 43210',
-    href: 'tel:+919876543210',
+    icon: Heart,
+    label: '100% Free Treatment',
+    value: 'For injured stray animals',
   },
   {
     icon: Mail,
     label: 'Email',
-    value: 'help@alwayscare.org',
-    href: 'mailto:help@alwayscare.org',
+    value: 'support@alwayscare.org',
+    href: 'mailto:support@alwayscare.org',
   },
   {
     icon: MapPin,
     label: 'Headquarters',
-    value: 'Ahmedabad, Gujarat, India',
+    value: 'Mumbai, Maharashtra, India',
   },
 ];
 
@@ -161,12 +160,12 @@ const Footer: React.FC = () => {
             </span>
           </div>
           <a
-            href="tel:+919876543210"
+            href="#home"
             className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#D87E0F]/10 border border-[#D87E0F]/20 text-[#D87E0F] text-[13px] font-semibold transition-all duration-300 hover:bg-[#D87E0F]/20 hover:border-[#D87E0F]/40 hover:scale-105 w-full md:w-auto justify-center"
             style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
           >
-            <Phone size={14} />
-            Call Helpline
+            <ArrowUpRight size={14} />
+            Get Help Now
           </a>
         </div>
       </motion.div>
