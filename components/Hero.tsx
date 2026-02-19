@@ -336,11 +336,11 @@ const Hero: React.FC = () => {
           </div>
 
           {/* 2. Impact Stats Row */}
-          <div className="animate-fadeUp grid grid-cols-4 gap-2 mb-3 md:mb-4" style={{ animationDelay: '300ms' }}>
+          <div className="animate-fadeUp grid grid-cols-2 md:grid-cols-4 gap-2 mb-3 md:mb-4" style={{ animationDelay: '300ms' }}>
 
             {/* Card 1 */}
             <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-[#F9E8C9] border-l-4 border-l-[#B7312C] hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_8px_24px_rgba(28,25,23,0.1)] transition-all duration-300 flex flex-col shadow-[0_1px_2px_rgba(28,25,23,0.04),0_4px_12px_rgba(28,25,23,0.06)]" style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider bg-[#FEF7ED] inline-block px-1.5 py-0.5 rounded mb-1 self-start">{currentDate}</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider bg-[#FEF7ED] inline-block px-1.5 py-0.5 rounded mb-1 self-start">{currentDate}</div>
               <div className="text-xl md:text-2xl font-black text-[#292524] group-hover:scale-105 transition-transform origin-left">
                 {dailyCases === '...' ? (
                   <span className="inline-block w-12 h-6 bg-[#FDF0DB] rounded animate-pulse"></span>
@@ -348,28 +348,28 @@ const Hero: React.FC = () => {
                   dailyCases
                 )}
               </div>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Cases Treated Today</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Cases Treated Today</div>
             </div>
 
             {/* Card 2 */}
             <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-[#F9E8C9] border-l-4 border-l-[#B7312C] hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_8px_24px_rgba(28,25,23,0.1)] transition-all duration-300 flex flex-col shadow-[0_1px_2px_rgba(28,25,23,0.04),0_4px_12px_rgba(28,25,23,0.06)]" style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">Lives Saved</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">Lives Saved</div>
               <div className="text-xl md:text-2xl font-black text-[#B7312C] group-hover:scale-105 transition-transform origin-left">1.5 Lakh+</div>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">In Last 3 Years</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">In Last 3 Years</div>
             </div>
 
             {/* Card 3 */}
             <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-[#F9E8C9] border-l-4 border-l-[#B8650A] hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_8px_24px_rgba(28,25,23,0.1)] transition-all duration-300 flex flex-col shadow-[0_1px_2px_rgba(28,25,23,0.04),0_4px_12px_rgba(28,25,23,0.06)]" style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">Across India</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">Across India</div>
               <div className="text-xl md:text-2xl font-black text-[#292524] group-hover:scale-105 transition-transform origin-left">{countAmbulances}+</div>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Ambulance & Clinics</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Ambulance & Clinics</div>
             </div>
 
             {/* Card 4 */}
             <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-[#F9E8C9] border-l-4 border-l-[#5F8A65] hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_8px_24px_rgba(28,25,23,0.1)] transition-all duration-300 flex flex-col shadow-[0_1px_2px_rgba(28,25,23,0.04),0_4px_12px_rgba(28,25,23,0.06)]" style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">On Ground</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">On Ground</div>
               <div className="text-xl md:text-2xl font-black text-[#292524] group-hover:scale-105 transition-transform origin-left">{countVets}+</div>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Vets & Paravets</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Vets & Paravets</div>
             </div>
 
           </div>
@@ -428,7 +428,7 @@ const Hero: React.FC = () => {
            {/* The Map Container */}
            <div
              id="ambulance-map-container"
-             className="w-full h-[380px] lg:h-full z-0 shrink-0 shadow-md lg:shadow-none relative"
+             className="w-full h-[300px] lg:h-full z-0 shrink-0 shadow-md lg:shadow-none relative"
            >
              <div ref={mapContainerRef} className="w-full h-full" />
 
@@ -657,7 +657,7 @@ const Hero: React.FC = () => {
               </div>
 
               {/* Cards List - Internally Scrollable */}
-              <div className="px-4 pb-8 overflow-y-auto scrollbar-hide max-h-[65vh]">
+              <div className="px-4 pb-8 overflow-y-auto scrollbar-hide max-h-[55vh]">
                  <div className="space-y-4">
                      {filteredData.map(item => (
                         <div
