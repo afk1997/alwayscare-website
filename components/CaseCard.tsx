@@ -121,7 +121,7 @@ const CardContent: React.FC<{ liveCase: LiveCase; compact?: boolean }> = ({ live
           Follow-up
         </span>
       )}
-      {!compact && (liveCase.preTreatmentPhoto ? (
+      {!compact && ((liveCase.preTreatmentPhotoAzureUrl || liveCase.preTreatmentPhoto) ? (
         <span className="flex items-center gap-1 text-[10px] text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-100 whitespace-nowrap shrink-0">
           <Camera size={10} /> Photo
         </span>
@@ -144,7 +144,7 @@ const MasonryCard: React.FC<{ liveCase: LiveCase; onSelect: (c: LiveCase) => voi
   const [imgLoaded, setImgLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
   const { ref, isVisible } = useScrollReveal({ threshold: 0.08, rootMargin: '50px' });
-  const thumbnailUrl = getGoogleDriveThumbnailUrl(liveCase.preTreatmentPhoto);
+  const thumbnailUrl = liveCase.preTreatmentPhotoAzureUrl || getGoogleDriveThumbnailUrl(liveCase.preTreatmentPhoto);
   const hasImage = !!thumbnailUrl && !imgError;
   const isOnTheWay = liveCase.status.toUpperCase() === 'ON_THE_WAY' || liveCase.status.toUpperCase() === 'IN_PROGRESS';
   const emoji = animalEmoji(liveCase.animalType);
@@ -274,7 +274,7 @@ const MasonryCard: React.FC<{ liveCase: LiveCase; onSelect: (c: LiveCase) => voi
 
 const CaseCard: React.FC<CaseCardProps> = ({ liveCase, onSelect, variant = 'grid' }) => {
   const [imgError, setImgError] = useState(false);
-  const thumbnailUrl = getGoogleDriveThumbnailUrl(liveCase.preTreatmentPhoto);
+  const thumbnailUrl = liveCase.preTreatmentPhotoAzureUrl || getGoogleDriveThumbnailUrl(liveCase.preTreatmentPhoto);
   const showImage = !!thumbnailUrl && !imgError;
 
   if (variant === 'masonry') {

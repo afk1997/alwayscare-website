@@ -51,11 +51,11 @@ const formatDateTime = (dateString: string): string => {
   });
 };
 
-const PreTreatmentImage: React.FC<{ url: string; caseId: string }> = ({ url, caseId }) => {
+const PreTreatmentImage: React.FC<{ url: string; azureUrl?: string | null; caseId: string }> = ({ url, azureUrl, caseId }) => {
   const [imgError, setImgError] = useState(false);
-  const thumbnailUrl = getGoogleDriveThumbnailUrl(url, 600);
+  const imgSrc = azureUrl || getGoogleDriveThumbnailUrl(url, 600);
 
-  if (imgError || !thumbnailUrl) {
+  if (imgError || !imgSrc) {
     return (
       <a
         href={url}
@@ -70,9 +70,9 @@ const PreTreatmentImage: React.FC<{ url: string; caseId: string }> = ({ url, cas
 
   return (
     <div className="space-y-2">
-      <a href={url} target="_blank" rel="noreferrer" className="block relative group/img">
+      <a href={azureUrl || url} target="_blank" rel="noreferrer" className="block relative group/img">
         <img
-          src={thumbnailUrl}
+          src={imgSrc}
           alt={`Pre-treatment photo for Case #${caseId}`}
           onError={() => setImgError(true)}
           className="w-full rounded-lg object-cover max-h-[300px] bg-slate-200"
@@ -122,7 +122,7 @@ const CaseModal: React.FC<CaseModalProps> = ({ liveCase, onClose }) => {
   }, []);
 
   const hasMedicalData = liveCase.doctorObservation || liveCase.treatmentGiven || liveCase.medicationDosage || liveCase.affectedBodyPart;
-  const hasPhotos = liveCase.preTreatmentPhoto || liveCase.postTreatmentPhotosAndVideosFolderURL;
+  const hasPhotos = liveCase.preTreatmentPhotoAzureUrl || liveCase.preTreatmentPhoto || liveCase.postTreatmentPhotosAndVideosFolderURL;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="case-modal-title" onClick={onClose}>
@@ -251,8 +251,8 @@ const CaseModal: React.FC<CaseModalProps> = ({ liveCase, onClose }) => {
           {hasPhotos && (
             <div className="bg-slate-50 rounded-xl p-4 space-y-3">
               <h3 className="text-sm font-semibold text-slate-700">Photos & Video</h3>
-              {liveCase.preTreatmentPhoto && (
-                <PreTreatmentImage url={liveCase.preTreatmentPhoto} caseId={liveCase.caseId} />
+              {(liveCase.preTreatmentPhotoAzureUrl || liveCase.preTreatmentPhoto) && (
+                <PreTreatmentImage url={liveCase.preTreatmentPhoto || ''} azureUrl={liveCase.preTreatmentPhotoAzureUrl} caseId={liveCase.caseId} />
               )}
               {liveCase.postTreatmentPhotosAndVideosFolderURL && (
                 <a

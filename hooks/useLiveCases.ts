@@ -44,6 +44,7 @@ export function useLiveCases(limit?: number): UseLiveCasesResult {
                 medicationDosage: c.medicationDosage || null,
                 recommendation: c.recommendation || null,
                 preTreatmentPhoto: c.preTreatmentPhoto || null,
+                preTreatmentPhotoAzureUrl: c.preTreatmentPhotoAzureUrl || null,
                 postTreatmentPhotosAndVideosFolderURL: c.postTreatmentPhotosAndVideosFolderURL || null,
                 createdAt: c.createdAt || null,
                 siteName: site.siteName || 'Unknown',

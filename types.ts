@@ -51,6 +51,7 @@ export interface LiveCase {
   medicationDosage: string | null;
   recommendation: string | null;
   preTreatmentPhoto: string | null;
+  preTreatmentPhotoAzureUrl: string | null;
   postTreatmentPhotosAndVideosFolderURL: string | null;
   createdAt: string | null;
   siteName: string;

@@ -9,10 +9,10 @@
  *   Cloudflare: functions/api/live-cases.ts
  *   Azure:      api/live-cases/index.ts
  *
- * Set the ALWAYSCARE_API_TOKEN environment variable on your platform.
+ * Set the FEED_API_TOKEN environment variable on your platform.
  */
 
-const UPSTREAM_URL = 'https://api-alwayscare.arham.org/api/external/cases/recent';
+const UPSTREAM_URL = 'https://alwayscare-qc.vercel.app/api/approved-cases';
 
 export interface ProxyResult {
   status: number;
@@ -21,7 +21,7 @@ export interface ProxyResult {
 }
 
 export async function handleLiveCases(): Promise<ProxyResult> {
-  const apiToken = process.env.ALWAYSCARE_API_TOKEN;
+  const apiToken = process.env.FEED_API_TOKEN;
 
   if (!apiToken) {
     return {
