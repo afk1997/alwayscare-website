@@ -334,6 +334,7 @@ function PillarCard({ pillar, index }: { pillar: (typeof PILLARS)[number]; index
           <div style={{ display: "flex", gap: "32px", paddingTop: "32px", borderTop: "1px solid #E8E0D8" }}>
             <div>
               <div
+                className="pillar-stat"
                 style={{
                   fontFamily: "'Open Runde', sans-serif",
                   fontSize: "48px",
@@ -359,6 +360,7 @@ function PillarCard({ pillar, index }: { pillar: (typeof PILLARS)[number]; index
             <div style={{ width: "1px", background: "#E8E0D8" }} />
             <div>
               <div
+                className="pillar-stat"
                 style={{
                   fontFamily: "'Open Runde', sans-serif",
                   fontSize: "48px",
@@ -405,7 +407,7 @@ export default function FoundationOfCare() {
       ref={sectionRef}
       style={{
         position: "relative",
-        padding: "120px 0 140px",
+        padding: "clamp(80px, 10vw, 120px) 0 clamp(100px, 12vw, 140px)",
         background: "#FFFBF5",
         overflow: "hidden",
       }}
@@ -515,12 +517,19 @@ export default function FoundationOfCare() {
           .pillar-card {
             grid-template-columns: 1fr !important;
             direction: ltr !important;
+            min-height: auto !important;
           }
           .pillar-image {
-            min-height: 300px !important;
+            min-height: 280px !important;
           }
           .pillar-content {
-            padding: 36px 28px !important;
+            padding: 28px 24px !important;
+          }
+          .pillar-content h3 {
+            font-size: 28px !important;
+          }
+          .pillar-content .pillar-stat {
+            font-size: 36px !important;
           }
         }
       `}</style>

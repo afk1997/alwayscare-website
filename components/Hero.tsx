@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Link from 'next/link';
-import { Phone, MapPin, Sparkles, Search, Map as MapIcon, ArrowRight, Heart, UserPlus } from 'lucide-react';
+import { Phone, MapPin, Sparkles, Search, Map as MapIcon, ArrowRight, Heart, UserPlus, ChevronDown } from 'lucide-react';
 import { AMBULANCE_DATA, CLINIC_DATA, API_BASE_URL } from '../constants';
 import type { Map as LeafletMap, Marker } from 'leaflet';
 import { LiveCase } from '../types';
@@ -55,6 +55,7 @@ const Hero: React.FC = () => {
   const { cases: liveCases, totalCount, loading: liveCasesLoading } = useLiveCases(6);
   const [selectedCase, setSelectedCase] = useState<LiveCase | null>(null);
   const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
+  const [expandedCardId, setExpandedCardId] = useState<string | null>(null);
   const [donationSelection, setDonationSelection] = useState<
     { type: 'monthly'; amount: 50 | 100 } |
     { type: 'onetime'; amount: 100 | 500 | 1000 } |
@@ -90,9 +91,11 @@ const Hero: React.FC = () => {
   // Filter and sort by distance logic
   const filteredData = useMemo(() => {
     const data = activeTab === 'ambulance' ? AMBULANCE_DATA : CLINIC_DATA;
+    const term = searchTerm.toLowerCase();
     let filtered = data.filter(item =>
-      item.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (item.area && item.area.toLowerCase().includes(searchTerm.toLowerCase()))
+      item.city.toLowerCase().includes(term) ||
+      (item.area && item.area.toLowerCase().includes(term)) ||
+      (item.areaOfOperations && item.areaOfOperations.toLowerCase().includes(term))
     );
 
     // Sort by distance if user location is available
@@ -115,17 +118,19 @@ const Hero: React.FC = () => {
       .catch(() => setDailyCases(142));
   }, []);
 
-  // Fetch live GPS data for ambulances
+  // Fetch live GPS data for ambulances (match by device name)
   useEffect(() => {
     fetch(`${API_BASE_URL}/map/devices`)
       .then(res => res.json())
       .then((devices: any[]) => {
         const gpsMap = new Map<string, {lat: number, lng: number}>();
         devices.forEach(device => {
-          if (device.latitude && device.longitude && device.site?.contactNo) {
-            // Match by phone number (normalize by removing spaces)
-            const phone = device.site.contactNo.replace(/\s/g, '');
-            gpsMap.set(phone, { lat: device.latitude, lng: device.longitude });
+          if (!device.latitude || !device.longitude) return;
+          const match = AMBULANCE_DATA.find(a =>
+            a.deviceMatch && device.name?.toLowerCase().includes(a.deviceMatch.toLowerCase())
+          );
+          if (match) {
+            gpsMap.set(match.id, { lat: device.latitude, lng: device.longitude });
           }
         });
         setLiveGpsData(gpsMap);
@@ -137,8 +142,8 @@ const Hero: React.FC = () => {
   useEffect(() => {
     if (liveGpsData.size === 0) return;
 
-    liveGpsData.forEach((coords, phone) => {
-      const marker = markersRef.current.get(phone);
+    liveGpsData.forEach((coords, id) => {
+      const marker = markersRef.current.get(id);
       if (marker) {
         marker.setLatLng([coords.lat, coords.lng]);
       }
@@ -178,6 +183,7 @@ const Hero: React.FC = () => {
     (async () => {
       try {
         const L = await import('leaflet');
+        
         if (cancelled || !mapContainerRef.current) return;
         leafletRef.current = L;
 
@@ -262,8 +268,7 @@ const Hero: React.FC = () => {
           const marker = L.marker([ambulance.lat, ambulance.lng], { icon: createIcon(false) })
             .addTo(map)
             .bindPopup(`<b>${ambulance.city}</b><br>${ambulance.phone}`);
-          const normalizedPhone = ambulance.phone.replace(/\s/g, '');
-          markersRef.current.set(normalizedPhone, marker);
+          markersRef.current.set(ambulance.id, marker);
         });
 
         setMapStatus('ready');
@@ -283,8 +288,7 @@ const Hero: React.FC = () => {
 
   const flyToLocation = (item: { id: string; phone: string; lat: number; lng: number }) => {
     // Try to get live GPS coordinates, fallback to static
-    const normalizedPhone = item.phone.replace(/\s/g, '');
-    const liveCoords = liveGpsData.get(normalizedPhone);
+    const liveCoords = liveGpsData.get(item.id);
 
     const lat = liveCoords?.lat || item.lat;
     const lng = liveCoords?.lng || item.lng;
@@ -335,11 +339,11 @@ const Hero: React.FC = () => {
           </div>
 
           {/* 2. Impact Stats Row */}
-          <div className="animate-fadeUp grid grid-cols-4 gap-2 mb-3 md:mb-4" style={{ animationDelay: '300ms' }}>
+          <div className="animate-fadeUp grid grid-cols-2 md:grid-cols-4 gap-2 mb-3 md:mb-4" style={{ animationDelay: '300ms' }}>
 
             {/* Card 1 */}
             <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-[#F9E8C9] border-l-4 border-l-[#B7312C] hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_8px_24px_rgba(28,25,23,0.1)] transition-all duration-300 flex flex-col shadow-[0_1px_2px_rgba(28,25,23,0.04),0_4px_12px_rgba(28,25,23,0.06)]" style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider bg-[#FEF7ED] inline-block px-1.5 py-0.5 rounded mb-1 self-start">{currentDate}</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider bg-[#FEF7ED] inline-block px-1.5 py-0.5 rounded mb-1 self-start">{currentDate}</div>
               <div className="text-xl md:text-2xl font-black text-[#292524] group-hover:scale-105 transition-transform origin-left">
                 {dailyCases === '...' ? (
                   <span className="inline-block w-12 h-6 bg-[#FDF0DB] rounded animate-pulse"></span>
@@ -347,28 +351,28 @@ const Hero: React.FC = () => {
                   dailyCases
                 )}
               </div>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Cases Treated Today</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Cases Treated Today</div>
             </div>
 
             {/* Card 2 */}
             <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-[#F9E8C9] border-l-4 border-l-[#B7312C] hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_8px_24px_rgba(28,25,23,0.1)] transition-all duration-300 flex flex-col shadow-[0_1px_2px_rgba(28,25,23,0.04),0_4px_12px_rgba(28,25,23,0.06)]" style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">Lives Saved</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">Lives Saved</div>
               <div className="text-xl md:text-2xl font-black text-[#B7312C] group-hover:scale-105 transition-transform origin-left">1.5 Lakh+</div>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">In Last 3 Years</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">In Last 3 Years</div>
             </div>
 
             {/* Card 3 */}
             <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-[#F9E8C9] border-l-4 border-l-[#B8650A] hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_8px_24px_rgba(28,25,23,0.1)] transition-all duration-300 flex flex-col shadow-[0_1px_2px_rgba(28,25,23,0.04),0_4px_12px_rgba(28,25,23,0.06)]" style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">Across India</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">Across India</div>
               <div className="text-xl md:text-2xl font-black text-[#292524] group-hover:scale-105 transition-transform origin-left">{countAmbulances}+</div>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Ambulance & Clinics</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Ambulance & Clinics</div>
             </div>
 
             {/* Card 4 */}
             <div className="group bg-white/60 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-[#F9E8C9] border-l-4 border-l-[#5F8A65] hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_8px_24px_rgba(28,25,23,0.1)] transition-all duration-300 flex flex-col shadow-[0_1px_2px_rgba(28,25,23,0.04),0_4px_12px_rgba(28,25,23,0.06)]" style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">On Ground</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-bold uppercase tracking-wider mb-1">On Ground</div>
               <div className="text-xl md:text-2xl font-black text-[#292524] group-hover:scale-105 transition-transform origin-left">{countVets}+</div>
-              <div className="text-[10px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Vets & Paravets</div>
+              <div className="text-[11px] md:text-xs text-[#78716C] font-medium leading-tight mt-auto">Vets & Paravets</div>
             </div>
 
           </div>
@@ -427,7 +431,7 @@ const Hero: React.FC = () => {
            {/* The Map Container */}
            <div
              id="ambulance-map-container"
-             className="w-full h-[380px] lg:h-full z-0 shrink-0 shadow-md lg:shadow-none relative"
+             className="w-full h-[300px] lg:h-full z-0 shrink-0 shadow-md lg:shadow-none relative"
            >
              <div ref={mapContainerRef} className="w-full h-full" />
 
@@ -464,7 +468,7 @@ const Hero: React.FC = () => {
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#A8A29E]" size={16} />
                   <input
                     type="text"
-                    placeholder="Search city or area..."
+                    placeholder="Search city, area, or neighborhood..."
                     className="w-full pl-9 pr-4 py-2.5 bg-[#FEF7ED] border border-[#F9E8C9] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#B8650A]"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -501,28 +505,74 @@ const Hero: React.FC = () => {
                     <p>No {activeTab === 'ambulance' ? 'ambulances' : 'clinics'} found{searchTerm && ` matching "${searchTerm}"`}</p>
                   </div>
                 ) : (
-                  filteredData.map(item => (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => flyToLocation(item)}
-                      className={`w-full text-left p-3 rounded-lg border cursor-pointer transition-all ${
-                        selectedAmbulanceId === item.id
-                        ? 'bg-[#FEF3E7] border-[#B8650A] ring-1 ring-[#B8650A]/20'
-                        : 'bg-white border-[#F9E8C9] hover:border-[#B8650A]/30 hover:bg-[#FFFBF5] hover:shadow-sm'
-                      }`}
-                    >
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <h4 className="font-bold text-sm text-[#292524]">{item.city}</h4>
-                          <div className="text-xs text-[#78716C] mt-0.5">{item.area || item.state}</div>
+                  filteredData.map(item => {
+                    const isExpanded = expandedCardId === item.id;
+                    return (
+                      <div
+                        key={item.id}
+                        className={`rounded-lg border cursor-pointer transition-all ${
+                          selectedAmbulanceId === item.id
+                          ? 'bg-[#FEF3E7] border-[#B8650A] ring-1 ring-[#B8650A]/20'
+                          : 'bg-white border-[#F9E8C9] hover:border-[#B8650A]/30 hover:bg-[#FFFBF5] hover:shadow-sm'
+                        }`}
+                      >
+                        {/* Collapsed — always visible */}
+                        <button
+                          type="button"
+                          onClick={() => setExpandedCardId(isExpanded ? null : item.id)}
+                          className="w-full text-left p-3"
+                        >
+                          <div className="flex justify-between items-start">
+                            <div className="flex-1 min-w-0 mr-2">
+                              <div className="flex items-center gap-1.5">
+                                <h4 className="font-bold text-sm text-[#292524] truncate">{item.area ? `${item.area}, ${item.city}` : item.city}</h4>
+                              </div>
+                              <div className="text-[11px] text-[#A8A29E] font-medium mt-0.5">{item.state}</div>
+                              {item.areaOfOperations.length > 0 && (
+                                <p className="text-[11px] text-[#78716C] mt-1 truncate">{item.areaOfOperations}</p>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-1.5 shrink-0">
+                              <a href={`tel:${item.phone.replace(/\s/g, '')}`} aria-label={`Call ${item.city}`} className="bg-[#FEF3E7] p-2 rounded-full text-[#B7312C] hover:bg-[#B7312C] hover:text-white transition-colors" onClick={(e) => e.stopPropagation()}>
+                                <Phone size={13} />
+                              </a>
+                              <ChevronDown size={14} className={`text-[#A8A29E] transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+                            </div>
+                          </div>
+                        </button>
+
+                        {/* Expanded — extra details */}
+                        <div
+                          className="overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                          style={{ maxHeight: isExpanded ? '200px' : '0px', opacity: isExpanded ? 1 : 0 }}
+                        >
+                          <div className="px-3 pb-3 pt-0 border-t border-[#F9E8C9]">
+                            {item.areaOfOperations.length > 0 && (
+                              <div className="mt-2">
+                                <p className="text-[10px] font-bold uppercase tracking-wider text-[#A8A29E] mb-1">Coverage Areas</p>
+                                <p className="text-[12px] text-[#57534E] leading-relaxed">{item.areaOfOperations}</p>
+                              </div>
+                            )}
+                            <div className="flex items-center gap-2 mt-2">
+                              <span className="text-[10px] font-bold uppercase tracking-wider text-[#A8A29E]">Type:</span>
+                              <span className="text-[11px] font-semibold text-[#B8650A] bg-[#FEF3E7] px-2 py-0.5 rounded-full">{item.category}</span>
+                            </div>
+                            <div className="mt-1.5">
+                              <span className="text-[10px] font-bold uppercase tracking-wider text-[#A8A29E]">Operated by:</span>
+                              <span className="text-[12px] text-[#57534E] ml-1">{item.operatedBy}</span>
+                            </div>
+                            <button
+                              onClick={(e) => { e.stopPropagation(); flyToLocation(item); }}
+                              className="mt-2.5 w-full flex items-center justify-center gap-1.5 py-2 rounded-lg border border-[#E8E0D8] text-[#57534E] font-semibold text-xs hover:bg-[#FEF3E7] hover:border-[#B8650A]/30 transition-colors"
+                            >
+                              <MapIcon size={13} />
+                              Show on Map
+                            </button>
+                          </div>
                         </div>
-                        <a href={`tel:${item.phone.replace(/\s/g, '')}`} aria-label={`Call ${item.city} ambulance`} className="bg-[#FEF3E7] p-2.5 rounded-full text-[#B7312C] hover:bg-[#B7312C] hover:text-white transition-colors" onClick={(e) => e.stopPropagation()}>
-                          <Phone size={14} />
-                        </a>
                       </div>
-                    </button>
-                  ))
+                    );
+                  })
                 )}
               </div>
            </div>
@@ -623,7 +673,7 @@ const Hero: React.FC = () => {
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#A8A29E]" size={18} />
                     <input
                       type="text"
-                      placeholder="Search city (e.g. Surat)"
+                      placeholder="Search city, area, or neighborhood..."
                       className="w-full pl-10 pr-4 py-2 bg-[#FEF7ED] border border-[#F9E8C9] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#B8650A]"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
@@ -656,42 +706,73 @@ const Hero: React.FC = () => {
               </div>
 
               {/* Cards List - Internally Scrollable */}
-              <div className="px-4 pb-8 overflow-y-auto scrollbar-hide max-h-[65vh]">
-                 <div className="space-y-4">
-                     {filteredData.map(item => (
-                        <div
-                           key={item.id}
-                           className={`bg-white p-4 rounded-xl shadow-sm border ${selectedAmbulanceId === item.id ? 'border-[#B7312C] ring-1 ring-[rgba(183,49,44,0.1)]' : 'border-[#F9E8C9]'}`}
-                        >
-                           <div className="flex justify-between items-start mb-3">
-                              <div>
-                                 <h3 className="font-bold text-lg text-[#292524]">{item.city} {activeTab === 'ambulance' ? 'Ambulance' : 'Clinic'}</h3>
-                                 <p className="text-[#78716C] text-sm mt-0.5">+91 {item.phone}</p>
-                              </div>
-                              <div className="bg-[#E8F0E9] text-[#5F8A65] text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
-                                 <span className="w-1.5 h-1.5 rounded-full bg-[#5F8A65] animate-pulse"></span>
-                                 ACTIVE
-                              </div>
-                           </div>
+              <div className="px-4 pb-8 overflow-y-auto scrollbar-hide max-h-[55vh]">
+                 <div className="space-y-3">
+                     {filteredData.map(item => {
+                        const isExpanded = expandedCardId === item.id;
+                        return (
+                          <div
+                             key={item.id}
+                             className={`bg-white rounded-xl shadow-sm border transition-all ${selectedAmbulanceId === item.id ? 'border-[#B7312C] ring-1 ring-[rgba(183,49,44,0.1)]' : 'border-[#F9E8C9]'}`}
+                          >
+                             {/* Collapsed — always visible */}
+                             <button
+                               type="button"
+                               onClick={() => setExpandedCardId(isExpanded ? null : item.id)}
+                               className="w-full text-left p-4"
+                             >
+                               <div className="flex justify-between items-start">
+                                  <div className="flex-1 min-w-0 mr-3">
+                                     <h3 className="font-bold text-base text-[#292524]">{item.area ? `${item.area}, ${item.city}` : item.city}</h3>
+                                     <p className="text-[12px] text-[#A8A29E] font-medium mt-0.5">{item.state}</p>
+                                     {item.areaOfOperations.length > 0 && (
+                                       <p className="text-[12px] text-[#78716C] mt-1 line-clamp-1">{item.areaOfOperations}</p>
+                                     )}
+                                  </div>
+                                  <div className="flex items-center gap-2 shrink-0">
+                                     <a
+                                       href={`tel:${item.phone.replace(/\s/g, '')}`}
+                                       onClick={(e) => e.stopPropagation()}
+                                       className="bg-[#B7312C] text-white p-2.5 rounded-full hover:bg-[#9A2823] transition-colors shadow-sm shadow-[rgba(183,49,44,0.2)]"
+                                     >
+                                       <Phone size={15} className="fill-current" />
+                                     </a>
+                                     <ChevronDown size={16} className={`text-[#A8A29E] transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+                                  </div>
+                               </div>
+                             </button>
 
-                           <div className="grid grid-cols-2 gap-3">
-                              <button
-                                 onClick={() => flyToLocation(item)}
-                                 className="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-[#E8E0D8] text-[#57534E] font-semibold text-sm hover:bg-[#FFFBF5] transition-colors"
-                              >
-                                 <MapIcon size={16} />
-                                 Show on Map
-                              </button>
-                              <a
-                                 href={`tel:${item.phone.replace(/\s/g, '')}`}
-                                 className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-[#B7312C] text-white font-semibold text-sm hover:bg-[#9A2823] transition-colors shadow-sm shadow-[rgba(183,49,44,0.2)]"
-                              >
-                                 <Phone size={16} className="fill-current" />
-                                 Call Now
-                              </a>
-                           </div>
-                        </div>
-                     ))}
+                             {/* Expanded — extra details */}
+                             <div
+                               className="overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                               style={{ maxHeight: isExpanded ? '280px' : '0px', opacity: isExpanded ? 1 : 0 }}
+                             >
+                               <div className="px-4 pb-4 pt-0 border-t border-[#F9E8C9]">
+                                 {item.areaOfOperations.length > 0 && (
+                                   <div className="mt-3">
+                                     <p className="text-[11px] font-bold uppercase tracking-wider text-[#A8A29E] mb-1">Coverage Areas</p>
+                                     <p className="text-[13px] text-[#57534E] leading-relaxed">{item.areaOfOperations}</p>
+                                   </div>
+                                 )}
+                                 <div className="flex flex-wrap items-center gap-2 mt-2.5">
+                                   <span className="text-[11px] font-semibold text-[#B8650A] bg-[#FEF3E7] px-2.5 py-1 rounded-full">{item.category}</span>
+                                   <span className="text-[11px] text-[#57534E] bg-[#F5F0EB] px-2.5 py-1 rounded-full">{item.operatedBy}</span>
+                                 </div>
+                                 <div className="mt-3">
+                                   <p className="text-[12px] text-[#78716C] mb-2">+91 {item.phone}</p>
+                                   <button
+                                     onClick={(e) => { e.stopPropagation(); flyToLocation(item); }}
+                                     className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg border border-[#E8E0D8] text-[#57534E] font-semibold text-sm hover:bg-[#FFFBF5] transition-colors"
+                                   >
+                                     <MapIcon size={16} />
+                                     Show on Map
+                                   </button>
+                                 </div>
+                               </div>
+                             </div>
+                          </div>
+                        );
+                     })}
                      {filteredData.length === 0 && (
                         <div className="text-center py-8 text-[#78716C] bg-white rounded-xl border border-[#F9E8C9] border-dashed">
                            <p>No {activeTab === 'ambulance' ? 'ambulances' : 'clinics'} found{searchTerm && ` matching "${searchTerm}"`}</p>
