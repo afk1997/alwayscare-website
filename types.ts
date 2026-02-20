@@ -3,10 +3,14 @@ export interface AmbulanceLocation {
   city: string;
   area?: string;
   phone: string;
-  state: 'Gujarat' | 'Maharashtra' | 'Other' | 'NGO Partner';
+  state: 'Gujarat' | 'Maharashtra' | 'Other' | 'Karnataka' | 'West Bengal' | 'Haryana' | 'Tamil Nadu';
   lat: number;
   lng: number;
   type?: 'ambulance' | 'clinic';
+  category: string;
+  areaOfOperations: string;
+  operatedBy: string;
+  deviceMatch?: string;
 }
 
 export interface CaseStat {
