@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-const UPSTREAM_URL = 'https://alwayscare-qc.vercel.app/api/approved-cases';
+const UPSTREAM_URL = `${process.env.UPSTREAM_BASE_URL ? process.env.UPSTREAM_BASE_URL : "https://alwayscare-qc.vercel.app"}/api/approved-cases`;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
@@ -31,8 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=120');
     res.setHeader('Access-Control-Allow-Origin', '*');
     return res.status(200).json(data);
-  } catch(err) {
-    console.log(err);
+  } catch {
     return res.status(500).json({ error: 'Internal server error' });
   }
 }

@@ -1,6 +1,6 @@
 import { AmbulanceLocation } from './types';
 
-export const API_BASE_URL = 'https://api-alwayscare.arham.org/api';
+export const API_BASE_URL = process.env.API_BASE_URL || 'https://api-alwayscare.arham.org/api';
 
 export const AMBULANCE_DATA: AmbulanceLocation[] = [
   // Gujarat
