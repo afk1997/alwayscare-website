@@ -96,8 +96,8 @@ const Volunteer: React.FC = () => {
           <div className="relative flex flex-wrap gap-5 md:gap-8 mt-8 pt-5 border-t border-white/[0.08]">
             {stats.map(s => (
               <div key={s.label}>
-                <div className="text-[22px] font-extrabold text-[#D87E0F] leading-none">{s.num}</div>
-                <div className="text-[10px] uppercase tracking-[1.5px] text-white/40 font-semibold mt-1">{s.label}</div>
+                <div className="text-[20px] md:text-[22px] font-extrabold text-[#D87E0F] leading-none">{s.num}</div>
+                <div className="text-[11px] uppercase tracking-[1.5px] text-white/40 font-semibold mt-1">{s.label}</div>
               </div>
             ))}
           </div>
@@ -132,7 +132,7 @@ const Volunteer: React.FC = () => {
                 {/* Name row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3.5">
                   <div>
-                    <label className="block text-[10.5px] font-bold tracking-wider uppercase text-[#78716C] mb-1.5">
+                    <label className="block text-[11.5px] font-bold tracking-wider uppercase text-[#78716C] mb-1.5">
                       First Name <span className="text-[#D87E0F]">*</span>
                     </label>
                     <input
@@ -143,7 +143,7 @@ const Volunteer: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-[10.5px] font-bold tracking-wider uppercase text-[#78716C] mb-1.5">
+                    <label className="block text-[11.5px] font-bold tracking-wider uppercase text-[#78716C] mb-1.5">
                       Last Name <span className="text-[#D87E0F]">*</span>
                     </label>
                     <input
@@ -157,7 +157,7 @@ const Volunteer: React.FC = () => {
 
                 {/* Phone */}
                 <div className="mb-3.5">
-                  <label className="block text-[10.5px] font-bold tracking-wider uppercase text-[#78716C] mb-1.5">
+                  <label className="block text-[11.5px] font-bold tracking-wider uppercase text-[#78716C] mb-1.5">
                     Phone Number <span className="text-[#D87E0F]">*</span>
                   </label>
                   <input
@@ -170,7 +170,7 @@ const Volunteer: React.FC = () => {
 
                 {/* City */}
                 <div className="mb-3.5">
-                  <label className="block text-[10.5px] font-bold tracking-wider uppercase text-[#78716C] mb-1.5">
+                  <label className="block text-[11.5px] font-bold tracking-wider uppercase text-[#78716C] mb-1.5">
                     City <span className="text-[#D87E0F]">*</span>
                   </label>
                   <select
@@ -192,7 +192,7 @@ const Volunteer: React.FC = () => {
 
                 {/* Role chips */}
                 <div className="mb-3.5">
-                  <div className="text-[10.5px] font-bold tracking-wider uppercase text-[#78716C] mb-2">
+                  <div className="text-[11.5px] font-bold tracking-wider uppercase text-[#78716C] mb-2">
                     I'd like to help with <span className="text-[#D87E0F]">*</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -217,7 +217,7 @@ const Volunteer: React.FC = () => {
 
                 {/* Textarea */}
                 <div className="mb-4">
-                  <label className="block text-[10.5px] font-bold tracking-wider uppercase text-[#78716C] mb-1.5">
+                  <label className="block text-[11.5px] font-bold tracking-wider uppercase text-[#78716C] mb-1.5">
                     Anything else?
                   </label>
                   <textarea
