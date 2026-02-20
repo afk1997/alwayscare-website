@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Phone, MapPin, Sparkles, Search, Map as MapIcon, ArrowRight, Heart, UserPlus } from 'lucide-react';
 import { AMBULANCE_DATA, CLINIC_DATA, API_BASE_URL } from '../constants';
 import type { Map as LeafletMap, Marker } from 'leaflet';
@@ -178,7 +178,6 @@ const Hero: React.FC = () => {
     (async () => {
       try {
         const L = await import('leaflet');
-        await import('leaflet/dist/leaflet.css');
         if (cancelled || !mapContainerRef.current) return;
         leafletRef.current = L;
 
@@ -193,7 +192,7 @@ const Hero: React.FC = () => {
 
         if (L.Browser.mobile) {
           map.dragging.enable();
-          map.tap?.enable();
+          (map as any).tap?.enable();
         }
 
         mapInstanceRef.current = map;
@@ -402,7 +401,7 @@ const Hero: React.FC = () => {
                 ))
               )}
             </div>
-            <Link to="/live-impact" className="w-full mt-3 text-xs text-center text-[#78716C] hover:text-[#B7312C] font-medium flex items-center justify-center gap-1 transition-colors py-2">
+            <Link href="/live-impact" className="w-full mt-3 text-xs text-center text-[#78716C] hover:text-[#B7312C] font-medium flex items-center justify-center gap-1 transition-colors py-2">
               View all cases <ArrowRight size={12} />
             </Link>
           </div>

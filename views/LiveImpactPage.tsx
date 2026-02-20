@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { AlertCircle, RefreshCw, SearchX, Loader2 } from 'lucide-react';
 import { useLiveCases } from '../hooks/useLiveCases';
-import { usePageMeta } from '../hooks/usePageMeta';
 import { LiveCase } from '../types';
 import LiveImpactHero from '../components/LiveImpactHero';
 import FilterBar from '../components/FilterBar';
@@ -23,12 +22,6 @@ const LiveImpactPage: React.FC = () => {
 
   // Modal
   const [selectedCase, setSelectedCase] = useState<LiveCase | null>(null);
-
-  usePageMeta({
-    title: 'Live Impact — Arham Animal Ambulance | Always Care',
-    description: 'Track live rescue cases in real-time. See the animals being rescued, treated, and rehabilitated by Arham Animal Ambulance across India.',
-    canonical: 'https://arhamanimalambulance.com/live-impact',
-  });
 
   // Reset pagination when search or sort changes
   useEffect(() => {

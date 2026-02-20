@@ -1,17 +1,6 @@
-import React, { useEffect } from 'react';
-import { usePageMeta } from '../hooks/usePageMeta';
+import React from 'react';
 
 const RefundCancellationPage: React.FC = () => {
-  usePageMeta({
-    title: 'Refund & Cancellation — Arham Animal Ambulance',
-    description: 'Refund and cancellation policy for donations to Arham Animal Ambulance.',
-    canonical: 'https://arhamanimalambulance.com/refund-cancellation',
-  });
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="bg-[#FFFBF5] min-h-screen">
       <div className="bg-white border-b border-[#E8E0D8]">

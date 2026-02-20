@@ -1,17 +1,6 @@
-import React, { useEffect } from 'react';
-import { usePageMeta } from '../hooks/usePageMeta';
+import React from 'react';
 
 const PrivacyPolicyPage: React.FC = () => {
-  usePageMeta({
-    title: 'Privacy Policy — Arham Animal Ambulance',
-    description: 'Privacy policy for Arham Animal Ambulance.',
-    canonical: 'https://arhamanimalambulance.com/privacy-policy',
-  });
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="bg-[#FFFBF5] min-h-screen">
       <div className="bg-white border-b border-[#E8E0D8]">

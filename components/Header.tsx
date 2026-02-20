@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Menu, X, Phone } from 'lucide-react';
 import { NAV_LINKS } from '../constants';
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const router = useRouter();
+  const isHomePage = router.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -16,15 +17,15 @@ const Header: React.FC = () => {
   }, []);
 
   const isActiveLink = (link: typeof NAV_LINKS[number]) => {
-    if (link.type === 'route') return location.pathname === link.href;
-    if (link.name === 'Home') return isHomePage && !location.hash;
+    if (link.type === 'route') return router.pathname === link.href;
+    if (link.name === 'Home') return isHomePage && !router.asPath.includes('#');
     return false;
   };
 
   const renderNavLink = (link: typeof NAV_LINKS[number], className: string, onClick?: () => void) => {
     if (link.type === 'route') {
       return (
-        <Link key={link.name} to={link.href} className={className} onClick={onClick}>
+        <Link key={link.name} href={link.href} className={className} onClick={onClick}>
           {link.name}
         </Link>
       );
@@ -37,7 +38,7 @@ const Header: React.FC = () => {
       );
     }
     return (
-      <Link key={link.name} to={link.href} className={className} onClick={onClick}>
+      <Link key={link.name} href={link.href} className={className} onClick={onClick}>
         {link.name}
       </Link>
     );
@@ -66,7 +67,7 @@ const Header: React.FC = () => {
         }}
       >
         {/* Logo */}
-        <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
+        <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
           <img
             src="/images/arham-alwayscare-logo.webp"
             alt="Always Care"
@@ -88,7 +89,7 @@ const Header: React.FC = () => {
             );
           })}
           <Link
-            to="/#home"
+            href="/#home"
             className="group btn-shine ml-3 px-5 py-2 bg-gradient-to-b from-[#C93B36] to-[#9A2823] text-white rounded-full font-semibold active:scale-[0.97] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(183,49,44,0.3),0_0_16px_rgba(183,49,44,0.15)] transition-all duration-300 flex items-center gap-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#B8650A] focus:ring-offset-2"
             style={{ boxShadow: '0 4px 12px rgba(183,49,44,0.2), inset 0 1px 0 rgba(255,255,255,0.15)', transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
           >
@@ -128,7 +129,7 @@ const Header: React.FC = () => {
             );
           })}
           <Link
-            to="/#home"
+            href="/#home"
             onClick={() => setMobileMenuOpen(false)}
             className="btn-shine animate-fadeUp w-full text-center px-4 py-3 bg-[#B7312C] text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#9A2823] transition-all duration-200 mt-2 focus:outline-none focus:ring-2 focus:ring-[#B8650A] focus:ring-offset-2 shadow-md shadow-[rgba(183,49,44,0.15)]"
             style={{ animationDelay: '150ms' }}

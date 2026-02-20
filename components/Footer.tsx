@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Phone, Mail, MapPin, ArrowUpRight } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { fadeUp, transition, motionProps, staggerProps } from '../utils/motion';
@@ -144,7 +144,7 @@ const Footer: React.FC = () => {
         />
       </div>
 
-      {/* ── 1. Emergency Helpline Banner ── */}
+      {/* 1. Emergency Helpline Banner */}
       <motion.div
         {...motionProps(fadeUp, prefersReducedMotion)}
         className="relative z-10 bg-[#B8650A]/[0.06] border-b border-white/[0.04]"
@@ -171,10 +171,10 @@ const Footer: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* ── 2. City Marquee ── */}
+      {/* 2. City Marquee */}
       <CityMarquee reducedMotion={prefersReducedMotion} />
 
-      {/* ── 3. Content Grid ── */}
+      {/* 3. Content Grid */}
       <motion.div
         className="relative z-10 max-w-5xl mx-auto px-4 py-10 md:py-14"
         {...staggerProps(prefersReducedMotion, 0.1)}
@@ -244,7 +244,7 @@ const Footer: React.FC = () => {
                 );
 
                 return link.isRoute ? (
-                  <Link key={link.label} to={link.href} className="no-underline">
+                  <Link key={link.label} href={link.href} className="no-underline">
                     {inner}
                   </Link>
                 ) : (
@@ -297,7 +297,7 @@ const Footer: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* ── 4. Bottom Bar ── */}
+      {/* 4. Bottom Bar */}
       <div className="relative z-10 border-t border-white/[0.06]">
         <div className="max-w-5xl mx-auto px-4 py-5">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -311,19 +311,19 @@ const Footer: React.FC = () => {
               </span>
               <span className="text-white/[0.08]">|</span>
               <Link
-                to="/privacy-policy"
+                href="/privacy-policy"
                 className="text-[#78716C] hover:text-white transition-colors duration-300"
               >
                 Privacy Policy
               </Link>
               <Link
-                to="/terms-conditions"
+                href="/terms-conditions"
                 className="text-[#78716C] hover:text-white transition-colors duration-300"
               >
                 Terms & Conditions
               </Link>
               <Link
-                to="/refund-cancellation"
+                href="/refund-cancellation"
                 className="text-[#78716C] hover:text-white transition-colors duration-300"
               >
                 Refund & Cancellation

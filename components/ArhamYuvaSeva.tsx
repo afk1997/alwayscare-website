@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { ExternalLink } from 'lucide-react';
 import { motion, useReducedMotion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useCountUp } from '../hooks/useCountUp';
@@ -12,7 +13,8 @@ import {
   motionProps,
   staggerProps,
 } from '../utils/motion';
-import LightRays from '@/components/ui/light-rays';
+
+const LightRays = dynamic(() => import('@/components/ui/light-rays'), { ssr: false });
 
 const statsData = [
   { target: 55, suffix: '', label: 'Centers' },
