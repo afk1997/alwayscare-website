@@ -5,6 +5,7 @@ import { AMBULANCE_DATA, CLINIC_DATA, API_BASE_URL } from '../constants';
 import type { Map as LeafletMap, Marker } from 'leaflet';
 import { LiveCase } from '../types';
 import { useLiveCases } from '../hooks/useLiveCases';
+import { usePlans, getPlanDisplay } from '../hooks/usePlans';
 import CaseCard from './CaseCard';
 import CaseModal from './CaseModal';
 
@@ -53,14 +54,16 @@ const Hero: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'ambulance' | 'clinic'>('ambulance');
   const [liveGpsData, setLiveGpsData] = useState<Map<string, {lat: number, lng: number}>>(new Map());
   const { cases: liveCases, totalCount, loading: liveCasesLoading } = useLiveCases(6);
+  const { plans } = usePlans();
+  const donateBaseUrl = process.env.NEXT_PUBLIC_PLANS_API_BASE_URL || 'http://localhost:3001';
   const [selectedCase, setSelectedCase] = useState<LiveCase | null>(null);
   const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
   const [expandedCardId, setExpandedCardId] = useState<string | null>(null);
   const [donationSelection, setDonationSelection] = useState<
-    { type: 'monthly'; amount: 50 | 100 } |
+    { type: 'monthly'; planId: string } |
     { type: 'onetime'; amount: 100 | 500 | 1000 } |
     { type: 'custom'; amount: string }
-  >({ type: 'monthly', amount: 100 });
+  >({ type: 'onetime', amount: 500 });
 
   // Animated count-up values for stats
   const countAmbulances = useCountUp(43, 1500, 400);
@@ -591,28 +594,29 @@ const Hero: React.FC = () => {
              {/* Support Monthly */}
              <p className="text-xs font-bold text-[#78716C] uppercase tracking-wider mb-2.5">Support Monthly (Recommended)</p>
              <div className="grid grid-cols-2 gap-2.5 mb-3">
-               <button
-                 onClick={() => setDonationSelection({ type: 'monthly', amount: 50 })}
-                 className={`p-2 rounded-lg border text-center transition-all ${
-                   donationSelection.type === 'monthly' && donationSelection.amount === 50
-                     ? 'border-[#B8650A] bg-[#FEF3E7]/50'
-                     : 'border-[#E8E0D8] hover:border-[#B8650A]/30'
-                 }`}
-               >
-                 <div className="text-base font-bold text-[#292524]">₹50 / day</div>
-                 <div className="text-xs text-[#A8A29E]">₹1500 / month</div>
-               </button>
-               <button
-                 onClick={() => setDonationSelection({ type: 'monthly', amount: 100 })}
-                 className={`p-2 rounded-lg border text-center transition-all ${
-                   donationSelection.type === 'monthly' && donationSelection.amount === 100
-                     ? 'border-[#B8650A] bg-[#FEF3E7]/60'
-                     : 'border-[#E8E0D8] hover:border-[#B8650A]/30'
-                 }`}
-               >
-                 <div className="text-base font-bold text-[#B7312C]">₹100 / day</div>
-                 <div className="text-xs text-[#A8A29E]">₹3000 / month</div>
-               </button>
+               {plans.length === 0 ? (
+                 <>
+                   <div className="p-2 rounded-lg border border-[#E8E0D8] animate-pulse bg-[#FEF7ED] h-[52px]" />
+                   <div className="p-2 rounded-lg border border-[#E8E0D8] animate-pulse bg-[#FEF7ED] h-[52px]" />
+                 </>
+               ) : (
+                 plans.map(plan => {
+                   const { monthly } = getPlanDisplay(plan);
+                   return (
+                     <button
+                       key={plan.id}
+                       onClick={() => setDonationSelection({ type: 'monthly', planId: plan.id })}
+                       className={`p-2 rounded-lg border text-center transition-all ${
+                         donationSelection.type === 'monthly' && donationSelection.planId === plan.id
+                           ? 'border-[#B8650A] bg-[#FEF3E7]/50'
+                           : 'border-[#E8E0D8] hover:border-[#B8650A]/30'
+                       }`}
+                     >
+                       <div className="text-base font-bold text-[#292524]">₹{monthly}/mo</div>
+                     </button>
+                   );
+                 })
+               )}
              </div>
 
              {/* One-time donation */}
@@ -654,13 +658,24 @@ const Hero: React.FC = () => {
              </div>
 
              {/* Donate button */}
-             <a
-               href="#donate"
+             <button
+               onClick={() => {
+                 if (donationSelection.type === 'monthly') {
+                   window.location.href = `${donateBaseUrl}/subscribe?planId=${donationSelection.planId}`;
+                 } else {
+                   const amt = donationSelection.type === 'custom'
+                     ? parseInt(donationSelection.amount, 10)
+                     : donationSelection.amount;
+                   if (amt && amt >= 1) {
+                     window.location.href = `${donateBaseUrl}/?categoryId=5&amount=${amt}`;
+                   }
+                 }
+               }}
                className="btn-shine w-full bg-[#B7312C] hover:bg-[#9A2823] text-white py-3 rounded-full font-bold text-base text-center flex items-center justify-center gap-2 shadow-lg shadow-[rgba(183,49,44,0.2)] hover:shadow-xl transition-all duration-200"
              >
                <span>❤️</span>
                Donate
-             </a>
+             </button>
            </div>
 
            {/* Mobile List Section (Visible only on Mobile) */}

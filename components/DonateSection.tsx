@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { dramatic, motionProps } from '../utils/motion';
+import { usePlans, getPlanDisplay } from '../hooks/usePlans';
 
 const donateImages = [
   '/images/photo/up-1.webp',
@@ -34,6 +35,17 @@ const DonateSection: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [amount, setAmount] = useState('2000');
   const [isMonthly, setIsMonthly] = useState(false);
+  const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null);
+  const { plans, loading: plansLoading } = usePlans();
+  const donateBaseUrl = process.env.NEXT_PUBLIC_PLANS_API_BASE_URL || 'http://localhost:3001';
+
+  // Auto-select first plan when switching to monthly
+  useEffect(() => {
+    if (isMonthly && plans.length > 0 && !selectedPlanId) {
+      setSelectedPlanId(plans[0].id);
+      setAmount(String(getPlanDisplay(plans[0]).monthly));
+    }
+  }, [isMonthly, plans, selectedPlanId]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -163,37 +175,67 @@ const DonateSection: React.FC = () => {
               </button>
             </div>
 
-            {/* Preset amounts */}
-            <div className="grid grid-cols-4 gap-2.5 mb-5">
-              {presets.map((p) => (
-                <button
-                  key={p}
-                  onClick={() => setAmount(p)}
-                  className={`py-3.5 rounded-xl text-[15px] font-bold transition-all duration-300 border-2 ${
-                    amount === p
-                      ? 'border-[#B8650A] bg-[#FEF3E7]/50 text-[#B8650A] shadow-[0_0_12px_rgba(184,101,10,0.15)]'
-                      : 'border-[#F9E8C9] text-[#57534E] hover:border-[#B8650A]/30 hover:bg-[#FEF3E7]/30 hover:scale-[1.04] hover:-translate-y-0.5'
-                  }`}
-                  style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
-                >
-                  ₹{p}
-                </button>
-              ))}
-            </div>
+            {/* Preset amounts / Plan selection */}
+            {isMonthly ? (
+              <div className="grid grid-cols-2 gap-2.5 mb-5">
+                {plansLoading ? (
+                  Array.from({ length: 4 }).map((_, i) => (
+                    <div key={i} className="py-3.5 rounded-xl border-2 border-[#F9E8C9] animate-pulse bg-[#FEF7ED] h-[60px]" />
+                  ))
+                ) : (
+                  plans.map(plan => {
+                    const { monthly } = getPlanDisplay(plan);
+                    return (
+                      <button
+                        key={plan.id}
+                        onClick={() => { setSelectedPlanId(plan.id); setAmount(String(monthly)); }}
+                        className={`py-3.5 px-2 rounded-xl text-[15px] font-bold transition-all duration-300 border-2 ${
+                          selectedPlanId === plan.id
+                            ? 'border-[#B8650A] bg-[#FEF3E7]/50 text-[#B8650A] shadow-[0_0_12px_rgba(184,101,10,0.15)]'
+                            : 'border-[#F9E8C9] text-[#57534E] hover:border-[#B8650A]/30 hover:bg-[#FEF3E7]/30 hover:scale-[1.04] hover:-translate-y-0.5'
+                        }`}
+                        style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
+                      >
+                        ₹{monthly}/mo
+                      </button>
+                    );
+                  })
+                )}
+              </div>
+            ) : (
+              <>
+                <div className="grid grid-cols-4 gap-2.5 mb-5">
+                  {presets.map((p) => (
+                    <button
+                      key={p}
+                      onClick={() => setAmount(p)}
+                      className={`py-3.5 rounded-xl text-[15px] font-bold transition-all duration-300 border-2 ${
+                        amount === p
+                          ? 'border-[#B8650A] bg-[#FEF3E7]/50 text-[#B8650A] shadow-[0_0_12px_rgba(184,101,10,0.15)]'
+                          : 'border-[#F9E8C9] text-[#57534E] hover:border-[#B8650A]/30 hover:bg-[#FEF3E7]/30 hover:scale-[1.04] hover:-translate-y-0.5'
+                      }`}
+                      style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
+                    >
+                      ₹{p}
+                    </button>
+                  ))}
+                </div>
 
-            {/* Custom amount input */}
-            <div className="flex items-center border-2 border-[#F9E8C9] rounded-xl px-4 mb-3 focus-within:border-[#B8650A] transition-colors">
-              <span className="text-[#78716C] text-lg font-bold mr-1">₹</span>
-              <input
-                type="text"
-                inputMode="numeric"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value.replace(/[^0-9]/g, ''))}
-                className="flex-1 border-none outline-none text-lg font-bold py-3 px-2 text-[#292524] bg-transparent"
-                style={{ fontFamily: "'Open Runde', sans-serif" }}
-                placeholder="Other amount"
-              />
-            </div>
+                {/* Custom amount input */}
+                <div className="flex items-center border-2 border-[#F9E8C9] rounded-xl px-4 mb-3 focus-within:border-[#B8650A] transition-colors">
+                  <span className="text-[#78716C] text-lg font-bold mr-1">₹</span>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value.replace(/[^0-9]/g, ''))}
+                    className="flex-1 border-none outline-none text-lg font-bold py-3 px-2 text-[#292524] bg-transparent"
+                    style={{ fontFamily: "'Open Runde', sans-serif" }}
+                    placeholder="Other amount"
+                  />
+                </div>
+              </>
+            )}
 
             {/* Impact message */}
             <div className="bg-[#FEF3E7] border-l-[3px] border-[#B8650A] rounded-r-[10px] px-4 py-3 mb-7">
@@ -204,7 +246,15 @@ const DonateSection: React.FC = () => {
 
             {/* CTA button */}
             <button
-              className="w-full py-4 rounded-2xl text-white font-bold text-base hover:shadow-[0_12px_32px_rgba(184,101,10,0.4),0_0_20px_rgba(184,101,10,0.2)] hover:-translate-y-0.5 hover:scale-[1.01] active:scale-[0.98] transition-all duration-300"
+              onClick={() => {
+                if (isMonthly && selectedPlanId) {
+                  window.location.href = `${donateBaseUrl}/subscribe?planId=${selectedPlanId}`;
+                } else if (!isMonthly && numericAmount >= 1) {
+                  window.location.href = `${donateBaseUrl}/?categoryId=5&amount=${numericAmount}`;
+                }
+              }}
+              disabled={isMonthly ? !selectedPlanId : numericAmount < 1}
+              className="w-full py-4 rounded-2xl text-white font-bold text-base transition-all duration-300 hover:shadow-[0_12px_32px_rgba(184,101,10,0.4),0_0_20px_rgba(184,101,10,0.2)] hover:-translate-y-0.5 hover:scale-[1.01] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
               style={{ background: 'linear-gradient(180deg, #D87E0F 0%, #B8650A 100%)', boxShadow: '0 8px 24px rgba(184,101,10,0.3), inset 0 1px 0 rgba(255,255,255,0.15)', transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
             >
               {isMonthly ? 'Donate Monthly' : 'Donate Now'} — ₹{amount || '0'}
