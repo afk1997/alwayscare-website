@@ -57,9 +57,9 @@ export const AMBULANCE_DATA: AmbulanceLocation[] = [
 ];
 
 export const CLINIC_DATA: AmbulanceLocation[] = [
-  { id: 'c1', city: 'Rajkot', area: 'Arham Always Care Clinic', phone: '7567 0756 80', state: 'Gujarat', lat: 22.3039, lng: 70.8022, type: 'clinic', category: 'Clinic', areaOfOperations: '', operatedBy: 'Arham Yuva Seva Group' },
-  { id: 'c2', city: 'Mumbai', area: 'Ghatkopar', phone: '7463 0363 03', state: 'Maharashtra', lat: 19.0860, lng: 72.9090, type: 'clinic', category: 'Clinic', areaOfOperations: '', operatedBy: 'Arham Yuva Seva Group' },
-  { id: 'c3', city: 'Mumbai', area: 'Kandivali (Pawandham)', phone: '7304 9838 22', state: 'Maharashtra', lat: 19.2045, lng: 72.8376, type: 'clinic', category: 'Clinic', areaOfOperations: '', operatedBy: 'Arham Yuva Seva Group' },
+  { id: 'c1', city: 'Rajkot', area: 'Arham Always Care Clinic', phone: '7567 0756 80', state: 'Gujarat', lat: 22.2988637, lng: 70.7753995, type: 'clinic', category: 'Clinic', areaOfOperations: '', operatedBy: 'Arham Yuva Seva Group' },
+  { id: 'c2', city: 'Mumbai', area: 'Ghatkopar', phone: '7463 0363 03', state: 'Maharashtra', lat: 19.080052, lng: 72.896424, type: 'clinic', category: 'Clinic', areaOfOperations: '', operatedBy: 'Arham Yuva Seva Group' },
+  { id: 'c3', city: 'Mumbai', area: 'Kandivali (Pawandham)', phone: '7304 9838 22', state: 'Maharashtra', lat: 19.21471, lng: 72.842772, type: 'clinic', category: 'Clinic', areaOfOperations: '', operatedBy: 'Arham Yuva Seva Group' },
   { id: 'c4', city: 'Junagadh', area: 'Arham Always Care Clinic', phone: '9913 9101 08', state: 'Gujarat', lat: 21.5222, lng: 70.4579, type: 'clinic', category: 'Clinic', areaOfOperations: '', operatedBy: 'Arham Yuva Seva Group' },
   { id: 'c5', city: 'Mumbai', area: 'Paramdham', phone: '6262 0909 72', state: 'Maharashtra', lat: 19.9975, lng: 73.7898, type: 'clinic', category: 'Clinic', areaOfOperations: '', operatedBy: 'Arham Yuva Seva Group' },
 ];

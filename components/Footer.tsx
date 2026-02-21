@@ -190,12 +190,16 @@ const Footer: React.FC = () => {
                 src="/images/arham-alwayscare-logo.webp"
                 alt="Always Care"
                 className="h-10 w-auto"
+                width={1080}
+                height={250}
               />
               <div className="w-px h-8 bg-white/10" />
               <img
                 src="/images/aysg-logo.webp"
                 alt="Arham Yuva Seva Group"
                 className="h-12 w-auto"
+                width={256}
+                height={256}
               />
             </div>
             <p className="text-[#A8A29E] text-[14px] leading-[1.75] max-w-[360px] mb-6">

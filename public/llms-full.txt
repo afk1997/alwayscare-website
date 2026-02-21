@@ -103,7 +103,7 @@ The parent organization, Arham Yuva Seva Group, is a youth-driven non-profit wit
 
 ## Website Features
 
-### Homepage (arhamanimalambulance.com)
+### Homepage (alwayscare.org)
 - Interactive Leaflet map showing live GPS positions of ambulances across India
 - Ambulance and clinic finder searchable by city with click-to-call
 - Real-time live rescue case feed (live data from API)
@@ -115,7 +115,7 @@ The parent organization, Arham Yuva Seva Group, is a youth-driven non-profit wit
 - Volunteer application form
 - Community links (Instagram, WhatsApp)
 
-### Live Impact Page (arhamanimalambulance.com/live-impact)
+### Live Impact Page (alwayscare.org/live-impact)
 - Real-time database of 700+ rescue cases
 - Search across 13+ fields (case ID, address, animal type, condition, treatment, etc.)
 - Sort by most recent or oldest
@@ -124,15 +124,15 @@ The parent organization, Arham Yuva Seva Group, is a youth-driven non-profit wit
 
 ## Pages
 
-- [Home — Find Nearest Ambulance](https://arhamanimalambulance.com/): Interactive map with live GPS tracking, ambulance finder, live rescue feed, donation widget
-- [Live Impact — Rescue Case Tracker](https://arhamanimalambulance.com/live-impact): Real-time database of 700+ rescue cases with search and filter
-- [Privacy Policy](https://arhamanimalambulance.com/privacy-policy)
-- [Terms & Conditions](https://arhamanimalambulance.com/terms-conditions)
-- [Refund & Cancellation](https://arhamanimalambulance.com/refund-cancellation)
+- [Home — Find Nearest Ambulance](https://alwayscare.org/): Interactive map with live GPS tracking, ambulance finder, live rescue feed, donation widget
+- [Live Impact — Rescue Case Tracker](https://alwayscare.org/live-impact): Real-time database of 700+ rescue cases with search and filter
+- [Privacy Policy](https://alwayscare.org/privacy-policy)
+- [Terms & Conditions](https://alwayscare.org/terms-conditions)
+- [Refund & Cancellation](https://alwayscare.org/refund-cancellation)
 
 ## Contact
 
-- Website: https://arhamanimalambulance.com
+- Website: https://alwayscare.org
 - Email: support@alwayscare.org
 - Instagram: https://www.instagram.com/arhamanimalambulance/
 - Parent Organization: Arham Yuva Seva Group (AYSG)

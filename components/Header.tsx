@@ -71,7 +71,7 @@ const Header: React.FC = () => {
           <img
             src="/images/arham-alwayscare-logo.webp"
             alt="Always Care"
-            className="h-10 md:h-12 w-auto object-contain"
+            className="h-10 md:h-12 w-auto object-contain" width={1080} height={250} fetchPriority="high"
           />
         </Link>
 

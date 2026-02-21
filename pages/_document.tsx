@@ -4,17 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        {/* Google Tag Manager */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NWFC97WX');`,
-          }}
-        />
-        {/* End Google Tag Manager */}
+        {/* GTM loaded via next/script in _app.tsx for better performance */}
 
         {/* Favicon */}
         <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
@@ -39,11 +29,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": ["Organization", "NGO"],
+              "@id": "https://alwayscare.org/#organization",
               "name": "Arham Animal Ambulance",
               "alternateName": ["Always Care", "AYSG Always Care"],
-              "url": "https://arhamanimalambulance.com",
-              "logo": "https://arhamanimalambulance.com/images/alwayscare-logo-original.png",
-              "image": "https://arhamanimalambulance.com/images/alwayscare-logo-original.png",
+              "url": "https://alwayscare.org",
+              "logo": "https://alwayscare.org/images/alwayscare-logo-original.png",
+              "image": "https://alwayscare.org/images/alwayscare-logo-original.png",
               "description": "India's largest free animal ambulance network providing emergency rescue, treatment, and care for injured street animals across 40+ cities.",
               "email": "support@alwayscare.org",
               "slogan": "Always Care for every life",
@@ -102,6 +93,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 "price": "0",
                 "priceCurrency": "INR",
                 "areaServed": { "@type": "Country", "name": "India" }
+              },
+              "potentialAction": {
+                "@type": "DonateAction",
+                "name": "Donate to Arham Animal Ambulance",
+                "target": "https://alwayscare.org/#donate",
+                "description": "Support free animal rescue and treatment across India"
               }
             }),
           }}
@@ -114,9 +111,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
+              "@id": "https://alwayscare.org/#website",
               "name": "Arham Animal Ambulance",
               "alternateName": "Always Care",
-              "url": "https://arhamanimalambulance.com"
+              "url": "https://alwayscare.org",
+              "publisher": { "@id": "https://alwayscare.org/#organization" }
             }),
           }}
         />
@@ -129,9 +128,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               {
                 "@context": "https://schema.org",
                 "@type": "VeterinaryClinic",
+                "@id": "https://alwayscare.org/#clinic-ghatkopar",
                 "name": "Always Care Animal Clinic — Ghatkopar",
-                "parentOrganization": {"@type": "NGO", "name": "Arham Animal Ambulance"},
-                "address": {"@type": "PostalAddress", "addressLocality": "Ghatkopar", "addressRegion": "Mumbai, Maharashtra", "addressCountry": "IN"},
+                "parentOrganization": { "@id": "https://alwayscare.org/#organization" },
+                "address": {"@type": "PostalAddress", "addressLocality": "Ghatkopar, Mumbai", "addressRegion": "Maharashtra", "addressCountry": "IN"},
+                "geo": {"@type": "GeoCoordinates", "latitude": 19.080052, "longitude": 72.896424},
                 "telephone": "+917463036303",
                 "priceRange": "Free",
                 "openingHours": "Mo-Su 00:00-23:59"
@@ -139,9 +140,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               {
                 "@context": "https://schema.org",
                 "@type": "VeterinaryClinic",
+                "@id": "https://alwayscare.org/#clinic-kandivali",
                 "name": "Always Care Animal Clinic — Kandivali",
-                "parentOrganization": {"@type": "NGO", "name": "Arham Animal Ambulance"},
-                "address": {"@type": "PostalAddress", "addressLocality": "Kandivali", "addressRegion": "Mumbai, Maharashtra", "addressCountry": "IN"},
+                "parentOrganization": { "@id": "https://alwayscare.org/#organization" },
+                "address": {"@type": "PostalAddress", "addressLocality": "Kandivali, Mumbai", "addressRegion": "Maharashtra", "addressCountry": "IN"},
+                "geo": {"@type": "GeoCoordinates", "latitude": 19.21471, "longitude": 72.842772},
                 "telephone": "+917304983822",
                 "priceRange": "Free",
                 "openingHours": "Mo-Su 00:00-23:59"
@@ -149,9 +152,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               {
                 "@context": "https://schema.org",
                 "@type": "VeterinaryClinic",
+                "@id": "https://alwayscare.org/#clinic-rajkot",
                 "name": "Always Care Animal Clinic — Rajkot",
-                "parentOrganization": {"@type": "NGO", "name": "Arham Animal Ambulance"},
+                "parentOrganization": { "@id": "https://alwayscare.org/#organization" },
                 "address": {"@type": "PostalAddress", "addressLocality": "Rajkot", "addressRegion": "Gujarat", "addressCountry": "IN"},
+                "geo": {"@type": "GeoCoordinates", "latitude": 22.2988637, "longitude": 70.7753995},
                 "telephone": "+917567075680",
                 "priceRange": "Free",
                 "openingHours": "Mo-Su 00:00-23:59"
@@ -159,9 +164,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               {
                 "@context": "https://schema.org",
                 "@type": "VeterinaryClinic",
+                "@id": "https://alwayscare.org/#clinic-junagadh",
                 "name": "Always Care Animal Clinic — Junagadh",
-                "parentOrganization": {"@type": "NGO", "name": "Arham Animal Ambulance"},
+                "parentOrganization": { "@id": "https://alwayscare.org/#organization" },
                 "address": {"@type": "PostalAddress", "addressLocality": "Junagadh", "addressRegion": "Gujarat", "addressCountry": "IN"},
+                "telephone": "+919913910108",
                 "priceRange": "Free",
                 "openingHours": "Mo-Su 00:00-23:59"
               }

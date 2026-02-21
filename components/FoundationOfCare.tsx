@@ -18,6 +18,8 @@ const PILLARS = [
     accentMid: "rgba(183, 49, 44, 0.15)",
     gradient: "linear-gradient(135deg, #B7312C 0%, #9A2823 100%)",
     image: "/images/ambulance/1.webp",
+    imageWidth: 557,
+    imageHeight: 515,
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
@@ -43,6 +45,8 @@ const PILLARS = [
     accentMid: "rgba(95, 138, 101, 0.15)",
     gradient: "linear-gradient(135deg, #5F8A65 0%, #4F7355 100%)",
     image: "/images/clinic/1.webp",
+    imageWidth: 1152,
+    imageHeight: 896,
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
@@ -66,6 +70,8 @@ const PILLARS = [
     accentMid: "rgba(184, 101, 10, 0.15)",
     gradient: "linear-gradient(135deg, #B8650A 0%, #9A5508 100%)",
     image: "/images/hospital/1.webp",
+    imageWidth: 1280,
+    imageHeight: 719,
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 21l18 0" />
@@ -242,6 +248,8 @@ function PillarCard({ pillar, index }: { pillar: (typeof PILLARS)[number]; index
             src={pillar.image}
             alt={pillar.title}
             loading="lazy"
+            width={pillar.imageWidth}
+            height={pillar.imageHeight}
             style={{
               position: "absolute",
               inset: 0,

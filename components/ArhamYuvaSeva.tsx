@@ -24,16 +24,16 @@ const statsData = [
 ];
 
 const galleryImages = [
-  { src: '/images/aysg/aysg-1.webp', alt: 'AYSG volunteer distributing blankets to a child' },
-  { src: '/images/aysg/aysg-2.webp', alt: 'Arham Paathshala school bag distribution in Jharia' },
-  { src: '/images/aysg/aysg-3.webp', alt: 'Children with AYSG-branded school bags' },
-  { src: '/images/aysg/aysg-4.webp', alt: 'Abhaydaan Abhiyaan animal rescue in Ahmedabad' },
-  { src: '/images/aysg/aysg-5.webp', alt: 'Auto rickshaw distribution ceremony in Rajkot' },
-  { src: '/images/aysg/aysg-6.webp', alt: 'Anant Arham Aahar food distribution in Surat' },
-  { src: '/images/aysg/aysg-7.webp', alt: 'Free cataract eye checkup camp' },
-  { src: '/images/aysg/aysg-8.webp', alt: 'Arham Jal Mandir water station in Mumbai' },
-  { src: '/images/aysg/aysg-9.webp', alt: 'Annadaan food distribution in Bhavnagar' },
-  { src: '/images/aysg/aysg-10.webp', alt: 'Jeevlaya cow feeding in Matunga' },
+  { src: '/images/aysg/aysg-1.webp', alt: 'AYSG volunteer distributing blankets to a child', width: 600, height: 450 },
+  { src: '/images/aysg/aysg-2.webp', alt: 'Arham Paathshala school bag distribution in Jharia', width: 600, height: 450 },
+  { src: '/images/aysg/aysg-3.webp', alt: 'Children with AYSG-branded school bags', width: 600, height: 450 },
+  { src: '/images/aysg/aysg-4.webp', alt: 'Abhaydaan Abhiyaan animal rescue in Ahmedabad', width: 600, height: 400 },
+  { src: '/images/aysg/aysg-5.webp', alt: 'Auto rickshaw distribution ceremony in Rajkot', width: 600, height: 399 },
+  { src: '/images/aysg/aysg-6.webp', alt: 'Anant Arham Aahar food distribution in Surat', width: 600, height: 338 },
+  { src: '/images/aysg/aysg-7.webp', alt: 'Free cataract eye checkup camp', width: 600, height: 400 },
+  { src: '/images/aysg/aysg-8.webp', alt: 'Arham Jal Mandir water station in Mumbai', width: 600, height: 400 },
+  { src: '/images/aysg/aysg-9.webp', alt: 'Annadaan food distribution in Bhavnagar', width: 600, height: 280 },
+  { src: '/images/aysg/aysg-10.webp', alt: 'Jeevlaya cow feeding in Matunga', width: 600, height: 1068 },
 ];
 
 const StatItem: React.FC<{
@@ -107,6 +107,8 @@ const ArhamYuvaSeva: React.FC = () => {
               src="/images/aysg-logo.webp"
               alt="Arham Yuva Seva Group"
               className="w-32 md:w-36 mx-auto"
+              width={256}
+              height={256}
             />
           </motion.div>
 
@@ -191,6 +193,8 @@ const ArhamYuvaSeva: React.FC = () => {
                     src={img.src}
                     alt={img.alt}
                     loading="lazy"
+                    width={img.width}
+                    height={img.height}
                     className="w-full h-[160px] md:h-[200px] object-cover hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -207,6 +211,8 @@ const ArhamYuvaSeva: React.FC = () => {
                     src={img.src}
                     alt=""
                     loading="lazy"
+                    width={img.width}
+                    height={img.height}
                     className="w-full h-[160px] md:h-[200px] object-cover hover:scale-105 transition-transform duration-500"
                   />
                 </div>

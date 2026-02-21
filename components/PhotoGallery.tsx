@@ -5,22 +5,25 @@ import { fadeUp, motionProps } from '../utils/motion';
 interface MediaItem {
   src: string;
   type: 'image' | 'video';
+  width?: number;
+  height?: number;
+  alt?: string;
 }
 
 const row1Items: MediaItem[] = [
-  { src: '/images/photo/up-1.webp', type: 'image' },
-  { src: '/images/photo/up-2.webp', type: 'image' },
+  { src: '/images/photo/up-1.webp', type: 'image', width: 1024, height: 788, alt: 'Animal rescue team providing on-site treatment' },
+  { src: '/images/photo/up-2.webp', type: 'image', width: 1536, height: 2048, alt: 'Veterinarian treating an injured street animal' },
   { src: '/images/photo/up-3.mp4', type: 'video' },
-  { src: '/images/photo/up-4.webp', type: 'image' },
-  { src: '/images/photo/up-5.webp', type: 'image' },
+  { src: '/images/photo/up-4.webp', type: 'image', width: 576, height: 1024, alt: 'Animal ambulance crew during a rescue operation' },
+  { src: '/images/photo/up-5.webp', type: 'image', width: 1024, height: 768, alt: 'Rescued animal receiving medical care' },
 ];
 
 const row2Items: MediaItem[] = [
-  { src: '/images/photo/down-1.webp', type: 'image' },
-  { src: '/images/photo/down-2.webp', type: 'image' },
+  { src: '/images/photo/down-1.webp', type: 'image', width: 1024, height: 545, alt: 'Always Care ambulance on a rescue mission' },
+  { src: '/images/photo/down-2.webp', type: 'image', width: 1024, height: 768, alt: 'Street animal being treated by Always Care team' },
   { src: '/images/photo/down-3.mp4', type: 'video' },
-  { src: '/images/photo/down-4.webp', type: 'image' },
-  { src: '/images/photo/down-5.webp', type: 'image' },
+  { src: '/images/photo/down-4.webp', type: 'image', width: 1024, height: 768, alt: 'Animal rescue and rehabilitation in progress' },
+  { src: '/images/photo/down-5.webp', type: 'image', width: 449, height: 303, alt: 'Recovered animal after treatment by Always Care' },
 ];
 
 const MediaElement: React.FC<{ item: MediaItem; alt: string }> = ({ item, alt }) => {
@@ -43,6 +46,8 @@ const MediaElement: React.FC<{ item: MediaItem; alt: string }> = ({ item, alt })
       src={item.src}
       alt={alt}
       loading="lazy"
+      width={item.width}
+      height={item.height}
       className="w-full h-[180px] md:h-[220px] lg:h-[240px] object-cover hover:scale-105 transition-transform duration-500"
     />
   );
@@ -63,7 +68,7 @@ const GalleryRow = React.forwardRef<HTMLDivElement, { items: MediaItem[] }>(
                 key={`${setIdx}-${i}`}
                 className="shrink-0 w-[260px] md:w-[320px] lg:w-[360px] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300"
               >
-                <MediaElement item={item} alt={setIdx === 0 ? 'Always Care field work' : ''} />
+                <MediaElement item={item} alt={setIdx === 0 ? (item.alt || 'Always Care field work') : ''} />
               </div>
             ))}
           </div>

@@ -14,11 +14,11 @@ Arham Animal Ambulance, branded as "Always Care," operates 43+ fully-equipped am
 
 ## Pages
 
-- [Home — Find Nearest Ambulance](https://arhamanimalambulance.com/): Interactive map with live GPS tracking of ambulances across India, live rescue case feed, donation widget, ambulance finder by city
-- [Live Impact — Rescue Case Tracker](https://arhamanimalambulance.com/live-impact): Real-time database of 700+ rescue cases with search, filter, and detailed case information including treatment details
-- [Privacy Policy](https://arhamanimalambulance.com/privacy-policy)
-- [Terms & Conditions](https://arhamanimalambulance.com/terms-conditions)
-- [Refund & Cancellation](https://arhamanimalambulance.com/refund-cancellation)
+- [Home — Find Nearest Ambulance](https://alwayscare.org/): Interactive map with live GPS tracking of ambulances across India, live rescue case feed, donation widget, ambulance finder by city
+- [Live Impact — Rescue Case Tracker](https://alwayscare.org/live-impact): Real-time database of 700+ rescue cases with search, filter, and detailed case information including treatment details
+- [Privacy Policy](https://alwayscare.org/privacy-policy)
+- [Terms & Conditions](https://alwayscare.org/terms-conditions)
+- [Refund & Cancellation](https://alwayscare.org/refund-cancellation)
 
 ## Cities We Serve
 
@@ -29,7 +29,7 @@ Arham Animal Ambulance, branded as "Always Care," operates 43+ fully-equipped am
 
 ## Contact
 
-- Website: https://arhamanimalambulance.com
+- Website: https://alwayscare.org
 - Email: support@alwayscare.org
 - Instagram: https://www.instagram.com/arhamanimalambulance/
 - Parent Organization: Arham Yuva Seva Group (AYSG)
@@ -38,4 +38,4 @@ Arham Animal Ambulance, branded as "Always Care," operates 43+ fully-equipped am
 
 ## Optional
 
-- [Extended information](https://arhamanimalambulance.com/llms-full.txt): Detailed service information, city coverage with phone numbers, and organizational context
+- [Extended information](https://alwayscare.org/llms-full.txt): Detailed service information, city coverage with phone numbers, and organizational context

@@ -29,3 +29,14 @@ next-env.d.ts
 *.sw?
 .env*
 .vercel
+
+# Source assets (not for repo)
+*.png
+!public/**/*.png
+*.jpg
+*.JPG
+*.jpeg
+*.xlsx
+OpenRunde-1.0.1/
+screenshots/
+netlify/

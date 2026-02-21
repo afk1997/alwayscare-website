@@ -336,7 +336,7 @@ const Hero: React.FC = () => {
             </p>
             <div className="animate-fadeUp flex items-center gap-3 mt-2" style={{ animationDelay: '250ms' }}>
               <div className="h-0.5 w-16 bg-gradient-to-r from-[#B7312C] via-[#B8650A] to-[#D87E0F] rounded-full" />
-              <img src="/images/aysg-logo.webp" alt="AYSG" className="w-6 h-6 rounded" />
+              <img src="/images/aysg-logo.webp" alt="AYSG" className="w-6 h-6 rounded" width={256} height={256} />
               <span className="text-sm font-semibold bg-gradient-to-r from-[#9A5508] via-[#D87E0F] to-[#9A5508] bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">Powered by Arham Yuva Seva Group</span>
             </div>
           </div>

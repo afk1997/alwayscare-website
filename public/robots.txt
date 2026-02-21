@@ -51,4 +51,4 @@ User-agent: Bytespider
 Allow: /
 
 # === Sitemaps ===
-Sitemap: https://arhamanimalambulance.com/sitemap.xml
+Sitemap: https://alwayscare.org/sitemap.xml

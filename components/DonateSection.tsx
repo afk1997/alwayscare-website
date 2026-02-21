@@ -73,8 +73,10 @@ const DonateSection: React.FC = () => {
             <img
               key={src}
               src={src}
-              alt="Rescued animal"
+              alt="Rescued animal being treated by Always Care"
               loading="lazy"
+              width={1024}
+              height={768}
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
                 idx === currentSlide ? 'opacity-100' : 'opacity-0'
               }`}

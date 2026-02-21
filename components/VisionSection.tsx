@@ -28,6 +28,8 @@ const VisionSection: React.FC = () => {
           src="/images/gurudev-website.webp"
           alt="Param Gurudev Shree Namramuni Maharaj Saheb"
           className="absolute inset-0 w-full h-full object-cover"
+          width={2560}
+          height={1700}
           style={{ objectPosition: 'center right', scale: prefersReducedMotion ? 1 : photoScale }}
         />
 
@@ -128,6 +130,8 @@ const VisionSection: React.FC = () => {
             src="/images/param-gurudev-mobile.webp"
             alt="Param Gurudev Shree Namramuni Maharaj Saheb"
             className="absolute inset-0 w-full h-full object-cover"
+            width={1200}
+            height={800}
             style={{ objectPosition: 'center top' }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FFFBF5]" />
