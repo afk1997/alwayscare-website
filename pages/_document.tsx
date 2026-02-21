@@ -78,7 +78,13 @@ export default function Document() {
                 {"@type": "City", "name": "Bengaluru"},
                 {"@type": "City", "name": "Kolkata"}
               ],
-              "sameAs": ["https://www.instagram.com/arhamanimalambulance/"],
+              "sameAs": [
+                "https://www.facebook.com/arhamalwayscare",
+                "https://www.instagram.com/alwayscareindia/",
+                "https://x.com/AlwaysCareIndia",
+                "https://www.youtube.com/@ArhamAlwaysCare",
+                "https://whatsapp.com/channel/0029Vb6iSj8I7BeIaONOIo2N"
+              ],
               "knowsAbout": [
                 "Animal rescue",
                 "Emergency veterinary care",
