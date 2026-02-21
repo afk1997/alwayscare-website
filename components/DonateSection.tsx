@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { dramatic, motionProps } from '../utils/motion';
 import { usePlans, getPlanDisplay } from '../hooks/usePlans';
 
@@ -25,13 +25,6 @@ function getImpactMessage(val: number): string {
 
 const DonateSection: React.FC = () => {
   const prefersReducedMotion = useReducedMotion();
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const bgY = useTransform(scrollYProgress, [0, 1], [50, -50]);
-  const contentY = useTransform(scrollYProgress, [0, 0.4], [80, 0]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [amount, setAmount] = useState('2000');
   const [isMonthly, setIsMonthly] = useState(false);
@@ -58,17 +51,13 @@ const DonateSection: React.FC = () => {
 
   return (
     <section
-      ref={sectionRef}
       id="donate"
       className="relative overflow-hidden bg-[#FFFBF5]"
     >
       {/* ── Top: Photo hero with heading ── */}
-      <div className="relative min-h-[60vh] flex items-center justify-center">
+      <div className="relative min-h-[60vh] flex items-center justify-center bg-[#1C1917]">
         {/* Background slideshow with parallax */}
-        <motion.div
-          className="absolute inset-0"
-          style={prefersReducedMotion ? undefined : { y: bgY }}
-        >
+        <div className="absolute inset-0">
           {donateImages.map((src, idx) => (
             <img
               key={src}
@@ -83,7 +72,7 @@ const DonateSection: React.FC = () => {
             />
           ))}
           <div className="absolute inset-0 bg-gradient-to-b from-[#1C1917]/50 via-[#1C1917]/60 to-[#1C1917]/80" />
-        </motion.div>
+        </div>
 
         {/* Heading — animates when IT enters viewport */}
         <motion.div
@@ -102,7 +91,7 @@ const DonateSection: React.FC = () => {
       </div>
 
       {/* ── Bottom: Split card overlapping the photo ── */}
-      <motion.div className="relative z-20 -mt-44 pb-16 px-4" style={prefersReducedMotion ? undefined : { y: contentY }}>
+      <div className="relative z-20 -mt-28 pb-16 px-4">
         <motion.div
           {...motionProps(dramatic, prefersReducedMotion, {
             transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
@@ -267,7 +256,7 @@ const DonateSection: React.FC = () => {
             </p>
           </div>
         </motion.div>
-      </motion.div>
+      </div>
 
     </section>
   );

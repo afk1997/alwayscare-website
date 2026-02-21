@@ -69,7 +69,6 @@ const ArhamYuvaSeva: React.FC = () => {
     offset: ["start end", "end start"],
   });
   const bgY = useTransform(scrollYProgress, [0, 1], [50, -50]);
-  const contentY = useTransform(scrollYProgress, [0, 0.4], [80, 0]);
 
   return (
     <section
@@ -77,7 +76,7 @@ const ArhamYuvaSeva: React.FC = () => {
       className="py-20 md:py-28 bg-[#1C1917] text-white relative overflow-hidden texture-grain warm-vignette"
     >
       {/* Light rays background */}
-      <motion.div className="absolute inset-0 z-0" style={prefersReducedMotion ? undefined : { y: bgY }}>
+      <motion.div className="absolute -top-[50px] -bottom-[50px] left-0 right-0 z-0" style={prefersReducedMotion ? undefined : { y: bgY }}>
         <LightRays
           raysOrigin="top-center"
           raysColor="#ffffff"
@@ -94,7 +93,7 @@ const ArhamYuvaSeva: React.FC = () => {
         />
       </motion.div>
 
-      <motion.div className="container mx-auto px-4 relative z-10" style={prefersReducedMotion ? undefined : { y: contentY }}>
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           {/* Logo — blooms in */}
           <motion.div
@@ -176,7 +175,7 @@ const ArhamYuvaSeva: React.FC = () => {
             </a>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Photo gallery marquee */}
       <motion.div {...motionProps(fadeUp, prefersReducedMotion)}>

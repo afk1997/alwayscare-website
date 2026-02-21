@@ -20,7 +20,7 @@ const VisionSection: React.FC = () => {
   const photoScale = useTransform(scrollYProgress, [0, 1], [1.18, 1.0]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden">
+    <section ref={sectionRef} className="relative overflow-hidden bg-[#FFFBF5]">
       {/* ── Desktop: full-viewport split layout ── */}
       <div className="hidden xl:block relative min-h-screen">
         {/* Background image with scroll-driven scale */}

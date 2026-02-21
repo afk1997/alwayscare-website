@@ -31,7 +31,6 @@ const HomePage: React.FC = () => {
       <FoundationOfCare />
       <VisionSection />
       <ArhamYuvaSeva />
-      <div className="h-px bg-gradient-to-r from-transparent via-[#E8E0D8]/50 to-transparent" />
       <DonateSection />
       <Community />
       <div className="h-px bg-gradient-to-r from-transparent via-[#E8E0D8]/50 to-transparent" />
