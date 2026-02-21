@@ -22,7 +22,7 @@ const VisionSection: React.FC = () => {
   return (
     <section ref={sectionRef} className="relative overflow-hidden">
       {/* ── Desktop: full-viewport split layout ── */}
-      <div className="hidden lg:block relative min-h-screen">
+      <div className="hidden xl:block relative min-h-screen">
         {/* Background image with scroll-driven scale */}
         <motion.img
           src="/images/gurudev-website.webp"
@@ -44,21 +44,21 @@ const VisionSection: React.FC = () => {
         />
 
         {/* Content card — bottom-aligned, slides in from left */}
-        <div className="absolute inset-0 flex items-end pb-12 lg:pb-16">
+        <div className="absolute inset-0 flex items-end pb-12 xl:pb-16">
           <motion.div
             {...motionProps(slideLeft, prefersReducedMotion, {
               transition: { duration: 0.8, ease },
             })}
-            className="ml-8 lg:ml-16 xl:ml-24 max-w-[560px] lg:max-w-[600px]"
+            className="ml-8 xl:ml-16 2xl:ml-24 max-w-[560px] xl:max-w-[600px]"
           >
             <motion.div
-              className="relative bg-[#FFFBF5]/95 rounded-[32px] p-10 lg:p-[60px]"
+              className="relative bg-[#FFFBF5]/95 rounded-[32px] p-10 xl:p-[60px]"
               style={{ boxShadow: '0 20px 60px rgba(28,25,23,0.15)' }}
               {...staggerProps(prefersReducedMotion, 0.08)}
             >
               {/* Decorative quote mark */}
               <div
-                className="absolute -top-4 left-8 text-[180px] lg:text-[200px] leading-none select-none pointer-events-none"
+                className="absolute -top-4 left-8 text-[180px] xl:text-[200px] leading-none select-none pointer-events-none"
                 style={{
                   color: '#E8E0D8',
                   opacity: 0.1,
@@ -81,7 +81,7 @@ const VisionSection: React.FC = () => {
               <motion.h2
                 variants={prefersReducedMotion ? undefined : fadeUp}
                 transition={transition}
-                className="text-3xl lg:text-[36px] font-semibold text-[#292524] leading-tight mb-10"
+                className="text-3xl xl:text-[36px] font-semibold text-[#292524] leading-tight mb-10"
                 style={{ fontFamily: "'Open Runde', sans-serif" }}
               >
                 Param Namramuni Gurudev
@@ -121,11 +121,11 @@ const VisionSection: React.FC = () => {
       </div>
 
       {/* ── Mobile: stacked layout ── */}
-      <div className="lg:hidden pb-10">
+      <div className="xl:hidden pb-10">
         {/* Image with dark overlay */}
         <div className="relative h-[60vh]">
           <img
-            src="/images/gurudev-website.webp"
+            src="/images/param-gurudev-mobile.webp"
             alt="Param Gurudev Shree Namramuni Maharaj Saheb"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ objectPosition: 'center top' }}

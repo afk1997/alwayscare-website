@@ -8,7 +8,7 @@ const PILLARS = [
     title: "Arham Animal Ambulance",
     subtitle: "First on the scene. Every time.",
     description:
-      "43+ fully-equipped ambulances with trained vets and paravets — dispatched free of charge, 24/7 — reaching injured street animals across 15+ cities in India within minutes of a single call.",
+      "43+ fully-equipped ambulances with trained vets and paravets — dispatched free of charge — reaching injured street animals across 15+ cities in India within minutes of a single call.",
     stat: "43+",
     statLabel: "Ambulances on road today",
     secondStat: "15+",

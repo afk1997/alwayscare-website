@@ -5,14 +5,14 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Arham Animal Ambulance | Free 24/7 Animal Rescue Across India</title>
-        <meta name="description" content="Find the nearest free animal ambulance in 40+ Indian cities. 24/7 emergency rescue, on-site treatment, and rehabilitation for injured street animals." />
+        <title>Arham Animal Ambulance | Free Animal Rescue Across India</title>
+        <meta name="description" content="Find the nearest free animal ambulance in 40+ Indian cities. Emergency rescue, on-site treatment, and rehabilitation for injured street animals." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://arhamanimalambulance.com/" />
 
         {/* Open Graph */}
-        <meta property="og:title" content="Arham Animal Ambulance | Free 24/7 Animal Rescue Across India" />
-        <meta property="og:description" content="Find the nearest free animal ambulance in 40+ Indian cities. 24/7 emergency rescue, on-site treatment, and rehabilitation for injured street animals." />
+        <meta property="og:title" content="Arham Animal Ambulance | Free Animal Rescue Across India" />
+        <meta property="og:description" content="Find the nearest free animal ambulance in 40+ Indian cities. Emergency rescue, on-site treatment, and rehabilitation for injured street animals." />
         <meta property="og:image" content="https://arhamanimalambulance.com/images/alwayscare-logo-original.png" />
         <meta property="og:url" content="https://arhamanimalambulance.com" />
         <meta property="og:type" content="website" />
@@ -21,8 +21,8 @@ export default function Home() {
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Arham Animal Ambulance | Free 24/7 Animal Rescue Across India" />
-        <meta name="twitter:description" content="Find the nearest free animal ambulance in 40+ Indian cities. 24/7 emergency rescue, on-site treatment, and rehabilitation for injured street animals." />
+        <meta name="twitter:title" content="Arham Animal Ambulance | Free Animal Rescue Across India" />
+        <meta name="twitter:description" content="Find the nearest free animal ambulance in 40+ Indian cities. Emergency rescue, on-site treatment, and rehabilitation for injured street animals." />
         <meta name="twitter:image" content="https://arhamanimalambulance.com/images/alwayscare-logo-original.png" />
       </Head>
       <HomePage />

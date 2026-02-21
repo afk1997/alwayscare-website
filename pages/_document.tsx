@@ -44,7 +44,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               "url": "https://arhamanimalambulance.com",
               "logo": "https://arhamanimalambulance.com/images/alwayscare-logo-original.png",
               "image": "https://arhamanimalambulance.com/images/alwayscare-logo-original.png",
-              "description": "India's largest free animal ambulance network providing 24/7 emergency rescue, treatment, and care for injured street animals across 40+ cities.",
+              "description": "India's largest free animal ambulance network providing emergency rescue, treatment, and care for injured street animals across 40+ cities.",
               "email": "support@alwayscare.org",
               "slogan": "Always Care for every life",
               "parentOrganization": {
@@ -97,7 +97,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               ],
               "makesOffer": {
                 "@type": "Offer",
-                "name": "Free 24/7 Animal Ambulance Service",
+                "name": "Free Animal Ambulance Service",
                 "description": "Emergency rescue and on-site treatment for injured street animals, completely free of charge",
                 "price": "0",
                 "priceCurrency": "INR",
@@ -210,13 +210,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <header style={{ textAlign: 'center', marginBottom: '40px' }}>
               <img src="/images/arham-alwayscare-logo.webp" alt="Arham Animal Ambulance — Always Care" width="200" height="60" style={{ margin: '0 auto 16px', display: 'block' }} />
               <h1 style={{ fontSize: '28px', fontWeight: 700, margin: '0 0 8px' }}>Arham Animal Ambulance | Always Care</h1>
-              <p style={{ fontSize: '16px', color: '#57534E', margin: 0 }}>India&apos;s largest free animal ambulance network — 24/7 emergency rescue, treatment, and care for injured street animals across 40+ cities.</p>
+              <p style={{ fontSize: '16px', color: '#57534E', margin: 0 }}>India&apos;s largest free animal ambulance network — emergency rescue, treatment, and care for injured street animals across 40+ cities.</p>
             </header>
 
             <main>
               <section style={{ marginBottom: '32px' }}>
                 <h2 style={{ fontSize: '22px', fontWeight: 700, margin: '0 0 12px' }}>About Us</h2>
-                <p style={{ color: '#57534E', lineHeight: 1.7 }}>Arham Animal Ambulance operates 43+ fully-equipped ambulances with trained veterinarians and paravets dispatched free of charge, 24 hours a day, 7 days a week. We also run 4 free animal clinics and have an animal hospital under construction. Over 1.5 lakh (150,000+) animals have been rescued and treated in the last 3 years. Every service is 100% free — no animal is ever turned away.</p>
+                <p style={{ color: '#57534E', lineHeight: 1.7 }}>Arham Animal Ambulance operates 43+ fully-equipped ambulances with trained veterinarians and paravets dispatched free of charge. We also run 4 free animal clinics and have an animal hospital under construction. Over 1.5 lakh (150,000+) animals have been rescued and treated in the last 3 years. Every service is 100% free — no animal is ever turned away.</p>
                 <p style={{ color: '#57534E', lineHeight: 1.7 }}>Operated by Arham Yuva Seva Group (AYSG), a youth-driven non-profit inspired by Param Gurudev Shree Namramuni Maharaj Saheb, rooted in the Jain principle of Ahimsa (non-violence).</p>
               </section>
 

@@ -45,7 +45,7 @@ const Volunteer: React.FC = () => {
   };
 
   return (
-      <section id="volunteer" className="grid md:grid-cols-2 md:h-screen">
+      <section id="volunteer" className="grid md:grid-cols-2 xl:h-screen">
 
         {/* ── LEFT: Story & Impact ── */}
         <div className="relative bg-[#1C1917] flex flex-col justify-center px-6 py-10 md:px-10 lg:px-12 md:py-10 overflow-hidden texture-grain">
